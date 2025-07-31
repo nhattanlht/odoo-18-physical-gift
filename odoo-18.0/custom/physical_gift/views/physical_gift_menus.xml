@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Main Menu -->
+        <menuitem id="menu_physical_gift_root"
+                  name="Physical Gift"
+                  web_icon="physical_gift,static/description/icon.png"
+                  sequence="10"/>
+
+        <!-- Programs Menu -->
+        <menuitem id="menu_physical_gift_program"
+                  name="Chương trình"
+                  parent="menu_physical_gift_root"
+                  sequence="10"/>
+
+        <!-- Programs List Menu -->
+        <menuitem id="menu_physical_gift_program_list"
+                  name="Quản lý chương trình"
+                  parent="menu_physical_gift_program"
+                  action="action_physical_gift_program"
+                  sequence="10"/>
+
+        <!-- Gift Items Menu -->
+        <menuitem id="menu_physical_gift_item"
+                  name="Quà tặng"
+                  parent="menu_physical_gift_root"
+                  sequence="20"/>
+
+        <!-- Gift Items List Menu -->
+        <menuitem id="menu_physical_gift_item_list"
+                  name="Danh sách quà"
+                  parent="menu_physical_gift_item"
+                  action="action_physical_gift_item"
+                  sequence="10"/>
+
+        <!-- Configuration Menu -->
+        <menuitem id="menu_physical_gift_config"
+                  name="Cấu hình"
+                  parent="menu_physical_gift_root"
+                  sequence="100"/>
+    </data>
+</odoo> 

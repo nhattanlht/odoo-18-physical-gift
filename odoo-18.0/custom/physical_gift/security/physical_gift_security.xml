@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Physical Gift User Group -->
+        <record id="group_physical_gift_user" model="res.groups">
+            <field name="name">Physical Gift User</field>
+            <field name="category_id" ref="base.module_category_sales_sales"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!-- Physical Gift Manager Group -->
+        <record id="group_physical_gift_manager" model="res.groups">
+            <field name="name">Physical Gift Manager</field>
+            <field name="category_id" ref="base.module_category_sales_sales"/>
+            <field name="implied_ids" eval="[(4, ref('group_physical_gift_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+
+        <!-- Record Rules -->
+        <record id="physical_gift_program_comp_rule" model="ir.rule">
+            <field name="name">Physical Gift Program: multi-company rule</field>
+            <field name="model_id" ref="model_physical_gift_program"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        </record>
+
+        <record id="physical_gift_item_comp_rule" model="ir.rule">
+            <field name="name">Physical Gift Item: multi-company rule</field>
+            <field name="model_id" ref="model_physical_gift_item"/>
+            <field name="domain_force">['|',('program_id.company_id','=',False),('program_id.company_id', 'in', company_ids)]</field>
+        </record>
+
+        <!-- User can only see programs from their company -->
+        <record id="physical_gift_program_user_rule" model="ir.rule">
+            <field name="name">Physical Gift Program: user rule</field>
+            <field name="model_id" ref="model_physical_gift_program"/>
+            <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+            <field name="groups" eval="[(4, ref('group_physical_gift_user'))]"/>
+        </record>
+
+        <record id="physical_gift_item_user_rule" model="ir.rule">
+            <field name="name">Physical Gift Item: user rule</field>
+            <field name="model_id" ref="model_physical_gift_item"/>
+            <field name="domain_force">[('program_id.company_id', '=', user.company_id.id)]</field>
+            <field name="groups" eval="[(4, ref('group_physical_gift_user'))]"/>
+        </record>
+    </data>
+</odoo> 

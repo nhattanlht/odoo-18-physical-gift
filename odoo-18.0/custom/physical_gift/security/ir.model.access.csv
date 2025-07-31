@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_physical_gift_program_user,physical.gift.program.user,model_physical_gift_program,group_physical_gift_user,1,1,1,0
+access_physical_gift_program_manager,physical.gift.program.manager,model_physical_gift_program,group_physical_gift_manager,1,1,1,0
+access_physical_gift_item_user,physical.gift.item.user,model_physical_gift_item,group_physical_gift_user,1,1,0,0
+access_physical_gift_item_manager,physical.gift.item.manager,model_physical_gift_item,group_physical_gift_manager,1,1,1,0
