@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Physical Gift Category Views -->
+        <record id="view_physical_gift_category_tree" model="ir.ui.view">
+            <field name="name">physical.gift.category.tree</field>
+            <field name="model">physical.gift.category</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách danh mục quà">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="name_en"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="sequence"/>
+                    <field name="state" widget="badge" 
+                           decoration-success="state == 'active'" 
+                           decoration-danger="state == 'inactive'"/>
+                    <button name="action_activate" string="Active" type="object" 
+                            class="btn-success" invisible="state == 'active'"/>
+                    <button name="action_deactivate" string="Inactive" type="object" 
+                            class="btn-danger" invisible="state == 'inactive'"/>
+                    <button name="action_update" string="Cập nhật" type="object" 
+                            class="btn-primary"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_physical_gift_category_form" model="ir.ui.view">
+            <field name="name">physical.gift.category.form</field>
+            <field name="model">physical.gift.category</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Danh mục quà">
+                    <header>
+                        <button name="action_activate" string="Kích hoạt" type="object" 
+                                class="btn-success" invisible="state == 'active'"/>
+                        <button name="action_deactivate" string="Tạm dừng" type="object" 
+                                class="btn-danger" invisible="state == 'inactive'"/>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="active,inactive"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Tên danh mục"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="name_en" placeholder="Tên tiếng Anh"/>
+                                <field name="code" placeholder="Mã danh mục"/>
+                                <field name="parent_id"/>
+                            </group>
+                            <group>
+                                <field name="sequence"/>
+                                <field name="active" invisible="1"/>
+                                <field name="image" widget="image" class="oe_avatar"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mô tả">
+                                <field name="description" placeholder="Mô tả danh mục..."/>
+                            </page>
+                            <page string="Danh mục con" invisible="not child_ids">
+                                <field name="child_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="name_en"/>
+                                        <field name="code"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_physical_gift_category_search" model="ir.ui.view">
+            <field name="name">physical.gift.category.search</field>
+            <field name="model">physical.gift.category</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm danh mục">
+                    <field name="name" string="Tên danh mục" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="name_en" string="Tên tiếng Anh" filter_domain="[('name_en', 'ilike', self)]"/>
+                    <field name="code" string="Mã danh mục" filter_domain="[('code', 'ilike', self)]"/>
+                    <field name="parent_id"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter name="active" string="Active" domain="[('state', '=', 'active')]"/>
+                    <filter name="inactive" string="Inactive" domain="[('state', '=', 'inactive')]"/>
+                    <separator/>
+                    <filter name="parent_categories" string="Danh mục cha" domain="[('parent_id', '=', False)]"/>
+                    <filter name="child_categories" string="Danh mục con" domain="[('parent_id', '!=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_parent" string="Danh mục cha" context="{'group_by': 'parent_id'}"/>
+                        <filter name="group_by_state" string="Trạng thái" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Physical Gift Category Action -->
+        <record id="action_physical_gift_category" model="ir.actions.act_window">
+            <field name="name">Quản lý danh mục quà vật lý</field>
+            <field name="res_model">physical.gift.category</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo danh mục quà đầu tiên
+                </p>
+                <p>
+                    Tạo danh mục quà vật lý mới để phân loại các loại quà tặng.
+                </p>
+            </field>
+        </record>
+
+        <!-- Physical Gift Program List View -->
+        <record id="view_physical_gift_program_list" model="ir.ui.view">
+            <field name="name">physical.gift.program.list</field>
+            <field name="model">physical.gift.program</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Quản lý chương trình">
+                    <field name="id"/>
+                    <field name="name_vi" string="TÊN TIẾNG VIỆT"/>
+                    <field name="name_en" string="TÊN TIẾNG ANH"/>
+                    <field name="company_id" string="CÔNG TY"/>
+                    <field name="order_creator_id" string="NGƯỜI TẠO ĐƠN HÀNG"/>
+                    <field name="brand_redeem_id" string="BRAND REDEEM"/>
+                    <field name="store_redeem_id" string="STORE REDEEM"/>
+                    <field name="state" invisible="1"/>
+                    <field name="active" invisible="1"/>
+                    <button name="action_activate" string="Kích hoạt" type="object" 
+                            class="btn-primary"/>
+                    <button name="action_deactivate" string="Tạm dừng" type="object" 
+                            class="btn-warning"/>
+                    <button name="action_close" string="Đóng" type="object" 
+                            class="btn-danger"/>
+                    <button name="action_reset_to_draft" string="Đặt lại" type="object" 
+                            class="btn-secondary"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Physical Gift Program Update Form View -->
+        <record id="view_physical_gift_program_update_form" model="ir.ui.view">
+            <field name="name">physical.gift.program.update.form</field>
+            <field name="model">physical.gift.program</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Cập Nhật Chương Trình">
+                    <header>
+                        <button name="action_activate" string="Kích hoạt" type="object" 
+                                class="btn-primary"/>
+                        <button name="action_deactivate" string="Tạm dừng" type="object" 
+                                class="btn-warning"/>
+                        <button name="action_close" string="Đóng" type="object" 
+                                class="btn-danger"/>
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object" 
+                                class="btn-secondary"/>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="draft,active,inactive,closed"/>
+                    </header>
+                    <sheet>
+                        <!-- Thông tin chương trình chung -->
+                        <div class="oe_title">
+                            <h1>Cập Nhật Chương Trình</h1>
+                        </div>
+                        
+                        <group>
+                            <group string="Thông tin chương trình chung">
+                                <field name="name_vi" placeholder="Nhập tên tiếng Việt"/>
+                                <field name="name_en" placeholder="Nhập tên tiếng Anh"/>
+                                <field name="company_id"/>
+                                <field name="order_creator_id"/>
+                            </group>
+                        </group>
+                        
+                        <!-- Cấu hình thông tin redeem -->
+                        <div class="redeem-config-section">
+                            <h3>Cấu hình thông tin redeem</h3>
+                            <group>
+                                <group>
+                                    <field name="brand_redeem_id" placeholder="Chọn Brand Redeem"/>
+                                    <field name="store_redeem_id" placeholder="Chọn Store Redeem"/>
+                                    <field name="bill_number" placeholder="Nhập bill number"/>
+                                </group>
+                            </group>
+                        </div>
+                        
+                        <!-- Các trường khác -->
+                        <group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="gift_count"/>
+                            </group>
+                            <group>
+                                <field name="creator_id"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                        </group>
+                        
+                        <notebook>
+                            <page string="Mô tả">
+                                <field name="description" placeholder="Mô tả chương trình..."/>
+                            </page>
+                            <page string="Danh sách quà">
+                                <field name="gift_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Physical Gift Program Form View -->
+        <record id="view_physical_gift_program_form" model="ir.ui.view">
+            <field name="name">physical.gift.program.form</field>
+            <field name="model">physical.gift.program</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Chương trình quà tặng">
+                    <header>
+                        <button name="action_activate" string="Kích hoạt" type="object" 
+                                class="btn-primary"/>
+                        <button name="action_deactivate" string="Tạm dừng" type="object" 
+                                class="btn-warning"/>
+                        <button name="action_close" string="Đóng" type="object" 
+                                class="btn-danger"/>
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object" 
+                                class="btn-secondary"/>
+                        <field name="state" widget="statusbar" 
+                               statusbar_visible="draft,active,inactive,closed"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Tên chương trình"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="company_id"/>
+                                <field name="creator_id"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="gift_count"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Mô tả">
+                                <field name="description" placeholder="Mô tả chương trình..."/>
+                            </page>
+                            <page string="Danh sách quà">
+                                <field name="gift_ids"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Physical Gift Program Search View -->
+        <record id="view_physical_gift_program_search" model="ir.ui.view">
+            <field name="name">physical.gift.program.search</field>
+            <field name="model">physical.gift.program</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm chương trình">
+                    <field name="name_vi" string="Tên tiếng Việt" filter_domain="[('name_vi', 'ilike', self)]"/>
+                    <field name="name_en" string="Tên tiếng Anh" filter_domain="[('name_en', 'ilike', self)]"/>
+                    <field name="company_id"/>
+                    <field name="order_creator_id"/>
+                    <field name="brand_redeem_id"/>
+                    <field name="store_redeem_id"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter name="active" string="Hoạt động" domain="[('state', '=', 'active')]"/>
+                    <filter name="draft" string="Nháp" domain="[('state', '=', 'draft')]"/>
+                    <filter name="inactive" string="Không hoạt động" domain="[('state', '=', 'inactive')]"/>
+                    <filter name="closed" string="Đã đóng" domain="[('state', '=', 'closed')]"/>
+                    <separator/>
+                    <filter name="my_programs" string="Chương trình của tôi" domain="[('order_creator_id', '=', uid)]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_company" string="Công ty" context="{'group_by': 'company_id'}"/>
+                        <filter name="group_by_creator" string="Người tạo" context="{'group_by': 'order_creator_id'}"/>
+                        <filter name="group_by_brand" string="Brand Redeem" context="{'group_by': 'brand_redeem_id'}"/>
+                        <filter name="group_by_store" string="Store Redeem" context="{'group_by': 'store_redeem_id'}"/>
+                        <filter name="group_by_state" string="Trạng thái" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Physical Gift Program Tree View -->
+        <record id="view_physical_gift_program_tree" model="ir.ui.view">
+            <field name="name">physical.gift.program.tree</field>
+            <field name="model">physical.gift.program</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách chương trình">
+                    <field name="name_vi" string="Tên tiếng Việt"/>
+                    <field name="name_en" string="Tên tiếng Anh"/>
+                    <field name="company_id"/>
+                    <field name="order_creator_id"/>
+                    <field name="brand_redeem_id"/>
+                    <field name="store_redeem_id"/>
+                    <field name="state"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Physical Gift Brand Views -->
+        <record id="view_physical_gift_brand_tree" model="ir.ui.view">
+            <field name="name">physical.gift.brand.tree</field>
+            <field name="model">physical.gift.brand</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách Brand">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_physical_gift_brand_form" model="ir.ui.view">
+            <field name="name">physical.gift.brand.form</field>
+            <field name="model">physical.gift.brand</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Brand">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Physical Gift Store Views -->
+        <record id="view_physical_gift_store_tree" model="ir.ui.view">
+            <field name="name">physical.gift.store.tree</field>
+            <field name="model">physical.gift.store</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách Store">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="brand_id"/>
+                    <field name="active"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_physical_gift_store_form" model="ir.ui.view">
+            <field name="name">physical.gift.store.form</field>
+            <field name="model">physical.gift.store</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Store">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                            </group>
+                            <group>
+                                <field name="brand_id"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Physical Gift Item Views -->
+        <record id="view_physical_gift_item_tree" model="ir.ui.view">
+            <field name="name">physical.gift.item.tree</field>
+            <field name="model">physical.gift.item</field>
+            <field name="type">list</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách quà">
+                    <field name="name"/>
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="unit_price"/>
+                    <field name="total_price"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_physical_gift_item_form" model="ir.ui.view">
+            <field name="name">physical.gift.item.form</field>
+            <field name="model">physical.gift.item</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Quà tặng">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="product_id"/>
+                            </group>
+                            <group>
+                                <field name="quantity"/>
+                                <field name="unit_price"/>
+                                <field name="total_price"/>
+                            </group>
+                        </group>
+                        <field name="program_id" invisible="1"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Physical Gift Item Search View -->
+        <record id="view_physical_gift_item_search" model="ir.ui.view">
+            <field name="name">physical.gift.item.search</field>
+            <field name="model">physical.gift.item</field>
+            <field name="type">search</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm quà">
+                    <field name="name"/>
+                    <field name="program_id"/>
+                    <field name="product_id"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_by_program" string="Chương trình" context="{'group_by': 'program_id'}"/>
+                        <filter name="group_by_product" string="Sản phẩm" context="{'group_by': 'product_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Physical Gift Item Action -->
+        <record id="action_physical_gift_item" model="ir.actions.act_window">
+            <field name="name">Danh sách quà</field>
+            <field name="res_model">physical.gift.item</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo quà tặng đầu tiên
+                </p>
+                <p>
+                    Tạo quà tặng mới để thêm vào chương trình.
+                </p>
+            </field>
+        </record>
+
+        <!-- Actions -->
+        <record id="action_physical_gift_program" model="ir.actions.act_window">
+            <field name="name">Chương trình quà tặng</field>
+            <field name="res_model">physical.gift.program</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_my_programs': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo chương trình quà tặng đầu tiên
+                </p>
+            </field>
+        </record>
+
+        <record id="action_physical_gift_program_update" model="ir.actions.act_window">
+            <field name="name">Cập Nhật Chương Trình</field>
+            <field name="res_model">physical.gift.program</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_physical_gift_program_update_form"/>
+            <field name="target">new</field>
+            <field name="context">{}</field>
+        </record>
+
+        <record id="action_physical_gift_brand" model="ir.actions.act_window">
+            <field name="name">Brand</field>
+            <field name="res_model">physical.gift.brand</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo brand đầu tiên
+                </p>
+            </field>
+        </record>
+
+        <record id="action_physical_gift_store" model="ir.actions.act_window">
+            <field name="name">Store</field>
+            <field name="res_model">physical.gift.store</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo store đầu tiên
+                </p>
+            </field>
+        </record>
+
+        <record id="action_physical_gift_item" model="ir.actions.act_window">
+            <field name="name">Quà tặng</field>
+            <field name="res_model">physical.gift.item</field>
+            <field name="view_mode">list,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo quà tặng đầu tiên
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo> 

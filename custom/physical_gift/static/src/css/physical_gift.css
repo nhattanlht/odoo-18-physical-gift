@@ -1,0 +1,403 @@
+/* Physical Gift Module Custom Styles */
+
+.o_physical_gift_program_list {
+    background-color: #ffffff;
+}
+
+.o_physical_gift_program_list .o_list_view {
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.o_physical_gift_program_list .o_list_view .o_list_table {
+    background-color: #ffffff;
+}
+
+.o_physical_gift_program_list .o_list_view .o_list_table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    color: #495057;
+}
+
+.o_physical_gift_program_list .o_list_view .o_list_table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Category Management Styles */
+.o_physical_gift_category_tree .o_list_view {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+}
+
+.o_physical_gift_category_tree .o_list_view .o_list_table thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    color: #495057;
+}
+
+.o_physical_gift_category_tree .o_list_view .o_list_table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Category buttons */
+.btn-add-category {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.btn-add-category:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+/* Status badges */
+.badge-success {
+    background-color: #28a745;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+/* Category form styling */
+.o_form_view_physical_gift_category .o_form_sheet {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_form_view_physical_gift_category .o_form_sheet .oe_title h1 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Category hierarchy styling */
+.o_physical_gift_category_tree .o_list_view .o_list_table tbody tr[data-level="1"] {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.o_physical_gift_category_tree .o_list_view .o_list_table tbody tr[data-level="2"] {
+    background-color: #ffffff;
+    padding-left: 20px;
+}
+
+/* Custom button styles */
+.btn-filter {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.btn-filter:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+.btn-reset {
+    background-color: #fd7e14;
+    border-color: #fd7e14;
+    color: white;
+}
+
+.btn-reset:hover {
+    background-color: #e8690b;
+    border-color: #d55a00;
+    color: white;
+}
+
+.btn-export {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.btn-export:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+.btn-add {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.btn-add:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+.btn-update {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.btn-update:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+/* Status colors */
+.status-draft {
+    color: #6c757d;
+}
+
+.status-active {
+    color: #28a745;
+}
+
+.status-inactive {
+    color: #ffc107;
+}
+
+.status-closed {
+    color: #dc3545;
+}
+
+/* Form Update Program Styles */
+.o_form_view_physical_gift_program_update .o_form_sheet {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_form_view_physical_gift_program_update .o_form_sheet .oe_title h1 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Redeem Configuration Section */
+.redeem-config-section {
+    border: 2px solid #000;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+}
+
+.redeem-config-section h3 {
+    margin-top: 0;
+    color: #2c3e50;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Form field styling */
+.o_form_view_physical_gift_program_update .o_field_widget {
+    margin-bottom: 15px;
+}
+
+.o_form_view_physical_gift_program_update .o_field_widget input,
+.o_form_view_physical_gift_program_update .o_field_widget select {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.o_form_view_physical_gift_program_update .o_field_widget input:focus,
+.o_form_view_physical_gift_program_update .o_field_widget select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    outline: none;
+}
+
+/* Button styling for update form */
+.o_form_view_physical_gift_program_update .btn-primary {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.o_form_view_physical_gift_program_update .btn-primary:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    color: white;
+}
+
+.o_form_view_physical_gift_program_update .btn-secondary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 500;
+    border-radius: 4px;
+}
+
+.o_form_view_physical_gift_program_update .btn-secondary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+    color: white;
+}
+
+/* Group styling */
+.o_form_view_physical_gift_program_update .o_group {
+    margin-bottom: 20px;
+}
+
+.o_form_view_physical_gift_program_update .o_group .o_group_label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+/* Placeholder styling */
+.o_form_view_physical_gift_program_update input::placeholder {
+    color: #6c757d;
+    font-style: italic;
+}
+
+/* Required field indicator */
+.o_form_view_physical_gift_program_update .o_required_modifier {
+    border-left: 3px solid #dc3545;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .redeem-config-section {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .o_form_view_physical_gift_program_update .o_form_sheet .oe_title h1 {
+        font-size: 24px;
+    }
+    
+    .o_form_view_physical_gift_program_update .btn-primary,
+    .o_form_view_physical_gift_program_update .btn-secondary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .btn-add-category {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* Original styles continue... */
+.o_form_view_physical_gift_program .o_form_sheet {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.o_form_view_physical_gift_program .o_form_sheet .oe_title h1 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.o_search_panel {
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    padding: 15px;
+}
+
+.o_search_panel .o_search_panel_label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 10px;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.o_physical_gift_program_kanban .oe_kanban_record_head strong {
+    color: #2c3e50;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.o_physical_gift_program_kanban .badge-info {
+    background-color: #17a2b8;
+    color: white;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.o_physical_gift_program_kanban .text-muted {
+    color: #6c757d;
+    font-size: 12px;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card[data-oe-model="physical.gift.program"][data-state="draft"] {
+    border-left: 4px solid #6c757d;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card[data-oe-model="physical.gift.program"][data-state="active"] {
+    border-left: 4px solid #28a745;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card[data-oe-model="physical.gift.program"][data-state="inactive"] {
+    border-left: 4px solid #ffc107;
+}
+
+.o_physical_gift_program_kanban .oe_kanban_card[data-oe-model="physical.gift.program"][data-state="closed"] {
+    border-left: 4px solid #dc3545;
+}
+
+@media (max-width: 768px) {
+    .o_physical_gift_program_list .o_list_view .o_list_table {
+        font-size: 12px;
+    }
+    
+    .btn-update {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .o_physical_gift_program_kanban .oe_kanban_card {
+        margin-bottom: 10px;
+    }
+    
+    .o_physical_gift_program_kanban .oe_kanban_record_head strong {
+        font-size: 14px;
+    }
+} 

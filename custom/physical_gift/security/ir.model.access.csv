@@ -1,0 +1,11 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_physical_gift_program_user,physical.gift.program.user,model_physical_gift_program,base.group_user,1,0,0,0
+access_physical_gift_program_manager,physical.gift.program.manager,model_physical_gift_program,base.group_system,1,1,1,1
+access_physical_gift_brand_user,physical.gift.brand.user,model_physical_gift_brand,base.group_user,1,0,0,0
+access_physical_gift_brand_manager,physical.gift.brand.manager,model_physical_gift_brand,base.group_system,1,1,1,1
+access_physical_gift_store_user,physical.gift.store.user,model_physical_gift_store,base.group_user,1,0,0,0
+access_physical_gift_store_manager,physical.gift.store.manager,model_physical_gift_store,base.group_system,1,1,1,1
+access_physical_gift_category_user,physical.gift.category.user,model_physical_gift_category,base.group_user,1,0,0,0
+access_physical_gift_category_manager,physical.gift.category.manager,model_physical_gift_category,base.group_system,1,1,1,1
+access_physical_gift_item_user,physical.gift.item.user,model_physical_gift_item,base.group_user,1,0,0,0
+access_physical_gift_item_manager,physical.gift.item.manager,model_physical_gift_item,base.group_system,1,1,1,1

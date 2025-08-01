@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_physical_gift_brand_tree" model="ir.ui.view">
+        <field name="name">physical.gift.brand.tree</field>
+        <field name="model">physical.gift.brand</field>
+        <field name="type">list</field>
+        <field name="arch" type="xml">
+            <list string="Thương hiệu" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-warning="state == 'suspended'" decoration-danger="state == 'inactive'">
+                <field name="sequence" widget="handle"/>
+                <field name="logo" widget="image" class="oe_avatar"/>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="name_en"/>
+                <field name="contact_person"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="website"/>
+                <field name="partnership_date"/>
+                <field name="commission_rate" widget="percentage"/>
+                <field name="store_count"/>
+                <field name="program_count"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-warning="state == 'suspended'" decoration-danger="state == 'inactive'"/>
+                <field name="active" invisible="1"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_physical_gift_brand_form" model="ir.ui.view">
+        <field name="name">physical.gift.brand.form</field>
+        <field name="model">physical.gift.brand</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Thương hiệu">
+                <header>
+                    <button name="action_activate" string="Kích hoạt" type="object" class="oe_highlight" invisible="state not in ('draft','inactive','suspended')"/>
+                    <button name="action_deactivate" string="Tạm ngưng" type="object" invisible="state != 'active'"/>
+                    <button name="action_suspend" string="Tạm ngưng" type="object" invisible="state != 'active'"/>
+                    <button name="action_reset_to_draft" string="Đặt lại nháp" type="object" invisible="state not in ('inactive','suspended')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="logo" widget="image" class="oe_avatar"/>
+                            <field name="name" placeholder="Tên thương hiệu..." class="oe_inline"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group string="Thông tin cơ bản">
+                            <field name="code"/>
+                            <field name="name_en"/>
+                            <field name="website"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Thông tin liên hệ">
+                            <field name="contact_person"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group string="Thông tin hợp tác">
+                            <field name="partnership_date"/>
+                            <field name="contract_number"/>
+                            <field name="commission_rate" widget="percentage"/>
+                        </group>
+                        <group string="Thống kê">
+                            <field name="store_count"/>
+                            <field name="program_count"/>
+                            <field name="sequence"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Mô tả" name="description">
+                            <field name="description" placeholder="Mô tả chi tiết về thương hiệu..."/>
+                        </page>
+                        <page string="Địa chỉ" name="address">
+                            <field name="address" placeholder="Địa chỉ trụ sở chính..."/>
+                        </page>
+                        <page string="Hình ảnh" name="images">
+                            <group>
+                                <field name="image" widget="image"/>
+                            </group>
+                        </page>
+                        <page string="Cửa hàng" name="stores">
+                            <field name="store_ids" readonly="1">
+                                <list>
+                                    <field name="code"/>
+                                    <field name="name"/>
+                                    <field name="active"/>
+                                </list>
+                            </field>
+                            <div class="oe_chatter">
+                                <button name="action_view_stores" string="Xem tất cả cửa hàng" type="object" class="btn-primary"/>
+                            </div>
+                        </page>
+                        <page string="Chương trình" name="programs">
+                            <field name="program_ids" readonly="1">
+                                <list>
+                                    <field name="name_vi"/>
+                                    <field name="name_en"/>
+                                    <field name="state"/>
+                                </list>
+                            </field>
+                            <div class="oe_chatter">
+                                <button name="action_view_programs" string="Xem tất cả chương trình" type="object" class="btn-primary"/>
+                            </div>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_physical_gift_brand_search" model="ir.ui.view">
+        <field name="name">physical.gift.brand.search</field>
+        <field name="model">physical.gift.brand</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Tìm kiếm thương hiệu">
+                <field name="name"/>
+                <field name="name_en"/>
+                <field name="code"/>
+                <field name="contact_person"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="website"/>
+                <field name="contract_number"/>
+                <separator/>
+                <filter string="Hoạt động" name="active" domain="[('state', '=', 'active')]"/>
+                <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Tạm ngưng" name="suspended" domain="[('state', '=', 'suspended')]"/>
+                <filter string="Không hoạt động" name="inactive" domain="[('state', '=', 'inactive')]"/>
+                <separator/>
+                <filter string="Có cửa hàng" name="has_stores" domain="[('store_count', '>', 0)]"/>
+                <filter string="Có chương trình" name="has_programs" domain="[('program_count', '>', 0)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                    <filter string="Ngày hợp tác" name="group_partnership" context="{'group_by': 'partnership_date'}"/>
+                    <filter string="Tỷ lệ hoa hồng" name="group_commission" context="{'group_by': 'commission_rate'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="view_physical_gift_brand_kanban" model="ir.ui.view">
+        <field name="name">physical.gift.brand.kanban</field>
+        <field name="model">physical.gift.brand</field>
+        <field name="type">kanban</field>
+        <field name="arch" type="xml">
+            <kanban string="Thương hiệu" class="o_physical_gift_brand_kanban">
+                <field name="id"/>
+                <field name="name"/>
+                <field name="name_en"/>
+                <field name="code"/>
+                <field name="logo"/>
+                <field name="contact_person"/>
+                <field name="phone"/>
+                <field name="email"/>
+                <field name="website"/>
+                <field name="state"/>
+                <field name="store_count"/>
+                <field name="program_count"/>
+                <field name="commission_rate"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="o_kanban_image">
+                                    <img t-if="record.logo.value" t-att-src="kanban_image('physical.gift.brand', 'logo', record.id.raw_value)" alt="Logo"/>
+                                    <div t-else="" class="o_kanban_image_fallback_left">
+                                        <i class="fa fa-building" title="Building Icon"/>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_text">
+                                    <div class="o_kanban_record_top">
+                                        <div class="o_kanban_record_headings">
+                                            <strong class="o_kanban_record_title">
+                                                <field name="name"/>
+                                            </strong>
+                                            <span class="o_kanban_record_subtitle">
+                                                <field name="code"/>
+                                            </span>
+                                        </div>
+                                        <div class="o_kanban_record_top_right">
+                                            <field name="state" widget="label_selection" options="{'classes': {'draft': 'info', 'active': 'success', 'suspended': 'warning', 'inactive': 'danger'}}"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_body">
+                                        <div t-if="record.name_en.value" class="o_kanban_record_subtitle">
+                                            <field name="name_en"/>
+                                        </div>
+                                        <div t-if="record.contact_person.value" class="o_kanban_record_subtitle">
+                                            <i class="fa fa-user" title="Contact Person"/> <field name="contact_person"/>
+                                        </div>
+                                        <div t-if="record.phone.value" class="o_kanban_record_subtitle">
+                                            <i class="fa fa-phone" title="Phone"/> <field name="phone"/>
+                                        </div>
+                                        <div t-if="record.email.value" class="o_kanban_record_subtitle">
+                                            <i class="fa fa-envelope" title="Email"/> <field name="email"/>
+                                        </div>
+                                        <div t-if="record.website.value" class="o_kanban_record_subtitle">
+                                            <i class="fa fa-globe" title="Website"/> <field name="website"/>
+                                        </div>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <span class="badge badge-info">
+                                                <i class="fa fa-shopping-cart" title="Stores"/> <field name="store_count"/> cửa hàng
+                                            </span>
+                                            <span class="badge badge-success">
+                                                <i class="fa fa-gift" title="Programs"/> <field name="program_count"/> chương trình
+                                            </span>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <span t-if="record.commission_rate.value" class="badge badge-warning">
+                                                <field name="commission_rate"/>%
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_physical_gift_brand" model="ir.actions.act_window">
+        <field name="name">Quản lý thương hiệu</field>
+        <field name="res_model">physical.gift.brand</field>
+        <field name="view_mode">list,form,kanban</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Tạo thương hiệu đầu tiên
+            </p>
+            <p>
+                Thương hiệu là đối tác cung cấp quà tặng vật lý cho các chương trình.
+            </p>
+        </field>
+    </record>
+</odoo> 

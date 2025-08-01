@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Physical Gift Categories -->
+        <record id="category_traveloka" model="physical.gift.category">
+            <field name="name">Du lịch Traveloka</field>
+            <field name="name_en">Traveloka Travel</field>
+            <field name="code">du-lich-traveloka</field>
+            <field name="state">active</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="category_travel_sub_02" model="physical.gift.category">
+            <field name="name">Du lịch sub 02</field>
+            <field name="name_en">Travel</field>
+            <field name="code">travel-sub-02</field>
+            <field name="state">active</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record id="category_health_service" model="physical.gift.category">
+            <field name="name">Tiện ích và Giải trí</field>
+            <field name="name_en">Health &amp; Entertainment</field>
+            <field name="code">health-service</field>
+            <field name="state">active</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <record id="category_cosmetic" model="physical.gift.category">
+            <field name="name">Mỹ Phẩm</field>
+            <field name="name_en">Cosmetic</field>
+            <field name="code">cosmetic</field>
+            <field name="state">active</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <record id="category_travel_sub_03" model="physical.gift.category">
+            <field name="name">Du lịch sub 03</field>
+            <field name="name_en">Travel Sub 03</field>
+            <field name="code">du-lich-sub-03</field>
+            <field name="state">active</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <record id="category_aia_gift" model="physical.gift.category">
+            <field name="name">Quà AIA</field>
+            <field name="name_en">AIA Gift</field>
+            <field name="code">qua-aia</field>
+            <field name="state">active</field>
+            <field name="sequence">6</field>
+        </record>
+
+        <record id="category_home_delivery_test" model="physical.gift.category">
+            <field name="name">Home-Delivery-Test</field>
+            <field name="name_en">Home Delivery Test</field>
+            <field name="code">home-delivery-test</field>
+            <field name="state">active</field>
+            <field name="sequence">7</field>
+        </record>
+
+        <record id="category_pentest" model="physical.gift.category">
+            <field name="name">pentest</field>
+            <field name="name_en">Penetration Test</field>
+            <field name="code">http://pentest</field>
+            <field name="state">active</field>
+            <field name="sequence">8</field>
+        </record>
+
+        <record id="category_family" model="physical.gift.category">
+            <field name="name">Nhà cửa</field>
+            <field name="name_en">Family</field>
+            <field name="code">family</field>
+            <field name="state">active</field>
+            <field name="sequence">9</field>
+        </record>
+
+        <record id="category_household" model="physical.gift.category">
+            <field name="name">Gia Dụng</field>
+            <field name="name_en">Household</field>
+            <field name="code">gia-dung</field>
+            <field name="state">active</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <!-- Gift Card Category with sub-category -->
+        <record id="category_gift_card" model="physical.gift.category">
+            <field name="name">Thẻ quà tặng</field>
+            <field name="name_en">Gift Card</field>
+            <field name="code">the-qua-tang</field>
+            <field name="state">active</field>
+            <field name="sequence">11</field>
+        </record>
+
+        <record id="category_fashion_beauty" model="physical.gift.category">
+            <field name="name">Thời trang &amp; làm đẹp</field>
+            <field name="name_en">Fashion &amp; Beauty</field>
+            <field name="code">thoi-trang-and-lam-dep</field>
+            <field name="parent_id" ref="category_gift_card"/>
+            <field name="state">active</field>
+            <field name="sequence">12</field>
+        </record>
+
+        <!-- Mother & Baby Category with sub-category -->
+        <record id="category_mother_baby" model="physical.gift.category">
+            <field name="name">MẸ &amp; BÉ</field>
+            <field name="name_en">MOTHER &amp; BABY</field>
+            <field name="code">me-and-be</field>
+            <field name="state">active</field>
+            <field name="sequence">13</field>
+        </record>
+
+        <record id="category_mother_baby_sub" model="physical.gift.category">
+            <field name="name">Meẹ &amp; Bé</field>
+            <field name="name_en">Mother &amp; Baby</field>
+            <field name="code">mee-and-be</field>
+            <field name="parent_id" ref="category_mother_baby"/>
+            <field name="state">active</field>
+            <field name="sequence">14</field>
+        </record>
+
+        <!-- Demo Brands -->
+        <record id="brand_home_delivery" model="physical.gift.brand">
+            <field name="name">Home Delivery</field>
+            <field name="code">1349</field>
+        </record>
+
+        <record id="brand_physical_gift" model="physical.gift.brand">
+            <field name="name">Physical Gift</field>
+            <field name="code">1350</field>
+        </record>
+
+        <record id="brand_ecommerce" model="physical.gift.brand">
+            <field name="name">E-commerce</field>
+            <field name="code">1351</field>
+        </record>
+
+        <!-- Demo Stores -->
+        <record id="store_physical_gift_home_delivery" model="physical.gift.store">
+            <field name="name">Physical-Gift-Home-Delivery</field>
+            <field name="code">3728</field>
+            <field name="brand_id" ref="brand_home_delivery"/>
+        </record>
+
+        <record id="store_physical_gift_store" model="physical.gift.store">
+            <field name="name">Physical-Gift-Store</field>
+            <field name="code">3729</field>
+            <field name="brand_id" ref="brand_physical_gift"/>
+        </record>
+
+        <record id="store_ecommerce_online" model="physical.gift.store">
+            <field name="name">E-commerce-Online</field>
+            <field name="code">3730</field>
+            <field name="brand_id" ref="brand_ecommerce"/>
+        </record>
+
+        <!-- Demo Physical Gift Programs -->
+        <record id="program_vietinbank" model="physical.gift.program">
+            <field name="name_vi">Vietinbank</field>
+            <field name="name_en">Vietinbank</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="brand_home_delivery"/>
+            <field name="store_redeem_id" ref="store_physical_gift_home_delivery"/>
+            <field name="bill_number">BILL001</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="state">active</field>
+            <field name="description">Chương trình quà tặng cho khách hàng Vietinbank</field>
+            <field name="start_date">2024-01-01</field>
+            <field name="end_date">2024-12-31</field>
+        </record>
+
+        <record id="program_hn_loyalty" model="physical.gift.program">
+            <field name="name_vi">HN's Loyalty</field>
+            <field name="name_en">HN's Loyalty</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="brand_physical_gift"/>
+            <field name="store_redeem_id" ref="store_physical_gift_store"/>
+            <field name="bill_number">BILL002</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="state">active</field>
+            <field name="description">Chương trình loyalty cho khách hàng HN</field>
+            <field name="start_date">2024-02-01</field>
+            <field name="end_date">2024-11-30</field>
+        </record>
+
+        <record id="program_sc_bank" model="physical.gift.program">
+            <field name="name_vi">Chương trình SC-Bank</field>
+            <field name="name_en">SC-Bank Program</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="brand_ecommerce"/>
+            <field name="store_redeem_id" ref="store_ecommerce_online"/>
+            <field name="bill_number">BILL003</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="state">active</field>
+            <field name="description">Chương trình quà tặng cho SC-Bank</field>
+            <field name="start_date">2024-03-01</field>
+            <field name="end_date">2024-10-31</field>
+        </record>
+
+        <record id="program_aia_vietnam" model="physical.gift.program">
+            <field name="name_vi">AIA Vietnam Program</field>
+            <field name="name_en">AIA Vietnam Program</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="brand_home_delivery"/>
+            <field name="store_redeem_id" ref="store_physical_gift_home_delivery"/>
+            <field name="bill_number">BILL004</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="state">active</field>
+            <field name="description">Chương trình quà tặng cho khách hàng AIA Vietnam</field>
+            <field name="start_date">2024-04-01</field>
+            <field name="end_date">2024-09-30</field>
+        </record>
+
+        <!-- Demo Gift Items -->
+        <record id="gift_item_1" model="physical.gift.item">
+            <field name="name">Voucher 500k</field>
+            <field name="program_id" ref="program_vietinbank"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">500000</field>
+        </record>
+
+        <record id="gift_item_2" model="physical.gift.item">
+            <field name="name">Voucher 1M</field>
+            <field name="program_id" ref="program_vietinbank"/>
+            <field name="quantity">50</field>
+            <field name="unit_price">1000000</field>
+        </record>
+
+        <record id="gift_item_3" model="physical.gift.item">
+            <field name="name">Gift Card</field>
+            <field name="program_id" ref="program_hn_loyalty"/>
+            <field name="quantity">200</field>
+            <field name="unit_price">200000</field>
+        </record>
+
+        <record id="gift_item_4" model="physical.gift.item">
+            <field name="name">Premium Gift</field>
+            <field name="program_id" ref="program_sc_bank"/>
+            <field name="quantity">75</field>
+            <field name="unit_price">1500000</field>
+        </record>
+
+        <record id="gift_item_5" model="physical.gift.item">
+            <field name="name">Insurance Package</field>
+            <field name="program_id" ref="program_aia_vietnam"/>
+            <field name="quantity">25</field>
+            <field name="unit_price">5000000</field>
+        </record>
+    </data>
+</odoo> 

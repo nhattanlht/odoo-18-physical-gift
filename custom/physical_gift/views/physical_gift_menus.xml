@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_physical_gift_root"
+               name="Physical Gift"
+               sequence="10"/>
+
+    <!-- Chương trình Menu -->
+    <menuitem id="menu_physical_gift_program"
+               name="Chương trình"
+               parent="menu_physical_gift_root"
+               sequence="10"/>
+
+    <menuitem id="menu_physical_gift_program_list"
+               name="Danh sách chương trình"
+               parent="menu_physical_gift_program"
+               action="action_physical_gift_program"
+               sequence="10"/>
+
+    <menuitem id="menu_physical_gift_program_update"
+               name="Cập nhật chương trình"
+               parent="menu_physical_gift_program"
+               action="action_physical_gift_program_update"
+               sequence="20"/>
+
+    <!-- Quà tặng Menu -->
+    <menuitem id="menu_physical_gift_item"
+               name="Quà tặng"
+               parent="menu_physical_gift_root"
+               sequence="20"/>
+
+    <menuitem id="menu_physical_gift_item_list"
+               name="Danh sách quà tặng"
+               parent="menu_physical_gift_item"
+               action="action_physical_gift_item"
+               sequence="10"/>
+
+    <!-- Danh mục Menu -->
+    <menuitem id="menu_physical_gift_category"
+               name="Danh mục"
+               parent="menu_physical_gift_root"
+               sequence="30"/>
+
+    <menuitem id="menu_physical_gift_category_list"
+               name="Danh sách danh mục"
+               parent="menu_physical_gift_category"
+               action="action_physical_gift_category"
+               sequence="10"/>
+
+    <!-- Cấu hình Menu -->
+    <menuitem id="menu_physical_gift_config"
+               name="Cấu hình"
+               parent="menu_physical_gift_root"
+               sequence="40"/>
+
+    <menuitem id="menu_physical_gift_brand"
+               name="Thương hiệu"
+               parent="menu_physical_gift_config"
+               action="action_physical_gift_brand"
+               sequence="10"/>
+
+    <menuitem id="menu_physical_gift_store"
+               name="Cửa hàng"
+               parent="menu_physical_gift_config"
+               action="action_physical_gift_store"
+               sequence="20"/>
+</odoo> 

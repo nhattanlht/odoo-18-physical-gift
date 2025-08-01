@@ -1,0 +1,303 @@
+/* Physical Gift Brand Management Styles */
+
+/* Brand Kanban View */
+.o_physical_gift_brand_kanban .oe_kanban_card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.o_physical_gift_brand_kanban .oe_kanban_card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.o_physical_gift_brand_kanban .o_kanban_image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.o_physical_gift_brand_kanban .o_kanban_image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.o_physical_gift_brand_kanban .o_kanban_image_fallback_left {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.o_physical_gift_brand_kanban .o_kanban_record_title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.o_physical_gift_brand_kanban .o_kanban_record_subtitle {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-bottom: 2px;
+}
+
+.o_physical_gift_brand_kanban .o_kanban_record_bottom {
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 1px solid #ecf0f1;
+}
+
+.o_physical_gift_brand_kanban .badge {
+    font-size: 10px;
+    padding: 4px 8px;
+    margin-right: 4px;
+}
+
+/* Brand Form View */
+.o_form_view_physical_gift_brand .oe_title h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.o_form_view_physical_gift_brand .oe_avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ecf0f1;
+}
+
+.o_form_view_physical_gift_brand .o_form_sheet {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+}
+
+.o_form_view_physical_gift_brand .o_form_sheet_bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+/* Brand Tree View */
+.o_list_view_physical_gift_brand .o_list_table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.o_list_view_physical_gift_brand .o_list_table thead th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    border: none;
+    padding: 12px 8px;
+}
+
+.o_list_view_physical_gift_brand .o_list_table tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+.o_list_view_physical_gift_brand .o_list_table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.o_list_view_physical_gift_brand .o_list_table tbody td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+/* Brand Status Badges */
+.o_badge_draft {
+    background-color: #3498db;
+    color: white;
+}
+
+.o_badge_active {
+    background-color: #27ae60;
+    color: white;
+}
+
+.o_badge_suspended {
+    background-color: #f39c12;
+    color: white;
+}
+
+.o_badge_inactive {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* Brand Search View */
+.o_search_view_physical_gift_brand .o_search_panel {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.o_search_view_physical_gift_brand .o_search_panel_filter_value {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Brand Statistics */
+.o_brand_stats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.o_brand_stat_card {
+    flex: 1;
+    background: white;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.o_brand_stat_number {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.o_brand_stat_label {
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Brand Contact Info */
+.o_brand_contact_info {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.o_brand_contact_info .o_contact_item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.o_brand_contact_info .o_contact_icon {
+    width: 20px;
+    margin-right: 8px;
+    color: #667eea;
+}
+
+/* Brand Partnership Info */
+.o_brand_partnership_info {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.o_brand_partnership_info .o_partnership_title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.o_brand_partnership_info .o_partnership_item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.o_brand_partnership_info .o_partnership_label {
+    font-weight: 500;
+}
+
+.o_brand_partnership_info .o_partnership_value {
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .o_physical_gift_brand_kanban .o_kanban_content {
+        flex-direction: column;
+    }
+    
+    .o_physical_gift_brand_kanban .o_kanban_image {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    
+    .o_brand_stats {
+        flex-direction: column;
+    }
+    
+    .o_form_view_physical_gift_brand .oe_title h1 {
+        font-size: 20px;
+    }
+}
+
+/* Brand Action Buttons */
+.o_brand_action_buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.o_brand_action_buttons .btn {
+    border-radius: 6px;
+    font-weight: 500;
+    padding: 8px 16px;
+    transition: all 0.3s ease;
+}
+
+.o_brand_action_buttons .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand Commission Rate */
+.o_brand_commission_rate {
+    background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    display: inline-block;
+}
+
+/* Brand Website Link */
+.o_brand_website_link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.o_brand_website_link:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+}
+
+/* Brand Description */
+.o_brand_description {
+    background: #f8f9fa;
+    border-left: 4px solid #667eea;
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    font-style: italic;
+    color: #2c3e50;
+} 
