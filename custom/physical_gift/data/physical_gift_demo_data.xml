@@ -109,6 +109,7 @@
             <field name="code">ELEC</field>
             <field name="description">Các sản phẩm điện tử</field>
             <field name="state">active</field>
+            <field name="active">True</field>
             <field name="sequence">10</field>
         </record>
         
@@ -118,6 +119,7 @@
             <field name="code">FASH</field>
             <field name="description">Các sản phẩm thời trang</field>
             <field name="state">active</field>
+            <field name="active">True</field>
             <field name="sequence">20</field>
         </record>
         
@@ -127,6 +129,7 @@
             <field name="code">HOME</field>
             <field name="description">Các sản phẩm gia dụng</field>
             <field name="state">active</field>
+            <field name="active">True</field>
             <field name="sequence">30</field>
         </record>
         
@@ -136,6 +139,7 @@
             <field name="code">HEALTH</field>
             <field name="description">Các sản phẩm sức khỏe và làm đẹp</field>
             <field name="state">active</field>
+            <field name="active">True</field>
             <field name="sequence">40</field>
         </record>
         
@@ -145,6 +149,7 @@
             <field name="code">SPORT</field>
             <field name="description">Các sản phẩm thể thao</field>
             <field name="state">active</field>
+            <field name="active">True</field>
             <field name="sequence">50</field>
         </record>
 
