@@ -60,6 +60,30 @@
                action="action_physical_gift_shipping_unit"
                sequence="10"/>
 
+    <!-- Nhập hàng Menu -->
+    <menuitem id="menu_physical_gift_import"
+               name="Nhập hàng"
+               parent="menu_physical_gift_root"
+               sequence="37"/>
+
+    <menuitem id="menu_physical_gift_import_list"
+               name="Danh sách nhập hàng"
+               parent="menu_physical_gift_import"
+               action="action_physical_gift_import"
+               sequence="10"/>
+
+    <!-- Đơn hàng Menu -->
+    <menuitem id="menu_physical_gift_order"
+               name="Đơn hàng"
+               parent="menu_physical_gift_root"
+               sequence="38"/>
+
+    <menuitem id="menu_physical_gift_order_list"
+               name="Danh sách đơn hàng"
+               parent="menu_physical_gift_order"
+               action="action_physical_gift_order"
+               sequence="10"/>
+
     <!-- Chương trình Menu -->
     <menuitem id="menu_physical_gift_program"
                name="Chương trình"

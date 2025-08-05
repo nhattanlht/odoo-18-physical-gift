@@ -29,6 +29,8 @@
                 'views/physical_gift_program_enhanced_views.xml',
                 'views/physical_gift_supplier_views.xml',
                 'views/physical_gift_shipping_unit_views.xml',
+                'views/physical_gift_import_views.xml',
+                'views/physical_gift_order_views.xml',
                 'views/physical_gift_menus.xml',
     ],
     'assets': {

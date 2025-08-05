@@ -13,3 +13,7 @@ access_physical_gift_supplier_user,physical.gift.supplier.user,model_physical_gi
 access_physical_gift_supplier_manager,physical.gift.supplier.manager,model_physical_gift_supplier,base.group_system,1,1,1,1
 access_physical_gift_shipping_unit_user,physical.gift.shipping.unit.user,model_physical_gift_shipping_unit,base.group_user,1,0,0,0
 access_physical_gift_shipping_unit_manager,physical.gift.shipping.unit.manager,model_physical_gift_shipping_unit,base.group_system,1,1,1,1
+access_physical_gift_import_user,physical.gift.import.user,model_physical_gift_import,base.group_user,1,0,0,0
+access_physical_gift_import_manager,physical.gift.import.manager,model_physical_gift_import,base.group_system,1,1,1,1
+access_physical_gift_order_user,physical.gift.order.user,model_physical_gift_order,base.group_user,1,0,0,0
+access_physical_gift_order_manager,physical.gift.order.manager,model_physical_gift_order,base.group_system,1,1,1,1

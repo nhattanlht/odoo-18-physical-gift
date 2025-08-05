@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Import Tree View -->
+        <record id="view_physical_gift_import_tree" model="ir.ui.view">
+            <field name="name">physical.gift.import.tree</field>
+            <field name="model">physical.gift.import</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách nhập hàng">
+                    <field name="program_id"/>
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="import_date"/>
+                    <field name="import_price_excl_vat"/>
+                    <field name="sale_price_incl_vat"/>
+                    <field name="vat_percentage"/>
+                    <field name="supplier_id"/>
+                    <field name="import_quantity"/>
+                    <field name="export_return_quantity"/>
+                    <field name="remaining_quantity"/>
+                    <field name="points"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'confirmed'" decoration-warning="state == 'done'" decoration-danger="state == 'cancelled'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Import Form View -->
+        <record id="view_physical_gift_import_form" model="ir.ui.view">
+            <field name="name">physical.gift.import.form</field>
+            <field name="model">physical.gift.import</field>
+            <field name="arch" type="xml">
+                <form string="Nhập hàng">
+                    <header>
+                        <button name="action_confirm" string="Xác nhận" type="object" 
+                                class="btn-success" invisible="state == 'confirmed' or state == 'done' or state == 'cancelled'"/>
+                        <button name="action_done" string="Hoàn thành" type="object" 
+                                class="btn-primary" invisible="state != 'confirmed'"/>
+                        <button name="action_cancel" string="Hủy" type="object" 
+                                class="btn-danger" invisible="state == 'cancelled'"/>
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object" 
+                                class="btn-secondary" invisible="state != 'cancelled'"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Tên sản phẩm..." class="oe_inline"/>
+                            </h1>
+                            <h2>
+                                <field name="sku" placeholder="Mã SKU..." class="oe_inline"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="program_id" placeholder="Chọn chương trình..."/>
+                                <field name="supplier_id" placeholder="Chọn nhà cung cấp..."/>
+                                <field name="import_date"/>
+                                <field name="points"/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                            <group string="Thông tin giá">
+                                <field name="import_price_excl_vat"/>
+                                <field name="sale_price_incl_vat"/>
+                                <field name="vat_percentage"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông tin số lượng">
+                                <field name="import_quantity"/>
+                                <field name="export_return_quantity"/>
+                                <field name="remaining_quantity" readonly="1"/>
+                            </group>
+                            <group string="Trạng thái">
+                                <field name="state"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Thông tin bổ sung" name="additional">
+                                <field name="item_id" placeholder="Chọn sản phẩm liên quan..."/>
+                                <field name="notes" placeholder="Ghi chú..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Import Search View -->
+        <record id="view_physical_gift_import_search" model="ir.ui.view">
+            <field name="name">physical.gift.import.search</field>
+            <field name="model">physical.gift.import</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm nhập hàng">
+                    <field name="name"/>
+                    <field name="sku"/>
+                    <field name="points"/>
+                    <field name="import_date"/>
+                    <field name="supplier_id"/>
+                    <field name="program_id"/>
+                    <separator/>
+                    <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Đã xác nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                    <filter string="Hoàn thành" name="done" domain="[('state', '=', 'done')]"/>
+                    <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter string="Có xuất trả" name="has_export" domain="[('export_return_quantity', '>', 0)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Chương trình" name="group_program" context="{'group_by': 'program_id'}"/>
+                        <filter string="Nhà cung cấp" name="group_supplier" context="{'group_by': 'supplier_id'}"/>
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Ngày nhập" name="group_date" context="{'group_by': 'import_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Import Action -->
+        <record id="action_physical_gift_import" model="ir.actions.act_window">
+            <field name="name">Nhập hàng</field>
+            <field name="res_model">physical.gift.import</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo nhập hàng đầu tiên
+                </p>
+                <p>
+                    Quản lý nhập hàng, thông tin giá, số lượng và nhà cung cấp.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo> 
