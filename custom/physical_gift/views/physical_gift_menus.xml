@@ -48,6 +48,18 @@
                action="action_physical_gift_supplier"
                sequence="10"/>
 
+    <!-- Đơn vị vận chuyển Menu -->
+    <menuitem id="menu_physical_gift_shipping_unit"
+               name="Đơn vị vận chuyển"
+               parent="menu_physical_gift_root"
+               sequence="36"/>
+
+    <menuitem id="menu_physical_gift_shipping_unit_list"
+               name="Danh sách đơn vị vận chuyển"
+               parent="menu_physical_gift_shipping_unit"
+               action="action_physical_gift_shipping_unit"
+               sequence="10"/>
+
     <!-- Chương trình Menu -->
     <menuitem id="menu_physical_gift_program"
                name="Chương trình"

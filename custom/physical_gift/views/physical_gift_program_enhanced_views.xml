@@ -15,6 +15,7 @@
                         <field name="end_date"/>
                         <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'"/>
                         <field name="category_count" widget="integer"/>
+                        <field name="shipping_unit_count" widget="integer"/>
 
 
                 </list>
@@ -63,6 +64,7 @@
                         <group>
                             <group string="Thống kê">
                                 <field name="category_count" readonly="1"/>
+                                <field name="shipping_unit_count" readonly="1"/>
                             </group>
                             <group string="Thông tin tạo">
 
@@ -72,6 +74,9 @@
                         <notebook>
                             <page string="Danh mục" name="categories">
                                 <field name="category_ids" widget="many2many_tags"/>
+                            </page>
+                            <page string="Đơn vị vận chuyển" name="shipping_units">
+                                <field name="shipping_unit_ids" widget="many2many_tags"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -102,6 +107,7 @@
                     <filter string="Đã đóng" name="closed" domain="[('state', '=', 'closed')]"/>
                     <separator/>
                     <filter string="Có danh mục" name="has_categories" domain="[('category_count', '>', 0)]"/>
+                    <filter string="Có đơn vị vận chuyển" name="has_shipping_units" domain="[('shipping_unit_count', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter string="Công ty" name="group_company" context="{'group_by': 'company_id'}"/>
                         <filter string="Thương hiệu" name="group_brand" context="{'group_by': 'brand_redeem_id'}"/>
@@ -148,6 +154,9 @@
                                         <div class="oe_kanban_bottom_right">
                                             <span class="badge badge-info">
                                                 <i class="fa fa-tags" title="Danh mục"/> <field name="category_count"/>
+                                            </span>
+                                            <span class="badge badge-warning">
+                                                <i class="fa fa-truck" title="Đơn vị vận chuyển"/> <field name="shipping_unit_count"/>
                                             </span>
                                         </div>
                                     </div>

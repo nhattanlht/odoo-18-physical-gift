@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Shipping Unit Tree View -->
+        <record id="view_physical_gift_shipping_unit_tree" model="ir.ui.view">
+            <field name="name">physical.gift.shipping.unit.tree</field>
+            <field name="model">physical.gift.shipping.unit</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách đơn vị vận chuyển">
+                    <field name="code"/>
+                    <field name="name"/>
+                    <field name="state" widget="badge" decoration-success="state == 'active'" decoration-danger="state == 'inactive'"/>
+                    <field name="program_count" widget="integer"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Shipping Unit Form View -->
+        <record id="view_physical_gift_shipping_unit_form" model="ir.ui.view">
+            <field name="name">physical.gift.shipping.unit.form</field>
+            <field name="model">physical.gift.shipping.unit</field>
+            <field name="arch" type="xml">
+                <form string="Đơn vị vận chuyển">
+                    <header>
+                        <button name="action_activate" string="Active" type="object" 
+                                class="btn-success" invisible="state == 'active'"/>
+                        <button name="action_deactivate" string="Inactive" type="object" 
+                                class="btn-danger" invisible="state == 'inactive'"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Tên đơn vị vận chuyển..." class="oe_inline"/>
+                            </h1>
+                            <h2>
+                                <field name="code" placeholder="Mã đơn vị vận chuyển..." class="oe_inline"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="description" placeholder="Mô tả chi tiết..."/>
+                                <field name="active" invisible="1"/>
+                            </group>
+                            <group string="Thông tin liên hệ">
+                                <field name="phone" placeholder="Số điện thoại..."/>
+                                <field name="email" placeholder="Email..."/>
+                                <field name="website" placeholder="Website..."/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thống kê">
+                                <field name="program_count" readonly="1"/>
+                            </group>
+                            <group string="Trạng thái">
+                                <field name="state"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Thông tin liên hệ chi tiết" name="contact">
+                                <field name="contact_info" placeholder="Thông tin liên hệ chi tiết..."/>
+                                <field name="address" placeholder="Địa chỉ..."/>
+                            </page>
+                            <page string="Chương trình sử dụng" name="programs">
+                                <field name="program_ids" widget="many2many_tags"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Shipping Unit Search View -->
+        <record id="view_physical_gift_shipping_unit_search" model="ir.ui.view">
+            <field name="name">physical.gift.shipping.unit.search</field>
+            <field name="model">physical.gift.shipping.unit</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm đơn vị vận chuyển">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="website"/>
+                    <separator/>
+                    <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
+                    <filter string="Inactive" name="inactive" domain="[('state', '=', 'inactive')]"/>
+                    <separator/>
+                    <filter string="Có chương trình" name="has_programs" domain="[('program_count', '>', 0)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Shipping Unit Kanban View -->
+        <record id="view_physical_gift_shipping_unit_kanban" model="ir.ui.view">
+            <field name="name">physical.gift.shipping.unit.kanban</field>
+            <field name="model">physical.gift.shipping.unit</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="state" class="o_kanban_small_column">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="phone"/>
+                    <field name="email"/>
+                    <field name="website"/>
+                    <field name="state"/>
+                    <field name="program_count"/>
+                    <field name="description"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle">
+                                        <field name="code"/>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="phone"/>
+                                            <br/>
+                                            <field name="email"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <span class="badge badge-info">
+                                                <i class="fa fa-truck" title="Chương trình"/> <field name="program_count"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Shipping Unit Action -->
+        <record id="action_physical_gift_shipping_unit" model="ir.actions.act_window">
+            <field name="name">Đơn vị vận chuyển</field>
+            <field name="res_model">physical.gift.shipping.unit</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo đơn vị vận chuyển đầu tiên
+                </p>
+                <p>
+                    Quản lý đơn vị vận chuyển, thông tin liên hệ và các chương trình sử dụng.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo> 

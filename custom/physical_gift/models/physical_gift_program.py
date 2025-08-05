@@ -114,13 +114,18 @@ class PhysicalGiftProgram(models.Model):
     # Danh mục trong chương trình
     category_ids = fields.Many2many('physical.gift.category', string='Danh mục')
     
+    # Đơn vị vận chuyển
+    shipping_unit_ids = fields.Many2many('physical.gift.shipping.unit', string='Đơn vị vận chuyển')
+    
     # Thống kê
     category_count = fields.Integer('Số danh mục', compute='_compute_counts', store=True)
+    shipping_unit_count = fields.Integer('Số đơn vị vận chuyển', compute='_compute_counts', store=True)
     
-    @api.depends('category_ids')
+    @api.depends('category_ids', 'shipping_unit_ids')
     def _compute_counts(self):
         for record in self:
             record.category_count = len(record.category_ids)
+            record.shipping_unit_count = len(record.shipping_unit_ids)
     
 
     
