@@ -230,15 +230,7 @@ class PhysicalGiftProgram(models.Model):
         ('closed', 'Đã đóng')
     ], string='Trạng thái', default='draft', tracking=True)
     
-    gift_count = fields.Integer(
-        string='Số lượng quà',
-        compute='_compute_gift_count'
-    )
-    
-    @api.depends('gift_ids')
-    def _compute_gift_count(self):
-        for record in self:
-            record.gift_count = len(record.gift_ids)
+
     
     @api.depends('name_vi', 'name_en')
     def _compute_name(self):
@@ -252,11 +244,7 @@ class PhysicalGiftProgram(models.Model):
             else:
                 record.name = ''
     
-    gift_ids = fields.One2many(
-        'physical.gift.item',
-        'program_id',
-        string='Danh sách quà'
-    )
+
     
     @api.constrains('start_date', 'end_date')
     def _check_dates(self):
@@ -347,48 +335,4 @@ class PhysicalGiftStore(models.Model):
     ]
 
 
-class PhysicalGiftItem(models.Model):
-    _name = 'physical.gift.item'
-    _description = 'Physical Gift Item'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-    
-    name = fields.Char(
-        string='Tên quà',
-        required=True,
-        tracking=True
-    )
-    
-    program_id = fields.Many2one(
-        'physical.gift.program',
-        string='Chương trình',
-        required=True,
-        ondelete='cascade'
-    )
-    
-    product_id = fields.Many2one(
-        'product.product',
-        string='Sản phẩm',
-        tracking=True
-    )
-    
-    quantity = fields.Integer(
-        string='Số lượng',
-        default=1,
-        tracking=True
-    )
-    
-    unit_price = fields.Float(
-        string='Đơn giá',
-        tracking=True
-    )
-    
-    total_price = fields.Float(
-        string='Tổng giá',
-        compute='_compute_total_price',
-        store=True
-    )
-    
-    @api.depends('quantity', 'unit_price')
-    def _compute_total_price(self):
-        for record in self:
-            record.total_price = record.quantity * record.unit_price 
+ 

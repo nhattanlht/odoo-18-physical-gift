@@ -9,7 +9,6 @@
         - Quản lý chương trình quà tặng
         - Quản lý danh mục quà tặng
         - Quản lý thương hiệu đối tác
-        - Quản lý cửa hàng
         - Quản lý quà tặng vật lý
     """,
     'author': 'Your Company',
@@ -23,10 +22,11 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'data/physical_gift_data.xml',
         'data/physical_gift_brand_data.xml',
         'views/physical_gift_views.xml',
         'views/physical_gift_brand_views.xml',
+        'views/physical_gift_category_views.xml',
+        'views/physical_gift_program_enhanced_views.xml',
         'views/physical_gift_menus.xml',
     ],
     'assets': {
@@ -35,10 +35,6 @@
             'physical_gift/static/src/css/physical_gift_brand.css',
         ],
     },
-    'demo': [
-        'data/physical_gift_data.xml',
-        'data/physical_gift_brand_data.xml',
-    ],
     'installable': True,
     'application': True,
     'auto_install': False,

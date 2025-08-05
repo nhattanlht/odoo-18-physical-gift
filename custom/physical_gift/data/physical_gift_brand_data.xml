@@ -1,186 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="1">
-        <!-- Demo Brands -->
-        
-        <!-- Home Delivery Brand -->
-        <record id="brand_home_delivery" model="physical.gift.brand">
-            <field name="name">Home Delivery</field>
-            <field name="name_en">Home Delivery</field>
-            <field name="code">HD001</field>
-            <field name="contact_person">Nguyễn Văn An</field>
-            <field name="phone">0901234567</field>
-            <field name="email">contact@homedelivery.vn</field>
-            <field name="website">www.homedelivery.vn</field>
-            <field name="address">123 Đường ABC, Quận 1, TP.HCM</field>
-            <field name="description">Thương hiệu chuyên về dịch vụ giao hàng tận nhà với chất lượng cao và dịch vụ khách hàng tốt.</field>
-            <field name="partnership_date">2024-01-15</field>
-            <field name="contract_number">HD-CONTRACT-2024-001</field>
-            <field name="commission_rate">15.0</field>
-            <field name="state">active</field>
-            <field name="sequence">10</field>
+        <!-- Brand Data -->
+        <record id="brand_physical_gift_default" model="physical.gift.brand">
+            <field name="name">Physical Gift Brand</field>
+            <field name="code">PGB</field>
+            <field name="active">True</field>
         </record>
 
-        <!-- Physical Gift Brand -->
-        <record id="brand_physical_gift" model="physical.gift.brand">
-            <field name="name">Physical Gift</field>
-            <field name="name_en">Physical Gift</field>
-            <field name="code">PG002</field>
-            <field name="contact_person">Trần Thị Bình</field>
-            <field name="phone">0912345678</field>
-            <field name="email">info@physicalgift.com</field>
-            <field name="website">www.physicalgift.com</field>
-            <field name="address">456 Đường XYZ, Quận 3, TP.HCM</field>
-            <field name="description">Chuyên cung cấp các sản phẩm quà tặng vật lý chất lượng cao với thiết kế độc đáo.</field>
-            <field name="partnership_date">2024-02-20</field>
-            <field name="contract_number">PG-CONTRACT-2024-002</field>
-            <field name="commission_rate">12.5</field>
-            <field name="state">active</field>
-            <field name="sequence">20</field>
+        <record id="brand_tech_partner" model="physical.gift.brand">
+            <field name="name">Tech Partner</field>
+            <field name="code">TECH</field>
+            <field name="active">True</field>
         </record>
 
-        <!-- E-commerce Brand -->
-        <record id="brand_ecommerce" model="physical.gift.brand">
-            <field name="name">E-commerce</field>
-            <field name="name_en">E-commerce</field>
-            <field name="code">EC003</field>
-            <field name="contact_person">Lê Văn Cường</field>
-            <field name="phone">0923456789</field>
-            <field name="email">support@ecommerce.vn</field>
-            <field name="website">www.ecommerce.vn</field>
-            <field name="address">789 Đường DEF, Quận 7, TP.HCM</field>
-            <field name="description">Nền tảng thương mại điện tử hàng đầu với đa dạng sản phẩm và dịch vụ giao hàng nhanh chóng.</field>
-            <field name="partnership_date">2024-03-10</field>
-            <field name="contract_number">EC-CONTRACT-2024-003</field>
-            <field name="commission_rate">18.0</field>
-            <field name="state">active</field>
-            <field name="sequence">30</field>
+        <record id="brand_fashion_partner" model="physical.gift.brand">
+            <field name="name">Fashion Partner</field>
+            <field name="code">FASHION</field>
+            <field name="active">True</field>
         </record>
 
-        <!-- Fashion Brand -->
-        <record id="brand_fashion" model="physical.gift.brand">
-            <field name="name">Fashion Style</field>
-            <field name="name_en">Fashion Style</field>
-            <field name="code">FS004</field>
-            <field name="contact_person">Phạm Thị Dung</field>
-            <field name="phone">0934567890</field>
-            <field name="email">hello@fashionstyle.com</field>
-            <field name="website">www.fashionstyle.com</field>
-            <field name="address">321 Đường GHI, Quận 2, TP.HCM</field>
-            <field name="description">Thương hiệu thời trang với các sản phẩm quà tặng thời trang cao cấp và thiết kế độc đáo.</field>
-            <field name="partnership_date">2024-04-05</field>
-            <field name="contract_number">FS-CONTRACT-2024-004</field>
-            <field name="commission_rate">20.0</field>
-            <field name="state">draft</field>
-            <field name="sequence">40</field>
+        <record id="brand_lifestyle_partner" model="physical.gift.brand">
+            <field name="name">Lifestyle Partner</field>
+            <field name="code">LIFESTYLE</field>
+            <field name="active">True</field>
         </record>
 
-        <!-- Tech Brand -->
-        <record id="brand_tech" model="physical.gift.brand">
-            <field name="name">Tech Solutions</field>
-            <field name="name_en">Tech Solutions</field>
-            <field name="code">TS005</field>
-            <field name="contact_person">Hoàng Văn Em</field>
-            <field name="phone">0945678901</field>
-            <field name="email">contact@techsolutions.vn</field>
-            <field name="website">www.techsolutions.vn</field>
-            <field name="address">654 Đường JKL, Quận 9, TP.HCM</field>
-            <field name="description">Chuyên cung cấp các sản phẩm công nghệ và thiết bị điện tử làm quà tặng.</field>
-            <field name="partnership_date">2024-05-12</field>
-            <field name="contract_number">TS-CONTRACT-2024-005</field>
-            <field name="commission_rate">25.0</field>
-            <field name="state">suspended</field>
-            <field name="sequence">50</field>
-        </record>
-
-        <!-- Food & Beverage Brand -->
-        <record id="brand_food" model="physical.gift.brand">
-                    <field name="name">Food &amp; Beverage</field>
-        <field name="name_en">Food &amp; Beverage</field>
-            <field name="code">FB006</field>
-            <field name="contact_person">Vũ Thị Phương</field>
-            <field name="phone">0956789012</field>
-            <field name="email">info@foodbeverage.com</field>
-            <field name="website">www.foodbeverage.com</field>
-            <field name="address">987 Đường MNO, Quận 5, TP.HCM</field>
-            <field name="description">Chuyên cung cấp các sản phẩm thực phẩm và đồ uống cao cấp làm quà tặng.</field>
-            <field name="partnership_date">2024-06-18</field>
-            <field name="contract_number">FB-CONTRACT-2024-006</field>
-            <field name="commission_rate">16.5</field>
-            <field name="state">inactive</field>
-            <field name="sequence">60</field>
-        </record>
-
-        <!-- Beauty & Cosmetics Brand -->
-        <record id="brand_beauty" model="physical.gift.brand">
-                    <field name="name">Beauty &amp; Cosmetics</field>
-        <field name="name_en">Beauty &amp; Cosmetics</field>
-            <field name="code">BC007</field>
-            <field name="contact_person">Ngô Văn Quang</field>
-            <field name="phone">0967890123</field>
-            <field name="email">hello@beautycosmetics.vn</field>
-            <field name="website">www.beautycosmetics.vn</field>
-            <field name="address">147 Đường PQR, Quận 10, TP.HCM</field>
-            <field name="description">Thương hiệu mỹ phẩm và sản phẩm làm đẹp cao cấp với các sản phẩm quà tặng độc đáo.</field>
-            <field name="partnership_date">2024-07-25</field>
-            <field name="contract_number">BC-CONTRACT-2024-007</field>
-            <field name="commission_rate">22.0</field>
-            <field name="state">active</field>
-            <field name="sequence">70</field>
-        </record>
-
-        <!-- Sports & Fitness Brand -->
-        <record id="brand_sports" model="physical.gift.brand">
-                    <field name="name">Sports &amp; Fitness</field>
-        <field name="name_en">Sports &amp; Fitness</field>
-            <field name="code">SF008</field>
-            <field name="contact_person">Đặng Thị Hương</field>
-            <field name="phone">0978901234</field>
-            <field name="email">contact@sportsfitness.com</field>
-            <field name="website">www.sportsfitness.com</field>
-            <field name="address">258 Đường STU, Quận 11, TP.HCM</field>
-            <field name="description">Chuyên cung cấp các sản phẩm thể thao và fitness làm quà tặng cho người yêu thể thao.</field>
-            <field name="partnership_date">2024-08-30</field>
-            <field name="contract_number">SF-CONTRACT-2024-008</field>
-            <field name="commission_rate">19.5</field>
-            <field name="state">active</field>
-            <field name="sequence">80</field>
-        </record>
-
-        <!-- Home & Living Brand -->
-        <record id="brand_home" model="physical.gift.brand">
-                    <field name="name">Home &amp; Living</field>
-        <field name="name_en">Home &amp; Living</field>
-            <field name="code">HL009</field>
-            <field name="contact_person">Lý Văn Sơn</field>
-            <field name="phone">0989012345</field>
-            <field name="email">info@homeliving.vn</field>
-            <field name="website">www.homeliving.vn</field>
-            <field name="address">369 Đường VWX, Quận 12, TP.HCM</field>
-            <field name="description">Thương hiệu chuyên về các sản phẩm trang trí nhà cửa và đồ gia dụng cao cấp.</field>
-            <field name="partnership_date">2024-09-15</field>
-            <field name="contract_number">HL-CONTRACT-2024-009</field>
-            <field name="commission_rate">17.0</field>
-            <field name="state">draft</field>
-            <field name="sequence">90</field>
-        </record>
-
-        <!-- Books & Education Brand -->
-        <record id="brand_books" model="physical.gift.brand">
-                    <field name="name">Books &amp; Education</field>
-        <field name="name_en">Books &amp; Education</field>
-            <field name="code">BE010</field>
-            <field name="contact_person">Trịnh Thị Mai</field>
-            <field name="phone">0990123456</field>
-            <field name="email">hello@bookseducation.com</field>
-            <field name="website">www.bookseducation.com</field>
-            <field name="address">741 Đường YZA, Quận Bình Thạnh, TP.HCM</field>
-            <field name="description">Chuyên cung cấp sách, tài liệu giáo dục và các sản phẩm học tập làm quà tặng.</field>
-            <field name="partnership_date">2024-10-20</field>
-            <field name="contract_number">BE-CONTRACT-2024-010</field>
-            <field name="commission_rate">14.0</field>
-            <field name="state">active</field>
-            <field name="sequence">100</field>
+        <record id="brand_home_partner" model="physical.gift.brand">
+            <field name="name">Home and Living Partner</field>
+            <field name="code">HOME</field>
+            <field name="active">True</field>
         </record>
     </data>
 </odoo> 

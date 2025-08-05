@@ -1,0 +1,322 @@
+/* Physical Gift Product Management Styles */
+
+/* Product Kanban Styling */
+.o_physical_gift_product_kanban .oe_kanban_card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.o_physical_gift_product_kanban .oe_kanban_card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+.o_physical_gift_product_kanban .o_kanban_image {
+    border-radius: 6px 6px 0 0;
+    overflow: hidden;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.o_physical_gift_product_kanban .o_kanban_image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.o_physical_gift_product_kanban .o_kanban_image_fallback_left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 2em;
+}
+
+.o_physical_gift_product_kanban .oe_kanban_details {
+    padding: 12px;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_headings {
+    flex: 1;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.2;
+    margin-bottom: 2px;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_subtitle {
+    font-size: 11px;
+    color: #7f8c8d;
+    line-height: 1.3;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_top_right {
+    flex-shrink: 0;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_body {
+    margin-bottom: 8px;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_body .o_kanban_record_subtitle {
+    margin-bottom: 4px;
+    font-size: 11px;
+    color: #34495e;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_body .o_kanban_record_subtitle i {
+    width: 12px;
+    margin-right: 4px;
+    color: #95a5a6;
+}
+
+.o_physical_gift_product_kanban .o_kanban_record_bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.o_physical_gift_product_kanban .oe_kanban_bottom_left,
+.o_physical_gift_product_kanban .oe_kanban_bottom_right {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+}
+
+.o_physical_gift_product_kanban .badge {
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.o_physical_gift_product_kanban .badge i {
+    margin-right: 2px;
+}
+
+/* Product Form Styling */
+.physical_gift_product_form .oe_title {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.physical_gift_product_form .oe_title h1 {
+    color: white;
+    margin-bottom: 8px;
+}
+
+.physical_gift_product_form .oe_title h2 {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.physical_gift_product_form .o_row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.physical_gift_product_form .btn-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.physical_gift_product_form .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Product Tree Styling */
+.physical_gift_product_tree .oe_avatar {
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.physical_gift_product_tree .o_list_image {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+/* Status Badge Colors */
+.badge-info {
+    background-color: #3498db;
+    color: white;
+}
+
+.badge-success {
+    background-color: #27ae60;
+    color: white;
+}
+
+.badge-warning {
+    background-color: #f39c12;
+    color: white;
+}
+
+.badge-danger {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.badge-muted {
+    background-color: #95a5a6;
+    color: white;
+}
+
+/* Product Search Styling */
+.physical_gift_product_search .o_search_panel {
+    background: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.physical_gift_product_search .o_search_panel_filter_value {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid #dee2e6;
+    margin: 2px;
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .o_physical_gift_product_kanban .oe_kanban_details {
+        padding: 8px;
+    }
+    
+    .o_physical_gift_product_kanban .o_kanban_record_bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .o_physical_gift_product_kanban .oe_kanban_bottom_left,
+    .o_physical_gift_product_kanban .oe_kanban_bottom_right {
+        justify-content: center;
+    }
+    
+    .physical_gift_product_form .o_row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Animation Effects */
+.o_physical_gift_product_kanban .oe_kanban_card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Effects */
+.o_physical_gift_product_kanban .oe_kanban_card:hover .o_kanban_image {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Loading States */
+.o_physical_gift_product_kanban .oe_kanban_card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* Empty State */
+.o_physical_gift_product_kanban .o_kanban_empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #7f8c8d;
+}
+
+.o_physical_gift_product_kanban .o_kanban_empty i {
+    font-size: 3em;
+    margin-bottom: 16px;
+    color: #bdc3c7;
+}
+
+/* Product Image Gallery */
+.physical_gift_product_images .o_list_image {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 2px solid #ecf0f1;
+}
+
+.physical_gift_product_images .o_list_image:hover {
+    border-color: #3498db;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Price Display */
+.physical_gift_product_price {
+    font-weight: 600;
+    color: #27ae60;
+}
+
+.physical_gift_product_cost {
+    font-weight: 500;
+    color: #e74c3c;
+}
+
+.physical_gift_product_margin {
+    font-weight: 600;
+    color: #f39c12;
+}
+
+/* Stock Status */
+.physical_gift_product_stock_high {
+    color: #27ae60;
+}
+
+.physical_gift_product_stock_medium {
+    color: #f39c12;
+}
+
+.physical_gift_product_stock_low {
+    color: #e74c3c;
+}
+
+.physical_gift_product_stock_empty {
+    color: #95a5a6;
+} 

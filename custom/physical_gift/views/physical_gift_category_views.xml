@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Category Tree View -->
+        <record id="view_physical_gift_category_tree" model="ir.ui.view">
+            <field name="name">physical.gift.category.tree</field>
+            <field name="model">physical.gift.category</field>
+            <field name="arch" type="xml">
+                <list string="Danh mục" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'">
+                    <field name="sequence" widget="handle"/>
+                    <field name="name" readonly="1"/>
+                    <field name="name_en"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <field name="description"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'"/>
+                    <field name="program_count" widget="integer"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Category Form View -->
+        <record id="view_physical_gift_category_form" model="ir.ui.view">
+            <field name="name">physical.gift.category.form</field>
+            <field name="model">physical.gift.category</field>
+            <field name="arch" type="xml">
+                <form string="Danh mục">
+                    <header>
+                        <button name="action_activate" string="Kích hoạt" type="object" class="oe_highlight" invisible="state not in ('draft','inactive')"/>
+                        <button name="action_deactivate" string="Tạm ngưng" type="object" invisible="state != 'active'"/>
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object" invisible="state != 'inactive'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,active"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <div class="oe_title_text">
+                                <h1>
+                                    <field name="name" placeholder="Tên danh mục..." class="oe_inline"/>
+                                </h1>
+                                <h2>
+                                    <field name="name_en" placeholder="Tên tiếng Anh..." class="oe_inline"/>
+                                </h2>
+                                <div class="o_row">
+                                    <field name="code" placeholder="Mã danh mục..." class="oe_inline"/>
+                                    <field name="parent_id" placeholder="Danh mục cha..." class="oe_inline"/>
+                                    <field name="active" invisible="1"/>
+                                </div>
+                            </div>
+                        </div>
+                        <group>
+                            <group string="Thông tin cơ bản">
+                                <field name="description" placeholder="Mô tả danh mục..."/>
+                                <field name="description_en" placeholder="Mô tả tiếng Anh..."/>
+                            </group>
+                            <group string="Thống kê">
+                                <field name="program_count" readonly="1"/>
+                                <field name="sequence" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Danh mục con" name="children">
+                                <field name="child_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="name_en"/>
+                                        <field name="code"/>
+
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <page string="Chương trình" name="programs">
+                                <field name="program_ids" readonly="1">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="name_vi"/>
+                                        <field name="name_en"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Category Search View -->
+        <record id="view_physical_gift_category_search" model="ir.ui.view">
+            <field name="name">physical.gift.category.search</field>
+            <field name="model">physical.gift.category</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm danh mục">
+                    <field name="name"/>
+                    <field name="name_en"/>
+                    <field name="code"/>
+                    <field name="parent_id"/>
+                    <separator/>
+                    <filter string="Hoạt động" name="active" domain="[('state', '=', 'active')]"/>
+                    <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Không hoạt động" name="inactive" domain="[('state', '=', 'inactive')]"/>
+                    <separator/>
+
+                    <filter string="Có chương trình" name="has_programs" domain="[('program_count', '>', 0)]"/>
+                    <filter string="Danh mục gốc" name="root_categories" domain="[('parent_id', '=', False)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Danh mục cha" name="group_parent" context="{'group_by': 'parent_id'}"/>
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Category Kanban View -->
+        <record id="view_physical_gift_category_kanban" model="ir.ui.view">
+            <field name="name">physical.gift.category.kanban</field>
+            <field name="model">physical.gift.category</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="parent_id" class="o_kanban_small_column">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="name_en"/>
+                    <field name="code"/>
+
+                    <field name="parent_id"/>
+                    <field name="state"/>
+
+                    <field name="program_count"/>
+                    <field name="description"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click">
+
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title">
+                                        <field name="name"/>
+                                    </strong>
+                                    <div class="o_kanban_record_subtitle">
+                                        <field name="name_en"/>
+                                    </div>
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="code"/>
+                                            <br/>
+                                            <field name="parent_id"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+
+                                            <span class="badge badge-success">
+                                                <i class="fa fa-gift" title="Chương trình"/> <field name="program_count"/>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Category Action -->
+        <record id="action_physical_gift_category" model="ir.actions.act_window">
+            <field name="name">Danh mục</field>
+            <field name="res_model">physical.gift.category</field>
+            <field name="view_mode">kanban,list,form</field>
+            <field name="context">{'search_default_active': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo danh mục đầu tiên
+                </p>
+                <p>
+                    Quản lý danh mục sản phẩm, trong mỗi danh mục có danh sách sản phẩm
+                    thuộc danh mục đó.
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo> 

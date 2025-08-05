@@ -21,8 +21,6 @@
                             class="btn-success" invisible="state == 'active'"/>
                     <button name="action_deactivate" string="Inactive" type="object" 
                             class="btn-danger" invisible="state == 'inactive'"/>
-                    <button name="action_update" string="Cập nhật" type="object" 
-                            class="btn-primary"/>
                 </list>
             </field>
         </record>
@@ -56,7 +54,6 @@
                             <group>
                                 <field name="sequence"/>
                                 <field name="active" invisible="1"/>
-                                <field name="image" widget="image" class="oe_avatar"/>
                             </group>
                         </group>
                         <notebook>
@@ -137,7 +134,6 @@
                     <field name="company_id" string="CÔNG TY"/>
                     <field name="order_creator_id" string="NGƯỜI TẠO ĐƠN HÀNG"/>
                     <field name="brand_redeem_id" string="BRAND REDEEM"/>
-                    <field name="store_redeem_id" string="STORE REDEEM"/>
                     <field name="state" invisible="1"/>
                     <field name="active" invisible="1"/>
                     <button name="action_activate" string="Kích hoạt" type="object" 
@@ -186,13 +182,12 @@
                             </group>
                         </group>
                         
-                        <!-- Cấu hình thông tin redeem -->
+                        <!-- Thông tin redeem -->
                         <div class="redeem-config-section">
-                            <h3>Cấu hình thông tin redeem</h3>
+                            <h3>Thông tin redeem</h3>
                             <group>
                                 <group>
                                     <field name="brand_redeem_id" placeholder="Chọn Brand Redeem"/>
-                                    <field name="store_redeem_id" placeholder="Chọn Store Redeem"/>
                                     <field name="bill_number" placeholder="Nhập bill number"/>
                                 </group>
                             </group>
@@ -203,7 +198,6 @@
                             <group>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
-                                <field name="gift_count"/>
                             </group>
                             <group>
                                 <field name="creator_id"/>
@@ -214,9 +208,6 @@
                         <notebook>
                             <page string="Mô tả">
                                 <field name="description" placeholder="Mô tả chương trình..."/>
-                            </page>
-                            <page string="Danh sách quà">
-                                <field name="gift_ids"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -263,15 +254,11 @@
                             <group>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
-                                <field name="gift_count"/>
                             </group>
                         </group>
                         <notebook>
                             <page string="Mô tả">
                                 <field name="description" placeholder="Mô tả chương trình..."/>
-                            </page>
-                            <page string="Danh sách quà">
-                                <field name="gift_ids"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -296,7 +283,6 @@
                     <field name="company_id"/>
                     <field name="order_creator_id"/>
                     <field name="brand_redeem_id"/>
-                    <field name="store_redeem_id"/>
                     <field name="state"/>
                     <separator/>
                     <filter name="active" string="Hoạt động" domain="[('state', '=', 'active')]"/>
@@ -309,7 +295,6 @@
                         <filter name="group_by_company" string="Công ty" context="{'group_by': 'company_id'}"/>
                         <filter name="group_by_creator" string="Người tạo" context="{'group_by': 'order_creator_id'}"/>
                         <filter name="group_by_brand" string="Brand Redeem" context="{'group_by': 'brand_redeem_id'}"/>
-                        <filter name="group_by_store" string="Store Redeem" context="{'group_by': 'store_redeem_id'}"/>
                         <filter name="group_by_state" string="Trạng thái" context="{'group_by': 'state'}"/>
                     </group>
                 </search>
@@ -328,7 +313,6 @@
                     <field name="company_id"/>
                     <field name="order_creator_id"/>
                     <field name="brand_redeem_id"/>
-                    <field name="store_redeem_id"/>
                     <field name="state"/>
                     <field name="start_date"/>
                     <field name="end_date"/>
@@ -380,7 +364,6 @@
                 <list string="Danh sách Store">
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="brand_id"/>
                     <field name="active"/>
                 </list>
             </field>
@@ -399,7 +382,6 @@
                                 <field name="code"/>
                             </group>
                             <group>
-                                <field name="brand_id"/>
                                 <field name="active"/>
                             </group>
                         </group>
@@ -416,7 +398,6 @@
             <field name="arch" type="xml">
                 <list string="Danh sách quà">
                     <field name="name"/>
-                    <field name="product_id"/>
                     <field name="quantity"/>
                     <field name="unit_price"/>
                     <field name="total_price"/>
@@ -434,7 +415,6 @@
                         <group>
                             <group>
                                 <field name="name"/>
-                                <field name="product_id"/>
                             </group>
                             <group>
                                 <field name="quantity"/>
@@ -442,7 +422,7 @@
                                 <field name="total_price"/>
                             </group>
                         </group>
-                        <field name="program_id" invisible="1"/>
+
                     </sheet>
                 </form>
             </field>
@@ -456,11 +436,7 @@
             <field name="arch" type="xml">
                 <search string="Tìm kiếm quà">
                     <field name="name"/>
-                    <field name="program_id"/>
-                    <field name="product_id"/>
                     <group expand="0" string="Group By">
-                        <filter name="group_by_program" string="Chương trình" context="{'group_by': 'program_id'}"/>
-                        <filter name="group_by_product" string="Sản phẩm" context="{'group_by': 'product_id'}"/>
                     </group>
                 </search>
             </field>
