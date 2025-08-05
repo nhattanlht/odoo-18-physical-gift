@@ -399,6 +399,8 @@
                 <list string="Danh sách quà">
                     <field name="name"/>
                     <field name="brand_id"/>
+                    <field name="category_id"/>
+                    <field name="supplier_id"/>
                     <field name="quantity"/>
                     <field name="unit_price"/>
                     <field name="total_price"/>
@@ -417,6 +419,8 @@
                             <group>
                                 <field name="name"/>
                                 <field name="brand_id"/>
+                                <field name="category_id"/>
+                                <field name="supplier_id"/>
                             </group>
                             <group>
                                 <field name="quantity"/>
@@ -439,8 +443,12 @@
                 <search string="Tìm kiếm quà">
                     <field name="name"/>
                     <field name="brand_id"/>
+                    <field name="category_id"/>
+                    <field name="supplier_id"/>
                     <group expand="0" string="Group By">
                         <filter name="group_by_brand" string="Thương hiệu" context="{'group_by': 'brand_id'}"/>
+                        <filter name="group_by_category" string="Danh mục" context="{'group_by': 'category_id'}"/>
+                        <filter name="group_by_supplier" string="Nhà cung cấp" context="{'group_by': 'supplier_id'}"/>
                     </group>
                 </search>
             </field>

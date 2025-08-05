@@ -36,6 +36,18 @@
                action="action_physical_gift_category"
                sequence="10"/>
 
+    <!-- Nhà cung cấp Menu -->
+    <menuitem id="menu_physical_gift_supplier"
+               name="Nhà cung cấp"
+               parent="menu_physical_gift_root"
+               sequence="35"/>
+
+    <menuitem id="menu_physical_gift_supplier_list"
+               name="Danh sách nhà cung cấp"
+               parent="menu_physical_gift_supplier"
+               action="action_physical_gift_supplier"
+               sequence="10"/>
+
     <!-- Chương trình Menu -->
     <menuitem id="menu_physical_gift_program"
                name="Chương trình"

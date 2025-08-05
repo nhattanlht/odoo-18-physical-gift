@@ -4,4 +4,5 @@
 from . import physical_gift_program
 from . import physical_gift_brand
 from . import physical_gift_category
-from . import physical_gift_item 
+from . import physical_gift_item
+from . import physical_gift_supplier 

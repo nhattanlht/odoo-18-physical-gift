@@ -23,6 +23,18 @@ class PhysicalGiftItem(models.Model):
         tracking=True
     )
     
+    category_id = fields.Many2one(
+        'physical.gift.category',
+        string='Danh mục',
+        tracking=True
+    )
+    
+    supplier_id = fields.Many2one(
+        'physical.gift.supplier',
+        string='Nhà cung cấp',
+        tracking=True
+    )
+    
     quantity = fields.Integer(
         string='Số lượng',
         default=1,

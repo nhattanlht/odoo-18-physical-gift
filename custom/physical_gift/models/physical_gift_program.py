@@ -5,126 +5,7 @@ from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
-class PhysicalGiftCategory(models.Model):
-    _name = 'physical.gift.category'
-    _description = 'Physical Gift Category'
-    _inherit = ['mail.thread', 'mail.activity.mixin']
-    _order = 'sequence, name'
-    _parent_store = True
-    _rec_name = 'complete_name'
 
-    name = fields.Char(
-        string='Tên danh mục',
-        required=True,
-        tracking=True,
-        help='Tên danh mục quà vật lý'
-    )
-    
-    name_en = fields.Char(
-        string='Tên tiếng Anh',
-        tracking=True,
-        help='Tên danh mục bằng tiếng Anh'
-    )
-    
-    code = fields.Char(
-        string='Mã danh mục',
-        tracking=True,
-        help='Mã định danh danh mục'
-    )
-    
-    complete_name = fields.Char(
-        string='Tên đầy đủ',
-        compute='_compute_complete_name',
-        store=True,
-        recursive=True
-    )
-    
-    parent_id = fields.Many2one(
-        'physical.gift.category',
-        string='Danh mục cha',
-        index=True,
-        ondelete='cascade',
-        tracking=True
-    )
-    
-    child_ids = fields.One2many(
-        'physical.gift.category',
-        'parent_id',
-        string='Danh mục con'
-    )
-    
-    parent_path = fields.Char(
-        index=True
-    )
-    
-    sequence = fields.Integer(
-        default=10,
-        help='Thứ tự hiển thị'
-    )
-    
-    active = fields.Boolean(
-        default=True,
-        help='Archived categories will not be displayed'
-    )
-    
-    state = fields.Selection([
-        ('active', 'Active'),
-        ('inactive', 'Inactive')
-    ], string='Trạng thái', default='active', tracking=True)
-    
-    description = fields.Text(
-        string='Mô tả',
-        tracking=True
-    )
-    
-    image = fields.Binary(
-        string='Hình ảnh',
-        attachment=True
-    )
-    
-    @api.depends('name', 'name_en', 'parent_id.complete_name')
-    def _compute_complete_name(self):
-        for category in self:
-            if category.parent_id:
-                category.complete_name = '%s / %s' % (category.parent_id.complete_name, category.name)
-            else:
-                category.complete_name = category.name
-    
-    @api.constrains('parent_id')
-    def _check_parent_id(self):
-        if self._has_cycle():
-            raise UserError(_('Bạn không thể tạo danh mục con cho chính nó.'))
-    
-    def action_activate(self):
-        """Kích hoạt danh mục"""
-        for record in self:
-            record.state = 'active'
-    
-    def action_deactivate(self):
-        """Tạm dừng danh mục"""
-        for record in self:
-            record.state = 'inactive'
-    
-    def action_update(self):
-        """Cập nhật danh mục"""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Cập nhật danh mục',
-            'res_model': 'physical.gift.category',
-            'res_id': self.id,
-            'view_mode': 'form',
-            'target': 'new',
-        }
-    
-    def name_get(self):
-        """Custom name display"""
-        result = []
-        for record in self:
-            name = f"[{record.id}] {record.name}"
-            if record.name_en:
-                name += f" | {record.name_en}"
-            result.append((record.id, name))
-        return result
 
 
 class PhysicalGiftProgram(models.Model):
@@ -230,6 +111,17 @@ class PhysicalGiftProgram(models.Model):
         ('closed', 'Đã đóng')
     ], string='Trạng thái', default='draft', tracking=True)
     
+    # Danh mục trong chương trình
+    category_ids = fields.Many2many('physical.gift.category', string='Danh mục')
+    
+    # Thống kê
+    category_count = fields.Integer('Số danh mục', compute='_compute_counts', store=True)
+    
+    @api.depends('category_ids')
+    def _compute_counts(self):
+        for record in self:
+            record.category_count = len(record.category_ids)
+    
 
     
     @api.depends('name_vi', 'name_en')
@@ -298,6 +190,13 @@ class PhysicalGiftBrand(models.Model):
     
     active = fields.Boolean(
         default=True
+    )
+    
+    # Quan hệ với nhà cung cấp
+    supplier_ids = fields.Many2many(
+        'physical.gift.supplier',
+        string='Nhà cung cấp',
+        help='Các nhà cung cấp cho thương hiệu này'
     )
     
     _sql_constraints = [

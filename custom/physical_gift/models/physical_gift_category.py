@@ -31,6 +31,9 @@ class PhysicalGiftCategory(models.Model):
     
 
     
+    # Sản phẩm trong danh mục
+    item_ids = fields.One2many('physical.gift.item', 'category_id', string='Danh sách sản phẩm')
+    
     # Chương trình liên quan
     program_ids = fields.Many2many('physical.gift.program', string='Chương trình')
     
@@ -46,11 +49,13 @@ class PhysicalGiftCategory(models.Model):
     active = fields.Boolean('Hoạt động', default=True)
     
     # Liên kết
+    item_count = fields.Integer('Số sản phẩm', compute='_compute_counts', store=True)
     program_count = fields.Integer('Số chương trình', compute='_compute_counts', store=True)
     
-    @api.depends('program_ids')
+    @api.depends('item_ids', 'program_ids')
     def _compute_counts(self):
         for record in self:
+            record.item_count = len(record.item_ids)
             record.program_count = len(record.program_ids)
     
 

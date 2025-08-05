@@ -23,11 +23,12 @@
     'data': [
         'security/ir.model.access.csv',
         'data/physical_gift_brand_data.xml',
-        'views/physical_gift_views.xml',
-        'views/physical_gift_brand_views.xml',
-        'views/physical_gift_category_views.xml',
-        'views/physical_gift_program_enhanced_views.xml',
-        'views/physical_gift_menus.xml',
+                        'views/physical_gift_views.xml',
+                'views/physical_gift_brand_views.xml',
+                'views/physical_gift_category_views.xml',
+                'views/physical_gift_program_enhanced_views.xml',
+                'views/physical_gift_supplier_views.xml',
+                'views/physical_gift_menus.xml',
     ],
     'assets': {
         'web.assets_backend': [

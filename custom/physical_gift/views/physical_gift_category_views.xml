@@ -14,6 +14,7 @@
                     <field name="parent_id"/>
                     <field name="description"/>
                     <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'"/>
+                    <field name="item_count" widget="integer"/>
                     <field name="program_count" widget="integer"/>
                 </list>
             </field>
@@ -52,12 +53,25 @@
                                 <field name="description" placeholder="Mô tả danh mục..."/>
                                 <field name="description_en" placeholder="Mô tả tiếng Anh..."/>
                             </group>
-                            <group string="Thống kê">
-                                <field name="program_count" readonly="1"/>
-                                <field name="sequence" invisible="1"/>
-                            </group>
+                                                            <group string="Thống kê">
+                                    <field name="item_count" readonly="1"/>
+                                    <field name="program_count" readonly="1"/>
+                                    <field name="sequence" invisible="1"/>
+                                </group>
                         </group>
                         <notebook>
+                            <page string="Danh sách sản phẩm" name="items">
+                                <field name="item_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="brand_id"/>
+                                        <field name="quantity"/>
+                                        <field name="unit_price"/>
+                                        <field name="total_price"/>
+                                    </list>
+                                </field>
+                            </page>
+
                             <page string="Danh mục con" name="children">
                                 <field name="child_ids" readonly="1">
                                     <list>
@@ -108,6 +122,7 @@
                     <filter string="Không hoạt động" name="inactive" domain="[('state', '=', 'inactive')]"/>
                     <separator/>
 
+                    <filter string="Có sản phẩm" name="has_items" domain="[('item_count', '>', 0)]"/>
                     <filter string="Có chương trình" name="has_programs" domain="[('program_count', '>', 0)]"/>
                     <filter string="Danh mục gốc" name="root_categories" domain="[('parent_id', '=', False)]"/>
                     <group expand="0" string="Group By">
@@ -132,6 +147,7 @@
                     <field name="parent_id"/>
                     <field name="state"/>
 
+                    <field name="item_count"/>
                     <field name="program_count"/>
                     <field name="description"/>
                     <templates>
@@ -152,7 +168,9 @@
                                             <field name="parent_id"/>
                                         </div>
                                         <div class="oe_kanban_bottom_right">
-
+                                            <span class="badge badge-info">
+                                                <i class="fa fa-cube" title="Sản phẩm"/> <field name="item_count"/>
+                                            </span>
                                             <span class="badge badge-success">
                                                 <i class="fa fa-gift" title="Chương trình"/> <field name="program_count"/>
                                             </span>

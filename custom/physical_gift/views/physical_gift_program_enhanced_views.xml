@@ -10,10 +10,11 @@
                     <field name="name_vi" readonly="1"/>
                     <field name="name_en"/>
                     <field name="company_id"/>
-                    <field name="brand_redeem_id"/>
-                    <field name="start_date"/>
-                    <field name="end_date"/>
-                    <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'"/>
+                                            <field name="brand_redeem_id"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'"/>
+                        <field name="category_count" widget="integer"/>
 
 
                 </list>
@@ -61,7 +62,7 @@
                         </group>
                         <group>
                             <group string="Thống kê">
-
+                                <field name="category_count" readonly="1"/>
                             </group>
                             <group string="Thông tin tạo">
 
@@ -69,7 +70,9 @@
                             </group>
                         </group>
                         <notebook>
-
+                            <page string="Danh mục" name="categories">
+                                <field name="category_ids" widget="many2many_tags"/>
+                            </page>
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">
@@ -98,8 +101,7 @@
                     <filter string="Không hoạt động" name="inactive" domain="[('state', '=', 'inactive')]"/>
                     <filter string="Đã đóng" name="closed" domain="[('state', '=', 'closed')]"/>
                     <separator/>
-
-
+                    <filter string="Có danh mục" name="has_categories" domain="[('category_count', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter string="Công ty" name="group_company" context="{'group_by': 'company_id'}"/>
                         <filter string="Thương hiệu" name="group_brand" context="{'group_by': 'brand_redeem_id'}"/>
@@ -144,12 +146,9 @@
                                             <field name="brand_redeem_id"/>
                                         </div>
                                         <div class="oe_kanban_bottom_right">
-
-                                            <span class="badge badge-warning">
-                        
+                                            <span class="badge badge-info">
+                                                <i class="fa fa-tags" title="Danh mục"/> <field name="category_count"/>
                                             </span>
-                                            <br/>
-
                                         </div>
                                     </div>
                                 </div>
