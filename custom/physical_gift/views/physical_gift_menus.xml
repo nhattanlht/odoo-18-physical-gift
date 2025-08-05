@@ -16,89 +16,48 @@
     <menuitem id="menu_physical_gift_item"
                name="Sản phẩm"
                parent="menu_physical_gift_root"
-               sequence="20"/>
-
-    <menuitem id="menu_physical_gift_item_list"
-               name="Danh sách sản phẩm"
-               parent="menu_physical_gift_item"
                action="action_physical_gift_item"
-               sequence="10"/>
+               sequence="20"/>
 
     <!-- Danh mục Menu -->
     <menuitem id="menu_physical_gift_category"
                name="Danh mục"
                parent="menu_physical_gift_root"
-               sequence="30"/>
-
-    <menuitem id="menu_physical_gift_category_list"
-               name="Danh sách danh mục"
-               parent="menu_physical_gift_category"
                action="action_physical_gift_category"
-               sequence="10"/>
-
-    <!-- Nhà cung cấp Menu -->
-    <menuitem id="menu_physical_gift_supplier"
-               name="Nhà cung cấp"
-               parent="menu_physical_gift_root"
-               sequence="35"/>
-
-    <menuitem id="menu_physical_gift_supplier_list"
-               name="Danh sách nhà cung cấp"
-               parent="menu_physical_gift_supplier"
-               action="action_physical_gift_supplier"
-               sequence="10"/>
-
-    <!-- Đơn vị vận chuyển Menu -->
-    <menuitem id="menu_physical_gift_shipping_unit"
-               name="Đơn vị vận chuyển"
-               parent="menu_physical_gift_root"
-               sequence="36"/>
-
-    <menuitem id="menu_physical_gift_shipping_unit_list"
-               name="Danh sách đơn vị vận chuyển"
-               parent="menu_physical_gift_shipping_unit"
-               action="action_physical_gift_shipping_unit"
-               sequence="10"/>
-
-    <!-- Nhập hàng Menu -->
-    <menuitem id="menu_physical_gift_import"
-               name="Nhập hàng"
-               parent="menu_physical_gift_root"
-               sequence="37"/>
-
-    <menuitem id="menu_physical_gift_import_list"
-               name="Danh sách nhập hàng"
-               parent="menu_physical_gift_import"
-               action="action_physical_gift_import"
-               sequence="10"/>
-
-    <!-- Đơn hàng Menu -->
-    <menuitem id="menu_physical_gift_order"
-               name="Đơn hàng"
-               parent="menu_physical_gift_root"
-               sequence="38"/>
-
-    <menuitem id="menu_physical_gift_order_list"
-               name="Danh sách đơn hàng"
-               parent="menu_physical_gift_order"
-               action="action_physical_gift_order"
-               sequence="10"/>
+               sequence="30"/>
 
     <!-- Chương trình Menu -->
     <menuitem id="menu_physical_gift_program"
                name="Chương trình"
                parent="menu_physical_gift_root"
-               sequence="40"/>
-
-    <menuitem id="menu_physical_gift_program_list"
-               name="Danh sách chương trình"
-               parent="menu_physical_gift_program"
                action="action_physical_gift_program"
-               sequence="10"/>
+               sequence="32"/>
 
-    <menuitem id="menu_physical_gift_program_update"
-               name="Cập nhật chương trình"
-               parent="menu_physical_gift_program"
-               action="action_physical_gift_program_update"
-               sequence="20"/>
+    <!-- Nhà cung cấp Menu -->
+    <menuitem id="menu_physical_gift_supplier"
+               name="Nhà cung cấp"
+               parent="menu_physical_gift_root"
+               action="action_physical_gift_supplier"
+               sequence="35"/>
+
+    <!-- Đơn vị vận chuyển Menu -->
+    <menuitem id="menu_physical_gift_shipping_unit"
+               name="Đơn vị vận chuyển"
+               parent="menu_physical_gift_root"
+               action="action_physical_gift_shipping_unit"
+               sequence="36"/>
+
+    <!-- Nhập hàng Menu -->
+    <menuitem id="menu_physical_gift_import"
+               name="Nhập hàng"
+               parent="menu_physical_gift_root"
+               action="action_physical_gift_import"
+               sequence="37"/>
+
+    <!-- Đơn hàng Menu -->
+    <menuitem id="menu_physical_gift_order"
+               name="Đơn hàng"
+               parent="menu_physical_gift_root"
+               action="action_physical_gift_order"
+               sequence="38"/>
 </odoo> 

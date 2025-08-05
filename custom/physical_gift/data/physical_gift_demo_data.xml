@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Demo Brand Data -->
+        <record id="demo_brand_1" model="physical.gift.brand">
+            <field name="name">Vietinbank</field>
+            <field name="name_en">Vietinbank</field>
+            <field name="code">VTB</field>
+            <field name="contact_person">Nguyễn Văn A</field>
+            <field name="phone">024-3944-6699</field>
+            <field name="email">contact@vietinbank.vn</field>
+            <field name="address">108 Trần Hưng Đạo, Hoàn Kiếm, Hà Nội</field>
+            <field name="website">https://www.vietinbank.vn</field>
+            <field name="description">Ngân hàng TMCP Công thương Việt Nam</field>
+            <field name="partnership_date">2024-01-01</field>
+            <field name="contract_number">VTB-2024-001</field>
+            <field name="commission_rate">5.0</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_brand_2" model="physical.gift.brand">
+            <field name="name">AIA Việt Nam</field>
+            <field name="name_en">AIA Vietnam</field>
+            <field name="code">AIA</field>
+            <field name="contact_person">Trần Thị B</field>
+            <field name="phone">028-3824-8888</field>
+            <field name="email">info@aia.com.vn</field>
+            <field name="address">Tầng 15, Tòa nhà Bitexco, 2 Hải Triều, Quận 1, TP.HCM</field>
+            <field name="website">https://www.aia.com.vn</field>
+            <field name="description">Công ty Bảo hiểm Nhân thọ AIA Việt Nam</field>
+            <field name="partnership_date">2024-03-15</field>
+            <field name="contract_number">AIA-2024-002</field>
+            <field name="commission_rate">7.5</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_brand_3" model="physical.gift.brand">
+            <field name="name">Samsung Electronics</field>
+            <field name="name_en">Samsung Electronics</field>
+            <field name="code">SSG</field>
+            <field name="contact_person">Lê Văn C</field>
+            <field name="phone">028-3822-5555</field>
+            <field name="email">vietnam@samsung.com</field>
+            <field name="address">Tầng 10, Tòa nhà Diamond Plaza, 34 Lê Duẩn, Quận 1, TP.HCM</field>
+            <field name="website">https://www.samsung.com/vn</field>
+            <field name="description">Tập đoàn Samsung Electronics Việt Nam</field>
+            <field name="partnership_date">2024-02-10</field>
+            <field name="contract_number">SSG-2024-003</field>
+            <field name="commission_rate">6.0</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_brand_4" model="physical.gift.brand">
+            <field name="name">Apple Vietnam</field>
+            <field name="name_en">Apple Vietnam</field>
+            <field name="code">APL</field>
+            <field name="contact_person">Phạm Thị D</field>
+            <field name="phone">028-3823-7777</field>
+            <field name="email">vietnam@apple.com</field>
+            <field name="address">Tầng 8, Tòa nhà Saigon Trade Center, 37 Tôn Đức Thắng, Quận 1, TP.HCM</field>
+            <field name="website">https://www.apple.com/vn</field>
+            <field name="description">Apple Inc. tại Việt Nam</field>
+            <field name="partnership_date">2024-04-20</field>
+            <field name="contract_number">APL-2024-004</field>
+            <field name="commission_rate">8.0</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_brand_5" model="physical.gift.brand">
+            <field name="name">Samono</field>
+            <field name="name_en">Samono</field>
+            <field name="code">SMN</field>
+            <field name="contact_person">Hoàng Văn E</field>
+            <field name="phone">028-3825-9999</field>
+            <field name="email">info@samono.com.vn</field>
+            <field name="address">123 Nguyễn Văn Linh, Quận 7, TP.HCM</field>
+            <field name="website">https://www.samono.com.vn</field>
+            <field name="description">Công ty TNHH Samono Việt Nam</field>
+            <field name="partnership_date">2024-05-01</field>
+            <field name="contract_number">SMN-2024-005</field>
+            <field name="commission_rate">4.5</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Store Data -->
+        <record id="demo_store_1" model="physical.gift.store">
+            <field name="name">Vietinbank Store 1</field>
+            <field name="code">VTB001</field>
+            <field name="brand_id" ref="demo_brand_1"/>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_store_2" model="physical.gift.store">
+            <field name="name">AIA Store 1</field>
+            <field name="code">AIA001</field>
+            <field name="brand_id" ref="demo_brand_2"/>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Category Data -->
+        <record id="demo_category_1" model="physical.gift.category">
+            <field name="name">Điện tử</field>
+            <field name="name_en">Electronics</field>
+            <field name="code">ELEC</field>
+            <field name="description">Các sản phẩm điện tử</field>
+            <field name="state">active</field>
+            <field name="sequence">10</field>
+        </record>
+        
+        <record id="demo_category_2" model="physical.gift.category">
+            <field name="name">Thời trang</field>
+            <field name="name_en">Fashion</field>
+            <field name="code">FASH</field>
+            <field name="description">Các sản phẩm thời trang</field>
+            <field name="state">active</field>
+            <field name="sequence">20</field>
+        </record>
+        
+        <record id="demo_category_3" model="physical.gift.category">
+            <field name="name">Gia dụng</field>
+            <field name="name_en">Home &amp; Living</field>
+            <field name="code">HOME</field>
+            <field name="description">Các sản phẩm gia dụng</field>
+            <field name="state">active</field>
+            <field name="sequence">30</field>
+        </record>
+        
+        <record id="demo_category_4" model="physical.gift.category">
+            <field name="name">Sức khỏe</field>
+            <field name="name_en">Health &amp; Beauty</field>
+            <field name="code">HEALTH</field>
+            <field name="description">Các sản phẩm sức khỏe và làm đẹp</field>
+            <field name="state">active</field>
+            <field name="sequence">40</field>
+        </record>
+        
+        <record id="demo_category_5" model="physical.gift.category">
+            <field name="name">Thể thao</field>
+            <field name="name_en">Sports</field>
+            <field name="code">SPORT</field>
+            <field name="description">Các sản phẩm thể thao</field>
+            <field name="state">active</field>
+            <field name="sequence">50</field>
+        </record>
+
+        <!-- Demo Supplier Data -->
+        <record id="demo_supplier_1" model="physical.gift.supplier">
+            <field name="name">Công Ty Cổ Phần Day One</field>
+            <field name="full_name">Công Ty Cổ Phần Day One</field>
+            <field name="representative_name">Nguyễn Văn A</field>
+            <field name="tax_code">0123456789</field>
+            <field name="account_number">1234567890</field>
+            <field name="bank_name">Vietcombank</field>
+            <field name="warehouse_code">WH001</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_supplier_2" model="physical.gift.supplier">
+            <field name="name">Mars</field>
+            <field name="full_name">Công Ty TNHH Mars</field>
+            <field name="representative_name">Trần Thị B</field>
+            <field name="tax_code">0987654321</field>
+            <field name="account_number">0987654321</field>
+            <field name="bank_name">BIDV</field>
+            <field name="warehouse_code">WH002</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_supplier_3" model="physical.gift.supplier">
+            <field name="name">thegioididong</field>
+            <field name="full_name">Công Ty Cổ Phần Thế Giới Di Động</field>
+            <field name="representative_name">Lê Văn C</field>
+            <field name="tax_code">0111222333</field>
+            <field name="account_number">0111222333</field>
+            <field name="bank_name">Techcombank</field>
+            <field name="warehouse_code">WH003</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Shipping Unit Data -->
+        <record id="demo_shipping_unit_1" model="physical.gift.shipping.unit">
+            <field name="name">Giao Hang Nhanh</field>
+            <field name="code">GHN</field>
+            <field name="description">Đơn vị vận chuyển nhanh</field>
+            <field name="contact_info">Hotline: 1900-xxxx</field>
+            <field name="website">https://giaohangnhanh.vn</field>
+            <field name="phone">1900-xxxx</field>
+            <field name="email">support@ghn.vn</field>
+            <field name="address">123 Đường ABC, Quận 1, TP.HCM</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_shipping_unit_2" model="physical.gift.shipping.unit">
+            <field name="name">Viettel Post</field>
+            <field name="code">VTP</field>
+            <field name="description">Dịch vụ bưu chính Viettel</field>
+            <field name="contact_info">Hotline: 1900-xxxx</field>
+            <field name="website">https://viettelpost.vn</field>
+            <field name="phone">1900-xxxx</field>
+            <field name="email">support@viettelpost.vn</field>
+            <field name="address">456 Đường XYZ, Quận 3, TP.HCM</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_shipping_unit_3" model="physical.gift.shipping.unit">
+            <field name="name">J&amp;T Express</field>
+            <field name="code">JTE</field>
+            <field name="description">Dịch vụ vận chuyển J&amp;T</field>
+            <field name="contact_info">Hotline: 1900-xxxx</field>
+            <field name="website">https://jtexpress.vn</field>
+            <field name="phone">1900-xxxx</field>
+            <field name="email">support@jtexpress.vn</field>
+            <field name="address">789 Đường DEF, Quận 7, TP.HCM</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Item Data -->
+        <record id="demo_item_1" model="physical.gift.item">
+            <field name="name">Ví da nam vân hạt cao cấp Lata LVN92 màu đen</field>
+            <field name="brand_id" ref="demo_brand_1"/>
+            <field name="category_id" ref="demo_category_2"/>
+            <field name="supplier_id" ref="demo_supplier_1"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">235000</field>
+            <field name="total_price">23500000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_2" model="physical.gift.item">
+            <field name="name">Nón bảo hiểm trẻ em (Màu xanh)</field>
+            <field name="brand_id" ref="demo_brand_2"/>
+            <field name="category_id" ref="demo_category_5"/>
+            <field name="supplier_id" ref="demo_supplier_2"/>
+            <field name="quantity">150</field>
+            <field name="unit_price">635000</field>
+            <field name="total_price">95250000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_3" model="physical.gift.item">
+            <field name="name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
+            <field name="brand_id" ref="demo_brand_2"/>
+            <field name="category_id" ref="demo_category_5"/>
+            <field name="supplier_id" ref="demo_supplier_2"/>
+            <field name="quantity">50</field>
+            <field name="unit_price">230000</field>
+            <field name="total_price">11500000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_4" model="physical.gift.item">
+            <field name="name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
+            <field name="brand_id" ref="demo_brand_3"/>
+            <field name="category_id" ref="demo_category_1"/>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">150000</field>
+            <field name="total_price">15000000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_5" model="physical.gift.item">
+            <field name="name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
+            <field name="brand_id" ref="demo_brand_3"/>
+            <field name="category_id" ref="demo_category_1"/>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">200000</field>
+            <field name="total_price">20000000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_6" model="physical.gift.item">
+            <field name="name">Máy xay đa năng SAMONO SW099 White</field>
+            <field name="brand_id" ref="demo_brand_5"/>
+            <field name="category_id" ref="demo_category_3"/>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">500000</field>
+            <field name="total_price">50000000</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_item_7" model="physical.gift.item">
+            <field name="name">Máy sấy tóc gấp gọn tiện lợi SAMONO SW-001</field>
+            <field name="brand_id" ref="demo_brand_5"/>
+            <field name="category_id" ref="demo_category_4"/>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="quantity">100</field>
+            <field name="unit_price">300000</field>
+            <field name="total_price">30000000</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Program Data -->
+        <record id="demo_program_1" model="physical.gift.program">
+            <field name="name_vi">Chương trình Vietinbank 2025</field>
+            <field name="name_en">Vietinbank Program 2025</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="demo_brand_1"/>
+            <field name="store_redeem_id" ref="demo_store_1"/>
+            <field name="bill_number">VTB2025001</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="description">Chương trình quà tặng cho khách hàng Vietinbank</field>
+            <field name="start_date">2025-01-01</field>
+            <field name="end_date">2025-12-31</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+        
+        <record id="demo_program_2" model="physical.gift.program">
+            <field name="name_vi">Chương trình AIA 2025</field>
+            <field name="name_en">AIA Program 2025</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="order_creator_id" ref="base.user_admin"/>
+            <field name="brand_redeem_id" ref="demo_brand_2"/>
+            <field name="store_redeem_id" ref="demo_store_2"/>
+            <field name="bill_number">AIA2025001</field>
+            <field name="creator_id" ref="base.user_admin"/>
+            <field name="description">Chương trình quà tặng cho khách hàng AIA</field>
+            <field name="start_date">2025-01-01</field>
+            <field name="end_date">2025-12-31</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+        </record>
+
+        <!-- Demo Import Data -->
+        <record id="demo_import_1" model="physical.gift.import">
+            <field name="name">Ví da nam vân hạt cao cấp Lata LVN92 màu đen</field>
+            <field name="sku">GT-001382</field>
+            <field name="points">0</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="import_price_excl_vat">235000</field>
+            <field name="sale_price_incl_vat">295000</field>
+            <field name="vat_percentage">5</field>
+            <field name="supplier_id" ref="demo_supplier_1"/>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="item_id" ref="demo_item_1"/>
+            <field name="import_quantity">150</field>
+            <field name="export_return_quantity">0</field>
+            <field name="remaining_quantity">150</field>
+            <field name="state">done</field>
+            <field name="active">True</field>
+            <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
+        </record>
+        
+        <record id="demo_import_2" model="physical.gift.import">
+            <field name="name">Nón bảo hiểm trẻ em (Màu xanh)</field>
+            <field name="sku">AIA-400-006</field>
+            <field name="points">0</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="import_price_excl_vat">635000</field>
+            <field name="sale_price_incl_vat">800000</field>
+            <field name="vat_percentage">5</field>
+            <field name="supplier_id" ref="demo_supplier_2"/>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="item_id" ref="demo_item_2"/>
+            <field name="import_quantity">150</field>
+            <field name="export_return_quantity">0</field>
+            <field name="remaining_quantity">150</field>
+            <field name="state">done</field>
+            <field name="active">True</field>
+            <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
+        </record>
+        
+        <record id="demo_import_3" model="physical.gift.import">
+            <field name="name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
+            <field name="sku">AIA-400-001</field>
+            <field name="points">0</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="import_price_excl_vat">230000</field>
+            <field name="sale_price_incl_vat">400000</field>
+            <field name="vat_percentage">8</field>
+            <field name="supplier_id" ref="demo_supplier_2"/>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="item_id" ref="demo_item_3"/>
+            <field name="import_quantity">50</field>
+            <field name="export_return_quantity">0</field>
+            <field name="remaining_quantity">50</field>
+            <field name="state">done</field>
+            <field name="active">True</field>
+            <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
+        </record>
+        
+        <record id="demo_import_4" model="physical.gift.import">
+            <field name="name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
+            <field name="sku">TGD-001</field>
+            <field name="points">0</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="import_price_excl_vat">150000</field>
+            <field name="sale_price_incl_vat">200000</field>
+            <field name="vat_percentage">10</field>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="program_id" ref="demo_program_2"/>
+            <field name="item_id" ref="demo_item_4"/>
+            <field name="import_quantity">100</field>
+            <field name="export_return_quantity">0</field>
+            <field name="remaining_quantity">100</field>
+            <field name="state">done</field>
+            <field name="active">True</field>
+            <field name="notes">Nhập hàng cho chương trình AIA</field>
+        </record>
+        
+        <record id="demo_import_5" model="physical.gift.import">
+            <field name="name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
+            <field name="sku">TGD-002</field>
+            <field name="points">0</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="import_price_excl_vat">200000</field>
+            <field name="sale_price_incl_vat">250000</field>
+            <field name="vat_percentage">10</field>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="program_id" ref="demo_program_2"/>
+            <field name="item_id" ref="demo_item_5"/>
+            <field name="import_quantity">100</field>
+            <field name="export_return_quantity">0</field>
+            <field name="remaining_quantity">100</field>
+            <field name="state">done</field>
+            <field name="active">True</field>
+            <field name="notes">Nhập hàng cho chương trình AIA</field>
+        </record>
+
+        <!-- Demo Order Data -->
+        <record id="demo_order_1" model="physical.gift.order">
+            <field name="name">ORD-2025-001</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="product_name">Ví da nam vân hạt cao cấp Lata LVN92 màu đen</field>
+            <field name="sku">GT-001382</field>
+            <field name="original_sku">GT-001382</field>
+            <field name="recipient_name">Nguyễn Văn An</field>
+            <field name="recipient_phone">0901234567</field>
+            <field name="total_order_value">295000</field>
+            <field name="voucher_code">VTB001</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_1"/>
+            <field name="waybill_code">GHN123456789</field>
+            <field name="payment_gateway">bank_transfer</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN001</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-06-01 10:30:00</field>
+            <field name="order_status">delivered</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+            <field name="import_id" ref="demo_import_1"/>
+        </record>
+        
+        <record id="demo_order_2" model="physical.gift.order">
+            <field name="name">ORD-2025-002</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="product_name">Nón bảo hiểm trẻ em (Màu xanh)</field>
+            <field name="sku">AIA-400-006</field>
+            <field name="original_sku">AIA-400-006</field>
+            <field name="recipient_name">Trần Thị Bình</field>
+            <field name="recipient_phone">0912345678</field>
+            <field name="total_order_value">800000</field>
+            <field name="voucher_code">VTB002</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
+            <field name="waybill_code">VTP987654321</field>
+            <field name="payment_gateway">credit_card</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN002</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-06-02 14:15:00</field>
+            <field name="order_status">shipped</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+            <field name="import_id" ref="demo_import_2"/>
+        </record>
+        
+        <record id="demo_order_3" model="physical.gift.order">
+            <field name="name">ORD-2025-003</field>
+            <field name="program_id" ref="demo_program_2"/>
+            <field name="product_name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
+            <field name="sku">TGD-001</field>
+            <field name="original_sku">TGD-001</field>
+            <field name="recipient_name">Lê Văn Cường</field>
+            <field name="recipient_phone">0923456789</field>
+            <field name="total_order_value">200000</field>
+            <field name="voucher_code">AIA001</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_3"/>
+            <field name="waybill_code">JTE111222333</field>
+            <field name="payment_gateway">e_wallet</field>
+            <field name="payment_status">pending</field>
+            <field name="transaction_code">TXN003</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-06-03 09:45:00</field>
+            <field name="order_status">confirmed</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+            <field name="import_id" ref="demo_import_4"/>
+        </record>
+        
+        <record id="demo_order_4" model="physical.gift.order">
+            <field name="name">ORD-2025-004</field>
+            <field name="program_id" ref="demo_program_2"/>
+            <field name="product_name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
+            <field name="sku">TGD-002</field>
+            <field name="original_sku">TGD-002</field>
+            <field name="recipient_name">Phạm Thị Dung</field>
+            <field name="recipient_phone">0934567890</field>
+            <field name="total_order_value">250000</field>
+            <field name="voucher_code">AIA002</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_1"/>
+            <field name="waybill_code">GHN456789123</field>
+            <field name="payment_gateway">cash</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN004</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-06-04 16:20:00</field>
+            <field name="order_status">processing</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+            <field name="import_id" ref="demo_import_5"/>
+        </record>
+        
+        <record id="demo_order_5" model="physical.gift.order">
+            <field name="name">ORD-2025-005</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="product_name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
+            <field name="sku">AIA-400-001</field>
+            <field name="original_sku">AIA-400-001</field>
+            <field name="recipient_name">Hoàng Văn Em</field>
+            <field name="recipient_phone">0945678901</field>
+            <field name="total_order_value">400000</field>
+            <field name="voucher_code">VTB003</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
+            <field name="waybill_code">VTP555666777</field>
+            <field name="payment_gateway">bank_transfer</field>
+            <field name="payment_status">failed</field>
+            <field name="transaction_code">TXN005</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-06-05 11:30:00</field>
+            <field name="order_status">draft</field>
+            <field name="state">active</field>
+            <field name="active">True</field>
+            <field name="error_content">Thanh toán thất bại do thông tin tài khoản không chính xác</field>
+            <field name="import_id" ref="demo_import_3"/>
+        </record>
+
+        <!-- Update relationships -->
+        <!-- Update brand-supplier relationships -->
+        <record id="demo_brand_1" model="physical.gift.brand">
+            <field name="supplier_ids" eval="[(6, 0, [ref('demo_supplier_1'), ref('demo_supplier_2')])]"/>
+        </record>
+        
+        <record id="demo_brand_2" model="physical.gift.brand">
+            <field name="supplier_ids" eval="[(6, 0, [ref('demo_supplier_2')])]"/>
+        </record>
+        
+        <record id="demo_brand_3" model="physical.gift.brand">
+            <field name="supplier_ids" eval="[(6, 0, [ref('demo_supplier_3')])]"/>
+        </record>
+        
+        <record id="demo_brand_5" model="physical.gift.brand">
+            <field name="supplier_ids" eval="[(6, 0, [ref('demo_supplier_3')])]"/>
+        </record>
+
+        <!-- Update program-category relationships -->
+        <record id="demo_program_1" model="physical.gift.program">
+            <field name="category_ids" eval="[(6, 0, [ref('demo_category_2'), ref('demo_category_5')])]"/>
+            <field name="shipping_unit_ids" eval="[(6, 0, [ref('demo_shipping_unit_1'), ref('demo_shipping_unit_2')])]"/>
+        </record>
+        
+        <record id="demo_program_2" model="physical.gift.program">
+            <field name="category_ids" eval="[(6, 0, [ref('demo_category_1')])]"/>
+            <field name="shipping_unit_ids" eval="[(6, 0, [ref('demo_shipping_unit_1'), ref('demo_shipping_unit_3')])]"/>
+        </record>
+
+    </data>
+</odoo> 

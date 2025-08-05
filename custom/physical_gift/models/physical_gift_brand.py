@@ -146,6 +146,12 @@ class PhysicalGiftBrand(models.Model):
         string='Chương trình'
     )
     
+    supplier_ids = fields.Many2many(
+        'physical.gift.supplier',
+        string='Nhà cung cấp',
+        help='Các nhà cung cấp cho thương hiệu này'
+    )
+    
     # Constraints
     _sql_constraints = [
         ('unique_brand_code', 'unique(code)', 'Mã thương hiệu phải là duy nhất!'),

@@ -20,9 +20,9 @@
         'sale',
         'account',
     ],
-    'data': [
+        'data': [
         'security/ir.model.access.csv',
-        'data/physical_gift_brand_data.xml',
+        'data/physical_gift_demo_data.xml',
                         'views/physical_gift_views.xml',
                 'views/physical_gift_brand_views.xml',
                 'views/physical_gift_category_views.xml',

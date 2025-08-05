@@ -52,6 +52,11 @@ class PhysicalGiftItem(models.Model):
         store=True
     )
     
+    active = fields.Boolean(
+        default=True,
+        help='Archived items will not be displayed'
+    )
+    
     @api.depends('quantity', 'unit_price')
     def _compute_total_price(self):
         for record in self:
