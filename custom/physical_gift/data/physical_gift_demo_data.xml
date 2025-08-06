@@ -103,9 +103,8 @@
             <field name="name_en">Electronics</field>
             <field name="code">ELEC</field>
             <field name="description">Các sản phẩm điện tử</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
             <field name="sequence">10</field>
+            <field name="active">True</field>
         </record>
         
         <record id="demo_category_2" model="physical.gift.category">
@@ -113,9 +112,8 @@
             <field name="name_en">Fashion</field>
             <field name="code">FASH</field>
             <field name="description">Các sản phẩm thời trang</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
             <field name="sequence">20</field>
+            <field name="active">True</field>
         </record>
         
         <record id="demo_category_4" model="physical.gift.category">
@@ -123,9 +121,8 @@
             <field name="name_en">Health &amp; Beauty</field>
             <field name="code">HEALTH</field>
             <field name="description">Các sản phẩm sức khỏe và làm đẹp</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
             <field name="sequence">40</field>
+            <field name="active">True</field>
         </record>
         
         <record id="demo_category_5" model="physical.gift.category">
@@ -133,9 +130,8 @@
             <field name="name_en">Sports</field>
             <field name="code">SPORT</field>
             <field name="description">Các sản phẩm thể thao</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
             <field name="sequence">50</field>
+            <field name="active">True</field>
         </record>
 
         <!-- Demo Supplier Data -->
@@ -226,7 +222,7 @@
             <field name="total_price">23500000</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_item_2" model="physical.gift.item">
             <field name="name">Nón bảo hiểm trẻ em (Màu xanh)</field>
             <field name="brand_id" ref="demo_brand_2"/>
@@ -237,7 +233,7 @@
             <field name="total_price">95250000</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_item_3" model="physical.gift.item">
             <field name="name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
             <field name="brand_id" ref="demo_brand_2"/>
@@ -248,7 +244,7 @@
             <field name="total_price">11500000</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_item_4" model="physical.gift.item">
             <field name="name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
             <field name="brand_id" ref="demo_brand_3"/>
@@ -259,7 +255,7 @@
             <field name="total_price">15000000</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_item_5" model="physical.gift.item">
             <field name="name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
             <field name="brand_id" ref="demo_brand_3"/>
@@ -270,18 +266,7 @@
             <field name="total_price">20000000</field>
             <field name="active">True</field>
         </record>
-        
-        <record id="demo_item_6" model="physical.gift.item">
-            <field name="name">Máy xay đa năng SAMONO SW099 White</field>
-            <field name="brand_id" ref="demo_brand_5"/>
-            <field name="category_id" ref="demo_category_3"/>
-            <field name="supplier_id" ref="demo_supplier_3"/>
-            <field name="quantity">100</field>
-            <field name="unit_price">500000</field>
-            <field name="total_price">50000000</field>
-            <field name="active">True</field>
-        </record>
-        
+
         <record id="demo_item_7" model="physical.gift.item">
             <field name="name">Máy sấy tóc gấp gọn tiện lợi SAMONO SW-001</field>
             <field name="brand_id" ref="demo_brand_5"/>

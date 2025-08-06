@@ -14,66 +14,54 @@ class PhysicalGiftCategory(models.Model):
     name = fields.Char('Tên danh mục', required=True, tracking=True)
     name_en = fields.Char('Tên tiếng Anh', tracking=True)
     code = fields.Char('Mã danh mục', required=True, tracking=True)
-    
+    active = fields.Boolean('Active', default=True)
+
     _sql_constraints = [
         ('code_unique', 'unique(code)', 'Mã danh mục phải là duy nhất!')
     ]
-    
 
-    
     # Thông tin cơ bản
     description = fields.Text('Mô tả')
     description_en = fields.Text('Mô tả tiếng Anh')
-    
-    # Cấu trúc phân cấp
-    parent_id = fields.Many2one('physical.gift.category', string='Danh mục cha')
-    child_ids = fields.One2many('physical.gift.category', 'parent_id', string='Danh mục con')
-    
+    image = fields.Image('Ảnh đại diện', max_width=512, max_height=512)
 
-    
     # Sản phẩm trong danh mục
     item_ids = fields.One2many('physical.gift.item', 'category_id', string='Danh sách sản phẩm')
-    
+
     # Chương trình liên quan
     program_ids = fields.Many2many('physical.gift.program', string='Chương trình')
-    
-    # Trạng thái
-    state = fields.Selection([
-        ('draft', 'Nháp'),
-        ('active', 'Hoạt động'),
-        ('inactive', 'Không hoạt động')
-    ], string='Trạng thái', default='draft', tracking=True)
-    
+
     # Thống kê
     sequence = fields.Integer('Thứ tự', default=10)
-    active = fields.Boolean('Hoạt động', default=True)
-    
+
     # Liên kết
     item_count = fields.Integer('Số sản phẩm', compute='_compute_counts', store=True)
     program_count = fields.Integer('Số chương trình', compute='_compute_counts', store=True)
-    
+
     @api.depends('item_ids', 'program_ids')
     def _compute_counts(self):
         for record in self:
             record.item_count = len(record.item_ids)
             record.program_count = len(record.program_ids)
-    
 
-    
+    def toggle_active(self):
+        """
+        Lưu trữ hoặc bỏ lưu trữ các bản ghi bằng cách đảo ngược trường 'active'.
+        """
+        for record in self:
+            record.active = not record.active
 
-    
-    def action_activate(self):
-        self.write({'state': 'active'})
-    
-    def action_deactivate(self):
-        self.write({'state': 'inactive'})
-    
-    def action_reset_to_draft(self):
-        self.write({'state': 'draft'})
-    
-    def action_close(self):
-        self.write({'state': 'inactive'})
-    
-
-    
- 
+    def action_open_items(self):
+        """
+        Trả về một action để mở cửa sổ hiển thị các sản phẩm
+        thuộc danh mục này.
+        """
+        self.ensure_one()
+        return {
+            'name': _('Sản phẩm'),
+            'type': 'ir.actions.act_window',
+            'res_model': 'physical.gift.item',
+            'view_mode': 'tree,form',
+            'domain': [('category_id', '=', self.id)],
+            'context': {'default_category_id': self.id}
+        }

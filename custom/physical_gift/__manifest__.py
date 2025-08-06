@@ -23,7 +23,7 @@
         'data': [
         'security/ir.model.access.csv',
         'data/physical_gift_demo_data.xml',
-                        'views/physical_gift_views.xml',
+                'views/physical_gift_item_views.xml',
                 'views/physical_gift_brand_views.xml',
                 'views/physical_gift_category_views.xml',
                 'views/physical_gift_program_enhanced_views.xml',

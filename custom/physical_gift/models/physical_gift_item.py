@@ -15,8 +15,6 @@ class PhysicalGiftItem(models.Model):
         tracking=True
     )
     
-
-    
     brand_id = fields.Many2one(
         'physical.gift.brand',
         string='Thương hiệu',
@@ -32,6 +30,11 @@ class PhysicalGiftItem(models.Model):
     supplier_id = fields.Many2one(
         'physical.gift.supplier',
         string='Nhà cung cấp',
+        tracking=True
+    )
+
+    image = fields.Image(
+        string="Hình ảnh",
         tracking=True
     )
     
