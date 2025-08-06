@@ -77,29 +77,11 @@ class PhysicalGiftBrand(models.Model):
         help='Logo thương hiệu'
     )
     
-    image = fields.Binary(
-        string='Hình ảnh',
-        attachment=True,
-        help='Hình ảnh đại diện thương hiệu'
-    )
-    
     # Trạng thái và cấu hình
     sequence = fields.Integer(
         default=10,
         help='Thứ tự hiển thị'
     )
-    
-    active = fields.Boolean(
-        default=True,
-        help='Thương hiệu không hoạt động sẽ không hiển thị'
-    )
-    
-    state = fields.Selection([
-        ('draft', 'Nháp'),
-        ('active', 'Hoạt động'),
-        ('inactive', 'Không hoạt động'),
-        ('suspended', 'Tạm ngưng')
-    ], string='Trạng thái', default='draft', tracking=True)
     
     # Thông tin hợp tác
     partnership_date = fields.Date(
@@ -157,7 +139,24 @@ class PhysicalGiftBrand(models.Model):
         ('unique_brand_code', 'unique(code)', 'Mã thương hiệu phải là duy nhất!'),
         ('unique_brand_name', 'unique(name)', 'Tên thương hiệu phải là duy nhất!')
     ]
-    
+
+    active = fields.Boolean(
+        default=True,
+        help='Thương hiệu không hoạt động sẽ không hiển thị'
+    )
+
+    status_display = fields.Selection(
+        [('active', 'Active'), ('inactive', 'Inactive')],
+        string="Status Display",
+        compute="_compute_status_display",
+        store=False,
+    )
+
+    @api.depends('active')
+    def _compute_status_display(self):
+        for rec in self:
+            rec.status_display = 'active' if rec.active else 'inactive'
+
     @api.depends('store_ids')
     def _compute_store_count(self):
         for record in self:
@@ -175,44 +174,13 @@ class PhysicalGiftBrand(models.Model):
                 raise UserError(_('Tỷ lệ hoa hồng phải từ 0% đến 100%'))
     
     # Actions
-    def action_activate(self):
-        """Kích hoạt thương hiệu"""
-        for record in self:
-            record.state = 'active'
-    
-    def action_deactivate(self):
-        """Tạm ngưng thương hiệu"""
-        for record in self:
-            record.state = 'inactive'
-    
-    def action_suspend(self):
-        """Tạm ngưng thương hiệu"""
-        for record in self:
-            record.state = 'suspended'
-    
-    def action_reset_to_draft(self):
-        """Đặt lại về nháp"""
-        for record in self:
-            record.state = 'draft'
-    
-    def action_view_stores(self):
-        """Xem danh sách cửa hàng"""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Cửa hàng của %s' % self.name,
-            'res_model': 'physical.gift.store',
-            'view_mode': 'tree,form',
-            'domain': [('brand_id', '=', self.id)],
-            'context': {'default_brand_id': self.id}
-        }
-    
     def action_view_programs(self):
         """Xem danh sách chương trình"""
         return {
             'type': 'ir.actions.act_window',
             'name': 'Chương trình của %s' % self.name,
             'res_model': 'physical.gift.program',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('brand_redeem_id', '=', self.id)],
             'context': {'default_brand_redeem_id': self.id}
         }
