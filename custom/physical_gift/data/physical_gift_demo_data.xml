@@ -79,7 +79,7 @@
             <field name="partnership_date">2024-05-01</field>
             <field name="contract_number">SMN-2024-005</field>
             <field name="commission_rate">4.5</field>
-            <field name="active">True</field>
+            <field name="active">false</field>
         </record>
 
         <!-- Demo Store Data -->
@@ -131,7 +131,7 @@
             <field name="code">SPORT</field>
             <field name="description">Các sản phẩm thể thao</field>
             <field name="sequence">50</field>
-            <field name="active">True</field>
+            <field name="active">false</field>
         </record>
 
         <!-- Demo Supplier Data -->
@@ -275,7 +275,7 @@
             <field name="quantity">100</field>
             <field name="unit_price">300000</field>
             <field name="total_price">30000000</field>
-            <field name="active">True</field>
+            <field name="active">false</field>
         </record>
 
         <!-- Demo Program Data -->
@@ -291,8 +291,7 @@
             <field name="description">Chương trình quà tặng cho khách hàng Vietinbank</field>
             <field name="start_date">2025-01-01</field>
             <field name="end_date">2025-12-31</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
+            <field name="active">true</field>
         </record>
         
         <record id="demo_program_2" model="physical.gift.program">
@@ -307,8 +306,7 @@
             <field name="description">Chương trình quà tặng cho khách hàng AIA</field>
             <field name="start_date">2025-01-01</field>
             <field name="end_date">2025-12-31</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
+            <field name="active">false</field>
         </record>
 
         <!-- Demo Import Data -->

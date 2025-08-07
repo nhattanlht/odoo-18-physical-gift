@@ -4,10 +4,6 @@
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
-
-
-
-
 class PhysicalGiftProgram(models.Model):
     _name = 'physical.gift.program'
     _description = 'Physical Gift Program'
@@ -68,14 +64,6 @@ class PhysicalGiftProgram(models.Model):
         help='Số bill của chương trình'
     )
     
-    # Các trường cũ giữ lại
-    name = fields.Char(
-        string='Tên chương trình',
-        compute='_compute_name',
-        store=True,
-        help='Tên của chương trình quà tặng vật lý'
-    )
-    
     creator_id = fields.Many2one(
         'res.users',
         string='Người tạo',
@@ -83,10 +71,10 @@ class PhysicalGiftProgram(models.Model):
         default=lambda self: self.env.user,
         tracking=True
     )
-    
+
     active = fields.Boolean(
         default=True,
-        help='Archived programs will not be displayed in the list'
+        help='Thương hiệu không hoạt động sẽ không hiển thị'
     )
     
     description = fields.Text(
@@ -104,13 +92,6 @@ class PhysicalGiftProgram(models.Model):
         tracking=True
     )
     
-    state = fields.Selection([
-        ('draft', 'Nháp'),
-        ('active', 'Hoạt động'),
-        ('inactive', 'Không hoạt động'),
-        ('closed', 'Đã đóng')
-    ], string='Trạng thái', default='draft', tracking=True)
-    
     # Danh mục trong chương trình
     category_ids = fields.Many2many('physical.gift.category', string='Danh mục')
     
@@ -126,7 +107,6 @@ class PhysicalGiftProgram(models.Model):
         for record in self:
             record.category_count = len(record.category_ids)
             record.shipping_unit_count = len(record.shipping_unit_ids)
-    
 
     
     @api.depends('name_vi', 'name_en')
@@ -140,7 +120,6 @@ class PhysicalGiftProgram(models.Model):
                 record.name = record.name_en
             else:
                 record.name = ''
-    
 
     
     @api.constrains('start_date', 'end_date')
@@ -149,26 +128,6 @@ class PhysicalGiftProgram(models.Model):
             if record.start_date and record.end_date and record.start_date > record.end_date:
                 raise UserError(_('Ngày bắt đầu không thể sau ngày kết thúc.'))
     
-    def action_activate(self):
-        """Kích hoạt chương trình"""
-        for record in self:
-            record.state = 'active'
-    
-    def action_deactivate(self):
-        """Tạm dừng chương trình"""
-        for record in self:
-            record.state = 'inactive'
-    
-    def action_close(self):
-        """Đóng chương trình"""
-        for record in self:
-            record.state = 'closed'
-    
-    def action_reset_to_draft(self):
-        """Đặt lại về nháp"""
-        for record in self:
-            record.state = 'draft'
-    
     def name_get(self):
         """Custom name display"""
         result = []
@@ -176,7 +135,6 @@ class PhysicalGiftProgram(models.Model):
             name = f"{record.name_vi or record.name_en} ({record.company_id.name})"
             result.append((record.id, name))
         return result
-
 
 class PhysicalGiftBrand(models.Model):
     _name = 'physical.gift.brand'
