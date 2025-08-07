@@ -179,7 +179,6 @@
             <field name="email">support@ghn.vn</field>
             <field name="address">123 Đường ABC, Quận 1, TP.HCM</field>
             <field name="state">active</field>
-            <field name="active">True</field>
         </record>
         
         <record id="demo_shipping_unit_2" model="physical.gift.shipping.unit">
@@ -192,7 +191,6 @@
             <field name="email">support@viettelpost.vn</field>
             <field name="address">456 Đường XYZ, Quận 3, TP.HCM</field>
             <field name="state">active</field>
-            <field name="active">True</field>
         </record>
         
         <record id="demo_shipping_unit_3" model="physical.gift.shipping.unit">
@@ -204,8 +202,7 @@
             <field name="phone">1900-xxxx</field>
             <field name="email">support@jtexpress.vn</field>
             <field name="address">789 Đường DEF, Quận 7, TP.HCM</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
+            <field name="state">inactive</field>
         </record>
 
         <!-- Demo Item Data -->

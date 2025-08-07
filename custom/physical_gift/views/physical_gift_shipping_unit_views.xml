@@ -7,9 +7,9 @@
             <field name="model">physical.gift.shipping.unit</field>
             <field name="arch" type="xml">
                 <list string="Danh sách đơn vị vận chuyển">
+                    <field name="logo" widget="image" class="oe_avatar"/>
                     <field name="code"/>
                     <field name="name"/>
-                    <field name="logo" widget="image" class="oe_avatar"/>
                     <field name="state" widget="badge" decoration-success="state == 'active'"
                            decoration-danger="state == 'inactive'"/>
                     <field name="program_count" widget="integer"/>
@@ -42,7 +42,6 @@
                         <group>
                             <group string="Thông tin cơ bản">
                                 <field name="description" placeholder="Mô tả chi tiết..."/>
-                                <field name="active" invisible="1"/>
                             </group>
                             <group string="Thông tin liên hệ">
                                 <field name="phone" placeholder="Số điện thoại..."/>

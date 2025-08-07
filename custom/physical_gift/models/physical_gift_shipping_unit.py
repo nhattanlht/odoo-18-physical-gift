@@ -32,11 +32,6 @@ class PhysicalGiftShippingUnit(models.Model):
         ('inactive', 'Inactive')
     ], string='Trạng thái', default='active', tracking=True)
     
-    active = fields.Boolean(
-        default=True,
-        help='Archived shipping units will not be displayed'
-    )
-    
     # Thông tin bổ sung
     description = fields.Text(
         string='Mô tả',

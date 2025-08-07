@@ -32,6 +32,12 @@ class PhysicalGiftProgram(models.Model):
         default=lambda self: self.env.company,
         tracking=True
     )
+
+    logo = fields.Binary(
+        string='Logo',
+        attachment=True,
+        help='Logo thương hiệu'
+    )
     
     order_creator_id = fields.Many2one(
         'res.users',

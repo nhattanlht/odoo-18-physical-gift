@@ -7,7 +7,6 @@
             <field name="model">physical.gift.import</field>
             <field name="arch" type="xml">
                 <list string="Danh sách nhập hàng">
-                    <field name="program_id"/>
                     <field name="name"/>
                     <field name="sku"/>
                     <field name="import_date"/>

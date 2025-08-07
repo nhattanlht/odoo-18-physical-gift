@@ -7,8 +7,8 @@
             <field name="model">physical.gift.supplier</field>
             <field name="arch" type="xml">
                 <list string="Danh sách nhà cung cấp">
-                    <field name="name"/>
                     <field name="logo" widget="image" class="oe_avatar"/>
+                    <field name="name"/>
                     <field name="full_name"/>
                     <field name="representative_name"/>
                     <field name="tax_code"/>
