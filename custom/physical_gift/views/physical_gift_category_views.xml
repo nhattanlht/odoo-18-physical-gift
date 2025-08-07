@@ -11,8 +11,7 @@
                     <field name="image" widget="image" class="oe_avatar"/>
                     <field name="name"/>
                     <field name="code"/>
-                    <field name="item_count" string="Số lượng sản phẩm"/>
-                    <field name="active" widget="boolean_toggle"/>
+                    <field name="active"/>
                 </list>
             </field>
         </record>
@@ -23,6 +22,7 @@
             <field name="arch" type="xml">
                 <kanban>
                     <field name="name"/>
+                    <field name="active"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click">
@@ -34,6 +34,14 @@
                                     <strong class="o_kanban_record_title">
                                         <field name="name"/>
                                     </strong>
+                                </div>
+                                <div class="mt8">
+                                    <t t-if="record.active.raw_value">
+                                        <span class="badge badge-success">active</span>
+                                    </t>
+                                    <t t-if="!record.active.raw_value">
+                                        <span class="badge badge-danger">inactive</span>
+                                    </t>
                                 </div>
                             </div>
                         </t>
@@ -47,16 +55,6 @@
             <field name="model">physical.gift.category</field>
             <field name="arch" type="xml">
                 <form>
-                    <header>
-                        <button name="toggle_active" type="object"
-                                class="btn btn-sm"
-                                invisible="[('active', '=', False)]"
-                                icon="fa-archive" aria-label="Lưu trữ"/>
-                        <button name="toggle_active" type="object"
-                                class="btn btn-sm"
-                                invisible="[('active', '=', True)]"
-                                icon="fa-check-circle" aria-label="Khôi phục"/>
-                    </header>
                     <sheet>
                         <widget name="web_ribbon" title="Đã lưu trữ" bg_color="bg-danger"
                                 invisible="[('active', '=', True)]"/>
@@ -80,7 +78,7 @@
                             </group>
                             <group>
                                 <field name="sequence"/>
-                                <field name="active" invisible="1"/>
+                                <field name="active" widget="boolean_toggle"/>
                             </group>
                         </group>
 
@@ -114,7 +112,7 @@
                     <separator/>
                     <filter name="filter_active" string="Đang hoạt động" domain="[('active', '=', True)]"
                             help="Chỉ hiển thị các danh mục đang hoạt động"/>
-                    <filter name="filter_inactive" string="Đã lưu trữ" domain="[('active', '=', False)]"/>
+                    <filter name="filter_inactive" string="Không hoạt động" domain="[('active', '=', False)]"/>
                 </search>
             </field>
         </record>
@@ -123,7 +121,7 @@
             <field name="name">Danh mục quà tặng</field>
             <field name="res_model">physical.gift.category</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="context">{'search_default_filter_active': 1}</field>
+            <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Chưa có danh mục quà tặng nào.
