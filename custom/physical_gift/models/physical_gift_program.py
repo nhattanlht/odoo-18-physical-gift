@@ -136,65 +136,33 @@ class PhysicalGiftProgram(models.Model):
             result.append((record.id, name))
         return result
 
-class PhysicalGiftBrand(models.Model):
-    _name = 'physical.gift.brand'
-    _description = 'Physical Gift Brand'
-    _order = 'name'
-    
-    name = fields.Char(
-        string='Tên Brand',
-        required=True
-    )
-    
-    code = fields.Char(
-        string='Mã Brand',
-        required=True
-    )
-    
-    active = fields.Boolean(
-        default=True
-    )
-    
-    # Quan hệ với nhà cung cấp
-    supplier_ids = fields.Many2many(
-        'physical.gift.supplier',
-        string='Nhà cung cấp',
-        help='Các nhà cung cấp cho thương hiệu này'
-    )
-    
-    _sql_constraints = [
-        ('unique_brand_code', 'unique(code)', 'Mã brand phải là duy nhất!')
-    ]
-
-
 class PhysicalGiftStore(models.Model):
     _name = 'physical.gift.store'
     _description = 'Physical Gift Store'
     _order = 'name'
-    
+
     name = fields.Char(
         string='Tên Store',
         required=True
     )
-    
+
     code = fields.Char(
         string='Mã Store',
         required=True
     )
-    
+
     brand_id = fields.Many2one(
         'physical.gift.brand',
         string='Brand',
         required=True
     )
-    
+
     active = fields.Boolean(
         default=True
     )
-    
+
     _sql_constraints = [
         ('unique_store_code', 'unique(code)', 'Mã store phải là duy nhất!')
     ]
 
 
- 
