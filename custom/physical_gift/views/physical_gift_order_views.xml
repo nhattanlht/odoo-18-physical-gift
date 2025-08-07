@@ -13,10 +13,69 @@
                     <field name="total_order_value"/>
                     <field name="recipient_name"/>
                     <field name="recipient_phone"/>
-                    <field name="order_status" widget="badge" decoration-info="order_status == 'draft'" decoration-success="order_status == 'confirmed'" decoration-warning="order_status == 'processing'" decoration-primary="order_status == 'shipped'" decoration-danger="order_status == 'cancelled'" decoration-muted="order_status == 'returned'"/>
+                    <field name="order_status" widget="badge" decoration-info="order_status == 'draft'"
+                           decoration-success="order_status == 'confirmed'"
+                           decoration-warning="order_status == 'processing'"
+                           decoration-primary="order_status == 'shipped'"
+                           decoration-danger="order_status == 'cancelled'"
+                           decoration-muted="order_status == 'returned'"/>
                     <field name="order_time"/>
                     <field name="error_content"/>
                 </list>
+            </field>
+        </record>
+
+        <!-- Kanban View -->
+        <!-- Order Kanban View -->
+        <record id="view_physical_gift_order_kanban" model="ir.ui.view">
+            <field name="name">physical.gift.order.kanban</field>
+            <field name="model">physical.gift.order</field>
+            <field name="arch" type="xml">
+                <kanban default_group_by="order_status"
+                        class="o_kanban_small_column"
+                        create="false">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_kanban_record">
+                                <div class="o_kanban_details">
+                                    <strong>
+                                        <field name="name"/>
+                                    </strong>
+                                    <div>
+                                        <field name="product_name"/>
+                                    </div>
+                                    <div>
+                                        <span>
+                                            <strong>Người nhận:</strong>
+                                            <field name="recipient_name"/>
+                                        </span>
+                                        <br/>
+                                        <span>
+                                            <strong>SDT:</strong>
+                                            <field name="recipient_phone"/>
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <field name="total_order_value"/>
+                                    </div>
+                                    <div>
+                                        <field name="order_time"/>
+                                    </div>
+                                    <div>
+                                        <field name="order_status"
+                                               widget="badge"
+                                               decoration-info="order_status == 'draft'"
+                                               decoration-success="order_status == 'confirmed'"
+                                               decoration-warning="order_status == 'processing'"
+                                               decoration-primary="order_status == 'shipped'"
+                                               decoration-danger="order_status == 'cancelled'"
+                                               decoration-muted="order_status == 'returned'"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
             </field>
         </record>
 
@@ -27,19 +86,21 @@
             <field name="arch" type="xml">
                 <form string="Đơn hàng">
                     <header>
-                        <button name="action_confirm" string="Xác nhận" type="object" 
-                                class="btn-success" invisible="order_status == 'confirmed' or order_status == 'processing' or order_status == 'shipped' or order_status == 'delivered' or order_status == 'cancelled' or order_status == 'returned'"/>
-                        <button name="action_process" string="Xử lý" type="object" 
+                        <button name="action_confirm" string="Xác nhận" type="object"
+                                class="btn-success"
+                                invisible="order_status == 'confirmed' or order_status == 'processing' or order_status == 'shipped' or order_status == 'delivered' or order_status == 'cancelled' or order_status == 'returned'"/>
+                        <button name="action_process" string="Xử lý" type="object"
                                 class="btn-primary" invisible="order_status != 'confirmed'"/>
-                        <button name="action_ship" string="Gửi hàng" type="object" 
+                        <button name="action_ship" string="Gửi hàng" type="object"
                                 class="btn-info" invisible="order_status != 'processing'"/>
-                        <button name="action_deliver" string="Giao hàng" type="object" 
+                        <button name="action_deliver" string="Giao hàng" type="object"
                                 class="btn-success" invisible="order_status != 'shipped'"/>
-                        <button name="action_cancel" string="Hủy" type="object" 
-                                class="btn-danger" invisible="order_status == 'cancelled' or order_status == 'delivered'"/>
-                        <button name="action_return" string="Trả hàng" type="object" 
+                        <button name="action_cancel" string="Hủy" type="object"
+                                class="btn-danger"
+                                invisible="order_status == 'cancelled' or order_status == 'delivered'"/>
+                        <button name="action_return" string="Trả hàng" type="object"
                                 class="btn-warning" invisible="order_status != 'delivered'"/>
-                        <button name="action_reset_to_draft" string="Đặt lại" type="object" 
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object"
                                 class="btn-secondary" invisible="order_status != 'cancelled'"/>
                     </header>
                     <sheet>
@@ -103,11 +164,6 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
@@ -142,15 +198,21 @@
                     <filter string="Đã hủy" name="cancelled" domain="[('order_status', '=', 'cancelled')]"/>
                     <filter string="Đã trả hàng" name="returned" domain="[('order_status', '=', 'returned')]"/>
                     <separator/>
-                    <filter string="Chờ thanh toán" name="pending_payment" domain="[('payment_status', '=', 'pending')]"/>
+                    <filter string="Chờ thanh toán" name="pending_payment"
+                            domain="[('payment_status', '=', 'pending')]"/>
                     <filter string="Đã thanh toán" name="paid" domain="[('payment_status', '=', 'paid')]"/>
-                    <filter string="Thanh toán thất bại" name="failed_payment" domain="[('payment_status', '=', 'failed')]"/>
+                    <filter string="Thanh toán thất bại" name="failed_payment"
+                            domain="[('payment_status', '=', 'failed')]"/>
                     <group expand="0" string="Group By">
                         <filter string="Chương trình" name="group_program" context="{'group_by': 'program_id'}"/>
-                        <filter string="Trạng thái đơn hàng" name="group_order_status" context="{'group_by': 'order_status'}"/>
-                        <filter string="Trạng thái thanh toán" name="group_payment_status" context="{'group_by': 'payment_status'}"/>
-                        <filter string="Đơn vị vận chuyển" name="group_shipping" context="{'group_by': 'shipping_unit_id'}"/>
-                        <filter string="Loại sản phẩm" name="group_product_type" context="{'group_by': 'product_type'}"/>
+                        <filter string="Trạng thái đơn hàng" name="group_order_status"
+                                context="{'group_by': 'order_status'}"/>
+                        <filter string="Trạng thái thanh toán" name="group_payment_status"
+                                context="{'group_by': 'payment_status'}"/>
+                        <filter string="Đơn vị vận chuyển" name="group_shipping"
+                                context="{'group_by': 'shipping_unit_id'}"/>
+                        <filter string="Loại sản phẩm" name="group_product_type"
+                                context="{'group_by': 'product_type'}"/>
                         <filter string="Ngày đặt hàng" name="group_order_time" context="{'group_by': 'order_time'}"/>
                     </group>
                 </search>
@@ -161,7 +223,7 @@
         <record id="action_physical_gift_order" model="ir.actions.act_window">
             <field name="name">Đơn hàng</field>
             <field name="res_model">physical.gift.order</field>
-            <field name="view_mode">list,form</field>
+            <field name="view_mode">kanban,list,form</field>
             <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
