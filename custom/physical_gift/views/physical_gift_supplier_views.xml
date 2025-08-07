@@ -14,7 +14,8 @@
                     <field name="account_number"/>
                     <field name="bank_name"/>
                     <field name="warehouse_code"/>
-                    <field name="state" widget="badge" decoration-success="state == 'active'" decoration-danger="state == 'inactive'"/>
+                    <field name="state" widget="badge" decoration-success="state == 'active'"
+                           decoration-danger="state == 'inactive'"/>
                     <field name="brand_count" widget="integer"/>
                     <field name="item_count" widget="integer"/>
                 </list>
@@ -28,9 +29,9 @@
             <field name="arch" type="xml">
                 <form string="Nhà cung cấp">
                     <header>
-                        <button name="action_activate" string="Active" type="object" 
+                        <button name="action_activate" string="Active" type="object"
                                 class="btn-success" invisible="state == 'active'"/>
-                        <button name="action_deactivate" string="Inactive" type="object" 
+                        <button name="action_deactivate" string="Inactive" type="object"
                                 class="btn-danger" invisible="state == 'inactive'"/>
                     </header>
                     <sheet>
@@ -46,7 +47,6 @@
                             <group string="Thông tin cơ bản">
                                 <field name="representative_name" placeholder="Tên người đại diện..."/>
                                 <field name="warehouse_code" placeholder="Mã kho..."/>
-                                <field name="active" invisible="1"/>
                             </group>
                             <group string="Thông tin thuế và ngân hàng">
                                 <field name="tax_code" placeholder="Mã số thuế..."/>
@@ -81,11 +81,6 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
@@ -152,10 +147,12 @@
                                         </div>
                                         <div class="oe_kanban_bottom_right">
                                             <span class="badge badge-info">
-                                                <i class="fa fa-tags" title="Thương hiệu"/> <field name="brand_count"/>
+                                                <i class="fa fa-tags" title="Thương hiệu"/>
+                                                <field name="brand_count"/>
                                             </span>
                                             <span class="badge badge-success">
-                                                <i class="fa fa-cube" title="Sản phẩm"/> <field name="item_count"/>
+                                                <i class="fa fa-cube" title="Sản phẩm"/>
+                                                <field name="item_count"/>
                                             </span>
                                         </div>
                                     </div>
@@ -172,7 +169,7 @@
             <field name="name">Nhà cung cấp</field>
             <field name="res_model">physical.gift.supplier</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="context">{'search_default_active': 1}</field>
+            <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Tạo nhà cung cấp đầu tiên

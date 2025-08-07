@@ -64,11 +64,6 @@ class PhysicalGiftSupplier(models.Model):
         ('inactive', 'Inactive')
     ], string='Trạng thái', default='active', tracking=True)
     
-    active = fields.Boolean(
-        default=True,
-        help='Archived suppliers will not be displayed'
-    )
-    
     # Quan hệ với các model khác
     brand_ids = fields.Many2many(
         'physical.gift.brand',

@@ -144,7 +144,6 @@
             <field name="bank_name">Vietcombank</field>
             <field name="warehouse_code">WH001</field>
             <field name="state">active</field>
-            <field name="active">True</field>
         </record>
         
         <record id="demo_supplier_2" model="physical.gift.supplier">
@@ -156,7 +155,6 @@
             <field name="bank_name">BIDV</field>
             <field name="warehouse_code">WH002</field>
             <field name="state">active</field>
-            <field name="active">True</field>
         </record>
         
         <record id="demo_supplier_3" model="physical.gift.supplier">
@@ -168,7 +166,6 @@
             <field name="bank_name">Techcombank</field>
             <field name="warehouse_code">WH003</field>
             <field name="state">active</field>
-            <field name="active">True</field>
         </record>
 
         <!-- Demo Shipping Unit Data -->

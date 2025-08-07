@@ -9,7 +9,8 @@
                 <list string="Danh sách đơn vị vận chuyển">
                     <field name="code"/>
                     <field name="name"/>
-                    <field name="state" widget="badge" decoration-success="state == 'active'" decoration-danger="state == 'inactive'"/>
+                    <field name="state" widget="badge" decoration-success="state == 'active'"
+                           decoration-danger="state == 'inactive'"/>
                     <field name="program_count" widget="integer"/>
                 </list>
             </field>
@@ -22,9 +23,9 @@
             <field name="arch" type="xml">
                 <form string="Đơn vị vận chuyển">
                     <header>
-                        <button name="action_activate" string="Active" type="object" 
+                        <button name="action_activate" string="Active" type="object"
                                 class="btn-success" invisible="state == 'active'"/>
-                        <button name="action_deactivate" string="Inactive" type="object" 
+                        <button name="action_deactivate" string="Inactive" type="object"
                                 class="btn-danger" invisible="state == 'inactive'"/>
                     </header>
                     <sheet>
@@ -65,11 +66,6 @@
                             </page>
                         </notebook>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
@@ -130,7 +126,8 @@
                                         </div>
                                         <div class="oe_kanban_bottom_right">
                                             <span class="badge badge-info">
-                                                <i class="fa fa-truck" title="Chương trình"/> <field name="program_count"/>
+                                                <i class="fa fa-truck" title="Chương trình"/>
+                                                <field name="program_count"/>
                                             </span>
                                         </div>
                                     </div>
@@ -147,7 +144,7 @@
             <field name="name">Đơn vị vận chuyển</field>
             <field name="res_model">physical.gift.shipping.unit</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="context">{'search_default_active': 1}</field>
+            <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Tạo đơn vị vận chuyển đầu tiên
