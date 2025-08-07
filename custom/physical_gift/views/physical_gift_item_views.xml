@@ -7,6 +7,10 @@
             <field name="type">list</field>
             <field name="arch" type="xml">
                 <list string="Danh sách quà">
+                    <!-- Hình ảnh nhỏ -->
+                    <field name="image" widget="image" options="{'size': [40, 40]}"/>
+
+                    <!-- Thông tin còn lại -->
                     <field name="name"/>
                     <field name="brand_id"/>
                     <field name="category_id"/>
@@ -27,18 +31,19 @@
                     <sheet>
                         <group>
                             <group>
+                                <!-- Hình ảnh -->
+                                <field name="image" widget="image"/>
+                            </group>
+                            <group>
                                 <field name="name"/>
                                 <field name="brand_id"/>
                                 <field name="category_id"/>
                                 <field name="supplier_id"/>
-                            </group>
-                            <group>
                                 <field name="quantity"/>
                                 <field name="unit_price"/>
                                 <field name="total_price"/>
                             </group>
                         </group>
-
                     </sheet>
                 </form>
             </field>
@@ -47,33 +52,57 @@
         <record id="view_physical_gift_item_kanban" model="ir.ui.view">
             <field name="name">physical.gift.item.kanban</field>
             <field name="model">physical.gift.item</field>
-            <!-- FIX: Explicitly define the view type as 'kanban' to resolve parsing error -->
-            <field name="type">kanban</field>
             <field name="arch" type="xml">
-                <kanban>
-                    <!-- Fields required for the kanban view to function -->
+                <kanban default_order="name">
                     <field name="name"/>
+                    <field name="unit_price"/>
                     <field name="brand_id"/>
+                    <field name="category_id"/>
+                    <field name="supplier_id"/>
                     <field name="quantity"/>
-                    <field name="active"/>
+                    <field name="total_price"/>
                     <templates>
-                        <t t-name="card">
-                            <div class="oe_kanban_card oe_kanban_global_click">
-                                <div class="oe_kanban_details">
-                                    <strong class="o_kanban_record_title">
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card oe_kanban_global_click o_kanban_hoverable">
+                                <div class="o_kanban_details">
+                                    <div class="o_kanban_image">
+                                        <img t-att-src="kanban_image('physical.gift.category', 'image', record.id.raw_value)"
+                                             alt="Image"/>
+                                    </div>
+                                    <!-- Tên quà -->
+                                    <div class="fw-bold fs-5 mb-1">
                                         <field name="name"/>
-                                    </strong>
-                                    <div class="text-muted">
+                                    </div>
+
+                                    <!-- Đơn giá -->
+                                    <div class="text-muted mb-1">
+                                        <strong>Giá:</strong>
+                                        <field name="unit_price"/>₫
+                                    </div>
+
+                                    <!-- Thương hiệu / Danh mục -->
+                                    <div class="mb-1">
+                                        <strong>Thương hiệu:</strong>
                                         <field name="brand_id"/>
+                                        <br/>
+                                        <strong>Danh mục:</strong>
+                                        <field name="category_id"/>
                                     </div>
-                                    <div class="mt-2">
+
+                                    <!-- Nhà cung cấp -->
+                                    <div class="mb-1">
+                                        <strong>Nhà cung cấp:</strong>
+                                        <field name="supplier_id"/>
+                                    </div>
+
+                                    <!-- Số lượng / Tổng giá -->
+                                    <div class="d-flex justify-content-between mt-2">
                                         <span>
-                                            <i class="fa fa-archive"/>
-                                            <t t-esc="record.quantity.value"/>
+                                            <strong>SL:</strong>
+                                            <field name="quantity"/>
                                         </span>
-                                    </div>
-                                    <div>
-                                        <field name="active" widget="boolean_toggle"/>
+                                        <span class="fw-bold text-primary">Tổng:<field name="total_price"/>₫
+                                        </span>
                                     </div>
                                 </div>
                             </div>

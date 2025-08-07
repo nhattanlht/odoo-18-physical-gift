@@ -6,16 +6,19 @@
             <field name="name">physical.gift.program.tree</field>
             <field name="model">physical.gift.program</field>
             <field name="arch" type="xml">
-                <list string="Chương trình" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'">
+                <list string="Chương trình" decoration-info="state == 'draft'" decoration-success="state == 'active'"
+                      decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'">
                     <field name="name_vi" readonly="1"/>
                     <field name="name_en"/>
                     <field name="company_id"/>
-                                            <field name="brand_redeem_id"/>
-                        <field name="start_date"/>
-                        <field name="end_date"/>
-                        <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'active'" decoration-danger="state == 'inactive'" decoration-muted="state == 'closed'"/>
-                        <field name="category_count" widget="integer"/>
-                        <field name="shipping_unit_count" widget="integer"/>
+                    <field name="brand_redeem_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state" widget="badge" decoration-info="state == 'draft'"
+                           decoration-success="state == 'active'" decoration-danger="state == 'inactive'"
+                           decoration-muted="state == 'closed'"/>
+                    <field name="category_count" widget="integer"/>
+                    <field name="shipping_unit_count" widget="integer"/>
 
 
                 </list>
@@ -29,10 +32,13 @@
             <field name="arch" type="xml">
                 <form string="Chương trình">
                     <header>
-                        <button name="action_activate" string="Kích hoạt" type="object" class="oe_highlight" invisible="state not in ('draft','inactive')"/>
-                        <button name="action_deactivate" string="Tạm ngưng" type="object" invisible="state != 'active'"/>
+                        <button name="action_activate" string="Kích hoạt" type="object" class="oe_highlight"
+                                invisible="state not in ('draft','inactive')"/>
+                        <button name="action_deactivate" string="Tạm ngưng" type="object"
+                                invisible="state != 'active'"/>
                         <button name="action_close" string="Đóng" type="object" invisible="state != 'active'"/>
-                        <button name="action_reset_to_draft" string="Đặt lại" type="object" invisible="state not in ('inactive','closed')"/>
+                        <button name="action_reset_to_draft" string="Đặt lại" type="object"
+                                invisible="state not in ('inactive','closed')"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,active,inactive"/>
                     </header>
                     <sheet>
@@ -107,7 +113,8 @@
                     <filter string="Đã đóng" name="closed" domain="[('state', '=', 'closed')]"/>
                     <separator/>
                     <filter string="Có danh mục" name="has_categories" domain="[('category_count', '>', 0)]"/>
-                    <filter string="Có đơn vị vận chuyển" name="has_shipping_units" domain="[('shipping_unit_count', '>', 0)]"/>
+                    <filter string="Có đơn vị vận chuyển" name="has_shipping_units"
+                            domain="[('shipping_unit_count', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter string="Công ty" name="group_company" context="{'group_by': 'company_id'}"/>
                         <filter string="Thương hiệu" name="group_brand" context="{'group_by': 'brand_redeem_id'}"/>
@@ -153,10 +160,12 @@
                                         </div>
                                         <div class="oe_kanban_bottom_right">
                                             <span class="badge badge-info">
-                                                <i class="fa fa-tags" title="Danh mục"/> <field name="category_count"/>
+                                                <i class="fa fa-tags" title="Danh mục"/>
+                                                <field name="category_count"/>
                                             </span>
                                             <span class="badge badge-warning">
-                                                <i class="fa fa-truck" title="Đơn vị vận chuyển"/> <field name="shipping_unit_count"/>
+                                                <i class="fa fa-truck" title="Đơn vị vận chuyển"/>
+                                                <field name="shipping_unit_count"/>
                                             </span>
                                         </div>
                                     </div>
@@ -184,8 +193,6 @@
                 </p>
             </field>
         </record>
-
-
 
 
     </data>
