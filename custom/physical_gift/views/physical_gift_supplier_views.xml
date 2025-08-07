@@ -8,6 +8,7 @@
             <field name="arch" type="xml">
                 <list string="Danh sách nhà cung cấp">
                     <field name="name"/>
+                    <field name="logo" widget="image" class="oe_avatar"/>
                     <field name="full_name"/>
                     <field name="representative_name"/>
                     <field name="tax_code"/>
@@ -37,6 +38,7 @@
                     <sheet>
                         <div class="oe_title">
                             <h1>
+                                <field name="logo" widget="image" class="oe_avatar"/>
                                 <field name="name" placeholder="Tên viết tắt..." class="oe_inline"/>
                             </h1>
                             <h2>
@@ -117,7 +119,7 @@
             <field name="name">physical.gift.supplier.kanban</field>
             <field name="model">physical.gift.supplier</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="state" class="o_kanban_small_column">
+                <kanban default_group_by="state" class="o_kanban_small_column" create="false">
                     <field name="id"/>
                     <field name="name"/>
                     <field name="full_name"/>
@@ -136,15 +138,11 @@
                                     <strong class="o_kanban_record_title">
                                         <field name="name"/>
                                     </strong>
-                                    <div class="o_kanban_record_subtitle">
-                                        <field name="full_name"/>
+                                    <div class="o_kanban_image">
+                                        <img t-att-src="kanban_image('physical.gift.supplier', 'logo', record.id.raw_value)"
+                                             alt="Logo" class="o_image_64_cover"/>
                                     </div>
                                     <div class="o_kanban_record_bottom">
-                                        <div class="oe_kanban_bottom_left">
-                                            <field name="representative_name"/>
-                                            <br/>
-                                            <field name="tax_code"/>
-                                        </div>
                                         <div class="oe_kanban_bottom_right">
                                             <span class="badge badge-info">
                                                 <i class="fa fa-tags" title="Thương hiệu"/>

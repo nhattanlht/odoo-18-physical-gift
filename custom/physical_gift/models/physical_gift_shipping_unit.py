@@ -73,6 +73,12 @@ class PhysicalGiftShippingUnit(models.Model):
         tracking=True,
         help='Địa chỉ của đơn vị vận chuyển'
     )
+
+    logo = fields.Binary(
+        string='Logo',
+        attachment=True,
+        help='Logo thương hiệu'
+    )
     
     # Quan hệ với các model khác
     program_ids = fields.Many2many(

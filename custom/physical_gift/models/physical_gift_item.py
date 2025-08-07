@@ -24,7 +24,8 @@ class PhysicalGiftItem(models.Model):
     category_id = fields.Many2one(
         'physical.gift.category',
         string='Danh mục',
-        tracking=True
+        tracking=True,
+        domain=[('active', '=', True)],
     )
     
     supplier_id = fields.Many2one(

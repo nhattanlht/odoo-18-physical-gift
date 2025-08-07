@@ -63,6 +63,12 @@ class PhysicalGiftSupplier(models.Model):
         ('active', 'Active'),
         ('inactive', 'Inactive')
     ], string='Trạng thái', default='active', tracking=True)
+
+    logo = fields.Binary(
+        string='Logo',
+        attachment=True,
+        help='Logo thương hiệu'
+    )
     
     # Quan hệ với các model khác
     brand_ids = fields.Many2many(
