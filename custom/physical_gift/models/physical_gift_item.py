@@ -35,7 +35,6 @@ class PhysicalGiftItem(models.Model):
 
     image = fields.Image(
         string="Hình ảnh",
-        tracking=True
     )
     
     quantity = fields.Integer(

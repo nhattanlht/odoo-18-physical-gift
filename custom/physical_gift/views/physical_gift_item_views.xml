@@ -18,6 +18,7 @@
                     <field name="quantity"/>
                     <field name="unit_price"/>
                     <field name="total_price"/>
+                    <field name="active"/>
                 </list>
             </field>
         </record>
@@ -42,6 +43,7 @@
                                 <field name="quantity"/>
                                 <field name="unit_price"/>
                                 <field name="total_price"/>
+                                <field name="active"/>
                             </group>
                         </group>
                     </sheet>
@@ -61,12 +63,13 @@
                     <field name="supplier_id"/>
                     <field name="quantity"/>
                     <field name="total_price"/>
+                    <field name="active"/>
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_card oe_kanban_global_click o_kanban_hoverable">
                                 <div class="o_kanban_details">
                                     <div class="o_kanban_image">
-                                        <img t-att-src="kanban_image('physical.gift.category', 'image', record.id.raw_value)"
+                                        <img t-att-src="kanban_image('physical.gift.item', 'image', record.id.raw_value)"
                                              alt="Image"/>
                                     </div>
                                     <!-- Tên quà -->
@@ -105,6 +108,14 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div class="mt8">
+                                    <t t-if="record.active.raw_value">
+                                        <span class="badge badge-success">active</span>
+                                    </t>
+                                    <t t-if="!record.active.raw_value">
+                                        <span class="badge badge-danger">inactive</span>
+                                    </t>
+                                </div>
                             </div>
                         </t>
                     </templates>
@@ -135,6 +146,7 @@
             <field name="name">Danh sách quà</field>
             <field name="res_model">physical.gift.item</field>
             <field name="view_mode">kanban,list,form</field>
+             <field name="context">{'active_test': False}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Tạo quà tặng đầu tiên

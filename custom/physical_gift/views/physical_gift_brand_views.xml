@@ -143,8 +143,13 @@
                                             <t t-esc="record.program_count.value"/>
                                         </span>
                                     </div>
-                                    <div class="oe_kanban_bottom_right">
-                                        <field name="active" widget="boolean_toggle"/>
+                                    <div class="mt8">
+                                        <t t-if="record.active.raw_value">
+                                            <span class="badge badge-success">active</span>
+                                        </t>
+                                        <t t-if="!record.active.raw_value">
+                                            <span class="badge badge-danger">inactive</span>
+                                        </t>
                                     </div>
                                 </div>
                             </div>
