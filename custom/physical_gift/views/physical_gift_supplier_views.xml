@@ -5,6 +5,7 @@
         <record id="view_physical_gift_supplier_tree" model="ir.ui.view">
             <field name="name">physical.gift.supplier.tree</field>
             <field name="model">physical.gift.supplier</field>
+            <field name="type">list</field>
             <field name="arch" type="xml">
                 <list string="Danh sách nhà cung cấp">
                     <field name="logo" widget="image" class="oe_avatar"/>
@@ -113,7 +114,7 @@
             <field name="name">physical.gift.supplier.kanban</field>
             <field name="model">physical.gift.supplier</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="state" class="o_kanban_small_column" create="false">
+                <kanban default_group_by="state" class="o_kanban_small_column">
                     <field name="id"/>
                     <field name="name"/>
                     <field name="full_name"/>

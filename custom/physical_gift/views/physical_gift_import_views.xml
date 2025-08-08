@@ -30,7 +30,7 @@
             <field name="name">physical.gift.import.kanban</field>
             <field name="model">physical.gift.import</field>
             <field name="arch" type="xml">
-                <kanban class="o_kanban_small_column" default_group_by="state" create="false">
+                <kanban class="o_kanban_small_column" default_group_by="state">
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click o_kanban_card">

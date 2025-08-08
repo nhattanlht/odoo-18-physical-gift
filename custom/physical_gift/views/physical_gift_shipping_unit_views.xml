@@ -91,7 +91,7 @@
             <field name="name">physical.gift.shipping.unit.kanban</field>
             <field name="model">physical.gift.shipping.unit</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="state" class="o_kanban_small_column" create="false">
+                <kanban default_group_by="state" class="o_kanban_small_column">
                     <field name="id"/>
                     <field name="name"/>
                     <field name="code"/>

@@ -26,7 +26,7 @@ class PhysicalGiftCategory(models.Model):
     image = fields.Image('Ảnh đại diện', max_width=512, max_height=512)
 
     # Sản phẩm trong danh mục
-    item_ids = fields.One2many('physical.gift.item', 'category_id', string='Danh sách sản phẩm')
+    item_ids = fields.One2many('physical.gift.item', 'category_id', string='Danh sách sản phẩm', domain=[('active', '=', True)])
 
     # Chương trình liên quan
     program_ids = fields.Many2many('physical.gift.program', string='Chương trình')

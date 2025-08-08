@@ -120,7 +120,8 @@ class PhysicalGiftProgram(models.Model):
     def _compute_item_ids(self):
         for record in self:
             record.item_ids = self.env['physical.gift.item'].search([
-                ('category_id', 'in', record.category_ids.ids)
+                ('category_id', 'in', record.category_ids.ids),
+                ('active', '=', True)
             ])
     
     @api.depends('category_ids', 'shipping_unit_ids')

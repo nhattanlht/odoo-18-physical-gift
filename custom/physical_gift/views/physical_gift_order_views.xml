@@ -25,15 +25,13 @@
             </field>
         </record>
 
-        <!-- Kanban View -->
         <!-- Order Kanban View -->
         <record id="view_physical_gift_order_kanban" model="ir.ui.view">
             <field name="name">physical.gift.order.kanban</field>
             <field name="model">physical.gift.order</field>
             <field name="arch" type="xml">
                 <kanban default_group_by="order_status"
-                        class="o_kanban_small_column"
-                        create="false">
+                        class="o_kanban_small_column">
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click o_kanban_record">
