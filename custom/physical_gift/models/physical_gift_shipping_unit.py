@@ -75,25 +75,6 @@ class PhysicalGiftShippingUnit(models.Model):
         help='Logo thương hiệu'
     )
     
-    # Quan hệ với các model khác
-    program_ids = fields.Many2many(
-        'physical.gift.program',
-        string='Chương trình sử dụng',
-        help='Các chương trình sử dụng đơn vị vận chuyển này'
-    )
-    
-    # Thống kê
-    program_count = fields.Integer(
-        'Số chương trình',
-        compute='_compute_counts',
-        store=True
-    )
-    
-    @api.depends('program_ids')
-    def _compute_counts(self):
-        for record in self:
-            record.program_count = len(record.program_ids)
-    
     # Constraints
     _sql_constraints = [
         ('unique_shipping_unit_code', 'unique(code)', 'Mã đơn vị vận chuyển phải là duy nhất!'),
@@ -110,17 +91,6 @@ class PhysicalGiftShippingUnit(models.Model):
         """Tạm dừng đơn vị vận chuyển"""
         for record in self:
             record.state = 'inactive'
-    
-    def action_view_programs(self):
-        """Xem danh sách chương trình"""
-        return {
-            'name': _('Chương trình'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'physical.gift.program',
-            'view_mode': 'list,form',
-            'domain': [('shipping_unit_ids', 'in', self.ids)],
-            'context': {'default_shipping_unit_ids': [(6, 0, self.ids)]}
-        }
     
     def name_get(self):
         """Custom name display"""

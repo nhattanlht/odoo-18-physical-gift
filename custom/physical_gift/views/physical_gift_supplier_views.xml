@@ -17,7 +17,6 @@
                     <field name="warehouse_code"/>
                     <field name="state" widget="badge" decoration-success="state == 'active'"
                            decoration-danger="state == 'inactive'"/>
-                    <field name="brand_count" widget="integer"/>
                     <field name="item_count" widget="integer"/>
                 </list>
             </field>
@@ -58,7 +57,6 @@
                         </group>
                         <group>
                             <group string="Thống kê">
-                                <field name="brand_count" readonly="1"/>
                                 <field name="item_count" readonly="1"/>
                             </group>
                             <group string="Trạng thái">
@@ -66,9 +64,6 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Thương hiệu cung cấp" name="brands">
-                                <field name="brand_ids" widget="many2many_tags"/>
-                            </page>
                             <page string="Sản phẩm cung cấp" name="items">
                                 <field name="item_ids">
                                     <list>
@@ -104,7 +99,6 @@
                     <filter string="Active" name="active" domain="[('state', '=', 'active')]"/>
                     <filter string="Inactive" name="inactive" domain="[('state', '=', 'inactive')]"/>
                     <separator/>
-                    <filter string="Có thương hiệu" name="has_brands" domain="[('brand_count', '>', 0)]"/>
                     <filter string="Có sản phẩm" name="has_items" domain="[('item_count', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
@@ -129,7 +123,6 @@
                     <field name="bank_name"/>
                     <field name="warehouse_code"/>
                     <field name="state"/>
-                    <field name="brand_count"/>
                     <field name="item_count"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -144,10 +137,6 @@
                                     </div>
                                     <div class="o_kanban_record_bottom">
                                         <div class="oe_kanban_bottom_right">
-                                            <span class="badge badge-info">
-                                                <i class="fa fa-tags" title="Thương hiệu"/>
-                                                <field name="brand_count"/>
-                                            </span>
                                             <span class="badge badge-success">
                                                 <i class="fa fa-cube" title="Sản phẩm"/>
                                                 <field name="item_count"/>

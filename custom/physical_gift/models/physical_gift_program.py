@@ -107,6 +107,21 @@ class PhysicalGiftProgram(models.Model):
     # Thống kê
     category_count = fields.Integer('Số danh mục', compute='_compute_counts', store=True)
     shipping_unit_count = fields.Integer('Số đơn vị vận chuyển', compute='_compute_counts', store=True)
+
+    item_ids = fields.One2many(
+        comodel_name='physical.gift.item',
+        inverse_name='category_id',
+        string='Sản phẩm',
+        compute='_compute_item_ids',
+        store=False,
+    )
+
+    @api.depends('category_ids')
+    def _compute_item_ids(self):
+        for record in self:
+            record.item_ids = self.env['physical.gift.item'].search([
+                ('category_id', 'in', record.category_ids.ids)
+            ])
     
     @api.depends('category_ids', 'shipping_unit_ids')
     def _compute_counts(self):

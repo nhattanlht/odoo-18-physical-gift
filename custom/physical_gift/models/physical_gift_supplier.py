@@ -71,23 +71,12 @@ class PhysicalGiftSupplier(models.Model):
     )
     
     # Quan hệ với các model khác
-    brand_ids = fields.Many2many(
-        'physical.gift.brand',
-        string='Thương hiệu cung cấp',
-        help='Các thương hiệu mà nhà cung cấp này cung cấp'
-    )
     
     item_ids = fields.One2many(
         'physical.gift.item',
         'supplier_id',
-        string='Sản phẩm cung cấp'
-    )
-    
-    # Thống kê
-    brand_count = fields.Integer(
-        'Số thương hiệu',
-        compute='_compute_counts',
-        store=True
+        string='Sản phẩm cung cấp',
+        domain = [('active', '=', True)]
     )
     
     item_count = fields.Integer(
@@ -96,10 +85,9 @@ class PhysicalGiftSupplier(models.Model):
         store=True
     )
     
-    @api.depends('brand_ids', 'item_ids')
+    @api.depends('item_ids')
     def _compute_counts(self):
         for record in self:
-            record.brand_count = len(record.brand_ids)
             record.item_count = len(record.item_ids)
     
     # Constraints
@@ -118,17 +106,6 @@ class PhysicalGiftSupplier(models.Model):
         """Tạm dừng nhà cung cấp"""
         for record in self:
             record.state = 'inactive'
-    
-    def action_view_brands(self):
-        """Xem danh sách thương hiệu"""
-        return {
-            'name': _('Thương hiệu'),
-            'type': 'ir.actions.act_window',
-            'res_model': 'physical.gift.brand',
-            'view_mode': 'list,form',
-            'domain': [('supplier_ids', 'in', self.ids)],
-            'context': {'default_supplier_ids': [(6, 0, self.ids)]}
-        }
     
     def action_view_items(self):
         """Xem danh sách sản phẩm"""

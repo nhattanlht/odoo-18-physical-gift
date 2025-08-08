@@ -58,7 +58,15 @@
                         </group>
                         <notebook>
                             <page string="Danh mục" name="categories">
-                                <field name="category_ids" widget="many2many_tags" domain="[('active', '=', True)]" />
+                                <field name="category_ids" widget="many2many_tags" domain="[('active', '=', True)]"/>
+                            </page>
+                            <page string="Sản phẩm">
+                                <field name="item_ids">
+                                    <list editable="bottom">
+                                        <field name="name"/>
+                                        <field name="category_id" domain="[('id', 'in', parent.category_ids)]"/>
+                                    </list>
+                                </field>
                             </page>
                             <page string="Đơn vị vận chuyển" name="shipping_units">
                                 <field name="shipping_unit_ids" widget="many2many_tags"/>
