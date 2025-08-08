@@ -18,7 +18,8 @@ class PhysicalGiftItem(models.Model):
     brand_id = fields.Many2one(
         'physical.gift.brand',
         string='Thương hiệu',
-        tracking=True
+        tracking=True,
+        domain = [('active', '=', True)]
     )
     
     category_id = fields.Many2one(
@@ -31,7 +32,8 @@ class PhysicalGiftItem(models.Model):
     supplier_id = fields.Many2one(
         'physical.gift.supplier',
         string='Nhà cung cấp',
-        tracking=True
+        tracking=True,
+        domain = [('state', '=', 'active')]
     )
 
     image = fields.Image(
