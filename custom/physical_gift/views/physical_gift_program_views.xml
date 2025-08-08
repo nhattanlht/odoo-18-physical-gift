@@ -16,7 +16,6 @@
                     <field name="start_date"/>
                     <field name="end_date"/>
                     <field name="active"/>
-                    <field name="shipping_unit_count" widget="integer"/>
                 </list>
             </field>
         </record>
@@ -52,7 +51,6 @@
                         <group>
                             <group string="Thống kê">
                                 <field name="category_count" readonly="1"/>
-                                <field name="shipping_unit_count" readonly="1"/>
                             </group>
                             <group string="Thông tin tạo"/>
                         </group>
@@ -67,9 +65,6 @@
                                         <field name="category_id" domain="[('id', 'in', parent.category_ids)]"/>
                                     </list>
                                 </field>
-                            </page>
-                            <page string="Đơn vị vận chuyển" name="shipping_units">
-                                <field name="shipping_unit_ids" widget="many2many_tags"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -90,8 +85,6 @@
                     <field name="bill_number"/>
                     <separator/>
                     <filter string="Có danh mục" name="has_categories" domain="[('category_count', '>', 0)]"/>
-                    <filter string="Có đơn vị vận chuyển" name="has_shipping_units"
-                            domain="[('shipping_unit_count', '>', 0)]"/>
                     <group expand="0" string="Group By">
                         <filter string="Công ty" name="group_company" context="{'group_by': 'company_id'}"/>
                         <filter string="Thương hiệu" name="group_brand" context="{'group_by': 'brand_redeem_id'}"/>
@@ -115,7 +108,6 @@
                     <field name="end_date"/>
                     <field name="description"/>
                     <field name="category_count"/>
-                    <field name="shipping_unit_count"/>
                     <field name="active"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -152,7 +144,6 @@
                                             </span>
                                             <span class="badge badge-warning">
                                                 <i class="fa fa-truck" title="Đơn vị vận chuyển"/>
-                                                <field name="shipping_unit_count"/>
                                             </span>
                                         </div>
                                     </div>

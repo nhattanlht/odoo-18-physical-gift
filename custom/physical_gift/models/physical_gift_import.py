@@ -103,13 +103,6 @@ class PhysicalGiftImport(models.Model):
         help='Số lượng xuất trả'
     )
     
-    remaining_quantity = fields.Integer(
-        string='Số lượng còn lại',
-        compute='_compute_remaining_quantity',
-        store=True,
-        help='Số lượng còn lại'
-    )
-    
     # Trạng thái
     state = fields.Selection([
         ('draft', 'Nháp'),
@@ -125,11 +118,6 @@ class PhysicalGiftImport(models.Model):
         help='Ghi chú về việc nhập hàng'
     )
     
-    @api.depends('import_quantity', 'export_return_quantity')
-    def _compute_remaining_quantity(self):
-        for record in self:
-            record.remaining_quantity = record.import_quantity - record.export_return_quantity
-    
     # Constraints
     _sql_constraints = [
         ('unique_import_sku', 'unique(sku)', 'Mã SKU phải là duy nhất!')
@@ -140,10 +128,16 @@ class PhysicalGiftImport(models.Model):
         """Xác nhận nhập hàng"""
         for record in self:
             record.state = 'confirmed'
-    
+
     def action_done(self):
-        """Hoàn thành nhập hàng"""
+        """Hoàn thành nhập hàng và cộng tồn kho"""
         for record in self:
+            if not record.item_id:
+                raise UserError(_("Vui lòng chọn sản phẩm liên quan trước khi hoàn thành."))
+
+            # Cộng thêm số lượng nhập vào số lượng sản phẩm
+            record.item_id.quantity += record.import_quantity - record.export_return_quantity
+
             record.state = 'done'
     
     def action_cancel(self):

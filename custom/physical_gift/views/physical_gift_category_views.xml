@@ -58,13 +58,6 @@
                     <sheet>
                         <widget name="web_ribbon" title="Đã lưu trữ" bg_color="bg-danger"
                                 invisible="[('active', '=', True)]"/>
-
-                        <div class="oe_button_box" name="button_box">
-                            <button name="action_open_items" type="object" class="oe_stat_button" icon="fa-cubes">
-                                <field name="item_count" widget="statinfo" string="Sản phẩm"/>
-                            </button>
-                        </div>
-
                         <field name="image" widget="image" class="oe_avatar"/>
                         <div class="oe_title">
                             <h1>

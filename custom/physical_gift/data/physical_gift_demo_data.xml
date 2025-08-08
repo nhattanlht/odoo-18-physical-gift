@@ -317,7 +317,6 @@
             <field name="item_id" ref="demo_item_1"/>
             <field name="import_quantity">150</field>
             <field name="export_return_quantity">0</field>
-            <field name="remaining_quantity">150</field>
             <field name="state">confirmed</field>
             <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
@@ -335,7 +334,6 @@
             <field name="item_id" ref="demo_item_2"/>
             <field name="import_quantity">150</field>
             <field name="export_return_quantity">0</field>
-            <field name="remaining_quantity">150</field>
             <field name="state">draft</field>
             <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
@@ -353,8 +351,7 @@
             <field name="item_id" ref="demo_item_3"/>
             <field name="import_quantity">50</field>
             <field name="export_return_quantity">0</field>
-            <field name="remaining_quantity">50</field>
-            <field name="state">done</field>
+            <field name="state">confirmed</field>
             <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
         
@@ -371,7 +368,6 @@
             <field name="item_id" ref="demo_item_4"/>
             <field name="import_quantity">100</field>
             <field name="export_return_quantity">0</field>
-            <field name="remaining_quantity">100</field>
             <field name="state">cancelled</field>
             <field name="notes">Nhập hàng cho chương trình AIA</field>
         </record>
@@ -389,7 +385,6 @@
             <field name="item_id" ref="demo_item_5"/>
             <field name="import_quantity">100</field>
             <field name="export_return_quantity">0</field>
-            <field name="remaining_quantity">100</field>
             <field name="state">done</field>
             <field name="notes">Nhập hàng cho chương trình AIA</field>
         </record>
@@ -515,12 +510,10 @@
         <!-- Update program-category relationships -->
         <record id="demo_program_1" model="physical.gift.program">
             <field name="category_ids" eval="[(6, 0, [ref('demo_category_2'), ref('demo_category_5')])]"/>
-            <field name="shipping_unit_ids" eval="[(6, 0, [ref('demo_shipping_unit_1'), ref('demo_shipping_unit_2')])]"/>
         </record>
         
         <record id="demo_program_2" model="physical.gift.program">
             <field name="category_ids" eval="[(6, 0, [ref('demo_category_1')])]"/>
-            <field name="shipping_unit_ids" eval="[(6, 0, [ref('demo_shipping_unit_1'), ref('demo_shipping_unit_3')])]"/>
         </record>
 
     </data>

@@ -16,7 +16,6 @@
                     <field name="supplier_id"/>
                     <field name="import_quantity"/>
                     <field name="export_return_quantity"/>
-                    <field name="remaining_quantity"/>
                     <field name="points"/>
                     <field name="state" widget="badge" decoration-info="state == 'draft'"
                            decoration-success="state == 'confirmed'" decoration-warning="state == 'done'"
@@ -86,6 +85,7 @@
                             <group string="Thông tin cơ bản">
                                 <field name="program_id" placeholder="Chọn chương trình..."/>
                                 <field name="supplier_id" placeholder="Chọn nhà cung cấp..."/>
+                                <field name="item_id" placeholder="Chọn sản phẩm liên quan..."/>
                                 <field name="import_date"/>
                                 <field name="points"/>
                             </group>
@@ -99,7 +99,6 @@
                             <group string="Thông tin số lượng">
                                 <field name="import_quantity"/>
                                 <field name="export_return_quantity"/>
-                                <field name="remaining_quantity" readonly="1"/>
                             </group>
                             <group string="Trạng thái">
                                 <field name="state"/>
@@ -107,7 +106,6 @@
                         </group>
                         <notebook>
                             <page string="Thông tin bổ sung" name="additional">
-                                <field name="item_id" placeholder="Chọn sản phẩm liên quan..."/>
                                 <field name="notes" placeholder="Ghi chú..."/>
                             </page>
                         </notebook>
