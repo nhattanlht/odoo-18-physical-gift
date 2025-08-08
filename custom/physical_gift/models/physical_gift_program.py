@@ -99,10 +99,10 @@ class PhysicalGiftProgram(models.Model):
     )
     
     # Danh mục trong chương trình
-    category_ids = fields.Many2many('physical.gift.category', string='Danh mục')
+    category_ids = fields.Many2many('physical.gift.category', string='Danh mục', domain = [('active', '=', True)])
     
     # Đơn vị vận chuyển
-    shipping_unit_ids = fields.Many2many('physical.gift.shipping.unit', string='Đơn vị vận chuyển')
+    shipping_unit_ids = fields.Many2many('physical.gift.shipping.unit', string='Đơn vị vận chuyển', domain = [('state', '=', 'active')])
     
     # Thống kê
     category_count = fields.Integer('Số danh mục', compute='_compute_counts', store=True)

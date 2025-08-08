@@ -58,7 +58,7 @@
                         </group>
                         <notebook>
                             <page string="Danh mục" name="categories">
-                                <field name="category_ids" widget="many2many_tags"/>
+                                <field name="category_ids" widget="many2many_tags" domain="[('active', '=', True)]" />
                             </page>
                             <page string="Đơn vị vận chuyển" name="shipping_units">
                                 <field name="shipping_unit_ids" widget="many2many_tags"/>

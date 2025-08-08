@@ -88,7 +88,6 @@
                                 <field name="supplier_id" placeholder="Chọn nhà cung cấp..."/>
                                 <field name="import_date"/>
                                 <field name="points"/>
-                                <field name="active" invisible="1"/>
                             </group>
                             <group string="Thông tin giá">
                                 <field name="import_price_excl_vat"/>

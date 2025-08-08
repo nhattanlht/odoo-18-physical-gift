@@ -118,11 +118,6 @@ class PhysicalGiftImport(models.Model):
         ('cancelled', 'Đã hủy')
     ], string='Trạng thái', default='draft', tracking=True)
     
-    active = fields.Boolean(
-        default=True,
-        help='Archived imports will not be displayed'
-    )
-    
     # Thông tin bổ sung
     notes = fields.Text(
         string='Ghi chú',

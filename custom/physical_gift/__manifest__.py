@@ -26,7 +26,7 @@
                 'views/physical_gift_item_views.xml',
                 'views/physical_gift_brand_views.xml',
                 'views/physical_gift_category_views.xml',
-                'views/physical_gift_program_enhanced_views.xml',
+                'views/physical_gift_program_views.xml',
                 'views/physical_gift_supplier_views.xml',
                 'views/physical_gift_shipping_unit_views.xml',
                 'views/physical_gift_import_views.xml',
