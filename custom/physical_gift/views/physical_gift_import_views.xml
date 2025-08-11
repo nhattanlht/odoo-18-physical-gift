@@ -1,30 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Import Tree View -->
-        <record id="view_physical_gift_import_tree" model="ir.ui.view">
-            <field name="name">physical.gift.import.tree</field>
+
+        <!-- Tree view phiếu nhập -->
+        <record id="view_physical_gift_import_list" model="ir.ui.view">
+            <field name="name">physical.gift.import.list</field>
             <field name="model">physical.gift.import</field>
             <field name="arch" type="xml">
-                <list string="Danh sách nhập hàng">
+                <list>
                     <field name="name"/>
-                    <field name="sku"/>
                     <field name="import_date"/>
-                    <field name="import_price_excl_vat"/>
-                    <field name="sale_price_incl_vat"/>
-                    <field name="vat_percentage"/>
                     <field name="supplier_id"/>
-                    <field name="import_quantity"/>
-                    <field name="export_return_quantity"/>
-                    <field name="points"/>
-                    <field name="state" widget="badge" decoration-info="state == 'draft'"
-                           decoration-success="state == 'confirmed'" decoration-warning="state == 'done'"
+                    <field name="program_id"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'draft'"
+                           decoration-success="state == 'confirmed'"
+                           decoration-warning="state == 'done'"
                            decoration-danger="state == 'cancelled'"/>
                 </list>
             </field>
         </record>
 
-        <!-- Import Kanban View -->
         <record id="view_physical_gift_import_kanban" model="ir.ui.view">
             <field name="name">physical.gift.import.kanban</field>
             <field name="model">physical.gift.import</field>
@@ -32,21 +28,32 @@
                 <kanban class="o_kanban_small_column" default_group_by="state">
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click o_kanban_card">
-                                <div class="o_kanban_details">
+                            <div class="oe_kanban_global_click o_kanban_record">
+                                <div class="o_kanban_header">
                                     <strong>
                                         <field name="name"/>
                                     </strong>
-                                    <div>
-                                        <field name="sku"/>
-                                    </div>
+                                    <span class="badge badge-primary">
+                                        <field name="state"/>
+                                    </span>
                                 </div>
-                                <div class="oe_kanban_footer">
-                                    <field name="state" widget="badge"
-                                           decoration-info="state == 'draft'"
-                                           decoration-success="state == 'confirmed'"
-                                           decoration-warning="state == 'done'"
-                                           decoration-danger="state == 'cancelled'"/>
+                                <div>
+                                    <small>Ngày nhập:
+                                        <field name="import_date"/>
+                                    </small>
+                                    <br/>
+                                    <small>Nhà cung cấp:
+                                        <field name="supplier_id"/>
+                                    </small>
+                                    <br/>
+                                    <small>Chương trình:
+                                        <field name="program_id"/>
+                                    </small>
+                                </div>
+                                <div class="mt8">
+                                    <small>Số dòng hàng:
+                                        <field name="line_count"/>
+                                    </small>
                                 </div>
                             </div>
                         </t>
@@ -55,58 +62,47 @@
             </field>
         </record>
 
-        <!-- Import Form View -->
+        <!-- Form view phiếu nhập -->
         <record id="view_physical_gift_import_form" model="ir.ui.view">
             <field name="name">physical.gift.import.form</field>
             <field name="model">physical.gift.import</field>
             <field name="arch" type="xml">
-                <form string="Nhập hàng">
+                <form string="Phiếu nhập hàng">
                     <header>
                         <button name="action_confirm" string="Xác nhận" type="object"
-                                class="btn-success"
-                                invisible="state == 'confirmed' or state == 'done' or state == 'cancelled'"/>
+                                modifiers="{'invisible': [('state', '!=', 'draft')]}"/>
                         <button name="action_done" string="Hoàn thành" type="object"
-                                class="btn-primary" invisible="state != 'confirmed'"/>
+                                modifiers="{'invisible': [('state', '!=', 'confirmed')]}"/>
                         <button name="action_cancel" string="Hủy" type="object"
-                                class="btn-danger" invisible="state == 'cancelled'"/>
+                                modifiers="{'invisible': [('state', 'not in', ['draft', 'confirmed'])]}"/>
                         <button name="action_reset_to_draft" string="Đặt lại" type="object"
-                                class="btn-secondary" invisible="state != 'cancelled'"/>
+                                modifiers="{'invisible': [('state', '!=', 'cancelled')]}"/>
                     </header>
                     <sheet>
-                        <div class="oe_title">
-                            <h1>
-                                <field name="name" placeholder="Tên sản phẩm..." class="oe_inline"/>
-                            </h1>
-                            <h2>
-                                <field name="sku" placeholder="Mã SKU..." class="oe_inline"/>
-                            </h2>
-                        </div>
                         <group>
-                            <group string="Thông tin cơ bản">
-                                <field name="program_id" placeholder="Chọn chương trình..."/>
-                                <field name="supplier_id" placeholder="Chọn nhà cung cấp..."/>
-                                <field name="item_id" placeholder="Chọn sản phẩm liên quan..."/>
-                                <field name="import_date"/>
-                                <field name="points"/>
-                            </group>
-                            <group string="Thông tin giá">
-                                <field name="import_price_excl_vat"/>
-                                <field name="sale_price_incl_vat"/>
-                                <field name="vat_percentage"/>
-                            </group>
-                        </group>
-                        <group>
-                            <group string="Thông tin số lượng">
-                                <field name="import_quantity"/>
-                                <field name="export_return_quantity"/>
-                            </group>
-                            <group string="Trạng thái">
-                                <field name="state"/>
-                            </group>
+                            <field name="name"/>
+                            <field name="import_date"/>
+                            <field name="supplier_id"/>
+                            <field name="program_id"/>
+                            <field name="state" readonly="1"/>
                         </group>
                         <notebook>
-                            <page string="Thông tin bổ sung" name="additional">
-                                <field name="notes" placeholder="Ghi chú..."/>
+                            <page string="Chi tiết hàng nhập">
+                                <field name="line_ids">
+                                    <list editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="sku"/>
+                                        <field name="import_quantity"/>
+                                        <field name="export_return_quantity"/>
+                                        <field name="import_price_excl_vat"/>
+                                        <field name="sale_price_incl_vat"/>
+                                        <field name="vat_percentage"/>
+                                        <field name="points"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <page string="Ghi chú">
+                                <field name="notes"/>
                             </page>
                         </notebook>
                     </sheet>
@@ -114,49 +110,33 @@
             </field>
         </record>
 
-        <!-- Import Search View -->
+        <!-- Search view -->
         <record id="view_physical_gift_import_search" model="ir.ui.view">
             <field name="name">physical.gift.import.search</field>
             <field name="model">physical.gift.import</field>
             <field name="arch" type="xml">
-                <search string="Tìm kiếm nhập hàng">
+                <search>
                     <field name="name"/>
-                    <field name="sku"/>
-                    <field name="points"/>
-                    <field name="import_date"/>
                     <field name="supplier_id"/>
                     <field name="program_id"/>
-                    <separator/>
-                    <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
-                    <filter string="Đã xác nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
-                    <filter string="Hoàn thành" name="done" domain="[('state', '=', 'done')]"/>
-                    <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
-                    <separator/>
-                    <filter string="Có xuất trả" name="has_export" domain="[('export_return_quantity', '>', 0)]"/>
-                    <group expand="0" string="Group By">
-                        <filter string="Chương trình" name="group_program" context="{'group_by': 'program_id'}"/>
-                        <filter string="Nhà cung cấp" name="group_supplier" context="{'group_by': 'supplier_id'}"/>
-                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
-                        <filter string="Ngày nhập" name="group_date" context="{'group_by': 'import_date'}"/>
-                    </group>
+                    <filter string="Nháp" name="draft" domain="[('state','=','draft')]"/>
+                    <filter string="Đã xác nhận" name="confirmed" domain="[('state','=','confirmed')]"/>
+                    <filter string="Hoàn thành" name="done" domain="[('state','=','done')]"/>
+                    <filter string="Đã hủy" name="cancelled" domain="[('state','=','cancelled')]"/>
                 </search>
             </field>
         </record>
 
-        <!-- Import Action -->
+        <!-- Action menu -->
         <record id="action_physical_gift_import" model="ir.actions.act_window">
-            <field name="name">Nhập hàng</field>
+            <field name="name">Phiếu nhập hàng</field>
             <field name="res_model">physical.gift.import</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="context">{'active_test': False}</field>
-            <field name="help" type="html">
-                <p class="o_view_nocontent_smiling_face">
-                    Tạo nhập hàng đầu tiên
-                </p>
-                <p>
-                    Quản lý nhập hàng, thông tin giá, số lượng và nhà cung cấp.
-                </p>
-            </field>
         </record>
+
+        <!-- Menu -->
+        <menuitem id="menu_physical_gift_import_root" name="Nhập hàng" sequence="10"/>
+        <menuitem id="menu_physical_gift_import" name="Phiếu nhập" parent="menu_physical_gift_import_root"
+                  action="action_physical_gift_import"/>
     </data>
-</odoo> 
+</odoo>

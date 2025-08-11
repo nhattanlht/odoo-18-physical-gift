@@ -24,7 +24,8 @@ class PhysicalGiftOrder(models.Model):
         string='Chương trình',
         required=True,
         tracking=True,
-        help='Chương trình liên quan'
+        help='Chương trình liên quan',
+        domain=[('active', '=', True)]
     )
     
     product_name = fields.Char(
@@ -80,7 +81,8 @@ class PhysicalGiftOrder(models.Model):
         'physical.gift.shipping.unit',
         string='Đơn vị vận chuyển',
         tracking=True,
-        help='Đơn vị vận chuyển'
+        help='Đơn vị vận chuyển',
+        domain = [('state', '=', 'active')]
     )
     
     waybill_code = fields.Char(

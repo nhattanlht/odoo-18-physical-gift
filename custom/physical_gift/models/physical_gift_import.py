@@ -1,159 +1,128 @@
 # -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
-
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
 
 
 class PhysicalGiftImport(models.Model):
     _name = 'physical.gift.import'
-    _description = 'Physical Gift Import'
+    _description = 'Phiếu nhập hàng'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _order = 'import_date desc'
 
-    # Thông tin cơ bản
     name = fields.Char(
-        string='Tên sản phẩm',
+        string='Số phiếu',
         required=True,
-        tracking=True,
-        help='Tên sản phẩm nhập hàng'
+        default='New',
+        tracking=True
     )
-    
-    sku = fields.Char(
-        string='SKU',
-        required=True,
-        tracking=True,
-        help='Mã SKU sản phẩm'
-    )
-    
-    points = fields.Integer(
-        string='Điểm',
-        default=0,
-        tracking=True,
-        help='Điểm của sản phẩm'
-    )
-    
+
     import_date = fields.Date(
-        string='Thời gian nhập',
-        required=True,
+        string='Ngày nhập',
         default=fields.Date.today,
-        tracking=True,
-        help='Ngày nhập hàng'
-    )
-    
-    # Thông tin giá
-    import_price_excl_vat = fields.Float(
-        string='Giá nhập (chưa VAT)',
         required=True,
-        tracking=True,
-        help='Giá nhập hàng chưa bao gồm VAT'
+        tracking=True
     )
-    
-    sale_price_incl_vat = fields.Float(
-        string='Giá bán (VAT)',
-        required=True,
-        tracking=True,
-        help='Giá bán bao gồm VAT'
-    )
-    
-    vat_percentage = fields.Float(
-        string='VAT (%)',
-        default=0.0,
-        tracking=True,
-        help='Phần trăm VAT'
-    )
-    
-    # Quan hệ với các model khác
+
     supplier_id = fields.Many2one(
         'physical.gift.supplier',
         string='Nhà cung cấp',
         required=True,
         tracking=True,
-        help='Nhà cung cấp sản phẩm'
+        domain=[('state', '=', 'active')]
     )
-    
+
     program_id = fields.Many2one(
         'physical.gift.program',
         string='Chương trình',
         required=True,
         tracking=True,
-        help='Chương trình liên quan'
+        domain=[('active', '=', True)]
     )
-    
-    item_id = fields.Many2one(
-        'physical.gift.item',
-        string='Sản phẩm',
-        tracking=True,
-        help='Sản phẩm liên quan'
-    )
-    
-    # Thông tin số lượng
-    import_quantity = fields.Integer(
-        string='Số lượng nhập',
-        required=True,
-        default=1,
-        tracking=True,
-        help='Số lượng nhập hàng'
-    )
-    
-    export_return_quantity = fields.Integer(
-        string='Số lượng xuất trả',
-        default=0,
-        tracking=True,
-        help='Số lượng xuất trả'
-    )
-    
-    # Trạng thái
+
     state = fields.Selection([
         ('draft', 'Nháp'),
         ('confirmed', 'Đã xác nhận'),
         ('done', 'Hoàn thành'),
         ('cancelled', 'Đã hủy')
-    ], string='Trạng thái', default='draft', tracking=True)
-    
-    # Thông tin bổ sung
-    notes = fields.Text(
-        string='Ghi chú',
-        tracking=True,
-        help='Ghi chú về việc nhập hàng'
+    ], default='draft', tracking=True)
+
+    notes = fields.Text(string='Ghi chú', tracking=True)
+
+    # Liên kết tới chi tiết nhập hàng
+    line_ids = fields.One2many(
+        'physical.gift.import.line',
+        'import_id',
+        string='Chi tiết nhập hàng'
     )
-    
-    # Constraints
-    _sql_constraints = [
-        ('unique_import_sku', 'unique(sku)', 'Mã SKU phải là duy nhất!')
-    ]
-    
-    # Actions
+
+    # Số dòng hàng (tính toán)
+    line_count = fields.Integer(
+        string='Số dòng hàng',
+        compute='_compute_line_count',
+        store=False
+    )
+
+    @api.depends('line_ids')
+    def _compute_line_count(self):
+        for rec in self:
+            rec.line_count = len(rec.line_ids)
+
+    # ================= Actions ================= #
     def action_confirm(self):
-        """Xác nhận nhập hàng"""
+        """Xác nhận phiếu nhập"""
         for record in self:
+            if not record.line_ids:
+                raise UserError(_("Phiếu nhập phải có ít nhất 1 dòng hàng."))
             record.state = 'confirmed'
 
     def action_done(self):
-        """Hoàn thành nhập hàng và cộng tồn kho"""
+        """Hoàn thành phiếu nhập và cộng tồn kho"""
         for record in self:
-            if not record.item_id:
-                raise UserError(_("Vui lòng chọn sản phẩm liên quan trước khi hoàn thành."))
+            if record.state != 'confirmed':
+                raise UserError(_("Chỉ có thể hoàn thành khi phiếu đang ở trạng thái Đã xác nhận."))
 
-            # Cộng thêm số lượng nhập vào số lượng sản phẩm
-            record.item_id.quantity += record.import_quantity - record.export_return_quantity
+            for line in record.line_ids:
+                if not line.item_id:
+                    raise UserError(_("Vui lòng chọn sản phẩm cho tất cả dòng hàng."))
+                delta_qty = line.import_quantity - line.export_return_quantity
+                line.item_id.sudo().write({'quantity': line.item_id.quantity + delta_qty})
 
             record.state = 'done'
-    
+
     def action_cancel(self):
-        """Hủy nhập hàng"""
+        """Hủy phiếu nhập"""
         for record in self:
             record.state = 'cancelled'
-    
+
     def action_reset_to_draft(self):
-        """Đặt lại về nháp"""
+        """Đặt lại về Nháp"""
         for record in self:
             record.state = 'draft'
-    
-    def name_get(self):
-        """Custom name display"""
-        result = []
-        for record in self:
-            name = f"{record.sku} - {record.name}"
-            result.append((record.id, name))
-        return result 
+
+
+class PhysicalGiftImportLine(models.Model):
+    _name = 'physical.gift.import.line'
+    _description = 'Dòng hàng nhập'
+
+    import_id = fields.Many2one(
+        'physical.gift.import',
+        string='Phiếu nhập',
+        required=True,
+        ondelete='cascade'
+    )
+
+    item_id = fields.Many2one(
+        'physical.gift.item',
+        string='Sản phẩm',
+        required=True,
+        domain=[('active', '=', True)]
+    )
+
+
+    sku = fields.Char(string='SKU', required=True)
+    import_quantity = fields.Integer(string='Số lượng nhập', default=1, required=True)
+    export_return_quantity = fields.Integer(string='Số lượng xuất trả', default=0)
+    import_price_excl_vat = fields.Float(string='Giá nhập (chưa VAT)', required=True)
+    sale_price_incl_vat = fields.Float(string='Giá bán (VAT)', required=True)
+    vat_percentage = fields.Float(string='VAT (%)', default=0.0)
+    points = fields.Integer(string='Điểm', default=0)

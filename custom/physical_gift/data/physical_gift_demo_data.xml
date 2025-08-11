@@ -17,7 +17,7 @@
             <field name="commission_rate">5.0</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_brand_2" model="physical.gift.brand">
             <field name="name">AIA Việt Nam</field>
             <field name="name_en">AIA Vietnam</field>
@@ -33,7 +33,7 @@
             <field name="commission_rate">7.5</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_brand_3" model="physical.gift.brand">
             <field name="name">Samsung Electronics</field>
             <field name="name_en">Samsung Electronics</field>
@@ -49,7 +49,7 @@
             <field name="commission_rate">6.0</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_brand_4" model="physical.gift.brand">
             <field name="name">Apple Vietnam</field>
             <field name="name_en">Apple Vietnam</field>
@@ -65,7 +65,7 @@
             <field name="commission_rate">8.0</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_brand_5" model="physical.gift.brand">
             <field name="name">Samono</field>
             <field name="name_en">Samono</field>
@@ -89,7 +89,7 @@
             <field name="brand_id" ref="demo_brand_1"/>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_store_2" model="physical.gift.store">
             <field name="name">AIA Store 1</field>
             <field name="code">AIA001</field>
@@ -106,7 +106,7 @@
             <field name="sequence">10</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_category_2" model="physical.gift.category">
             <field name="name">Thời trang</field>
             <field name="name_en">Fashion</field>
@@ -115,7 +115,7 @@
             <field name="sequence">20</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_category_4" model="physical.gift.category">
             <field name="name">Sức khỏe</field>
             <field name="name_en">Health &amp; Beauty</field>
@@ -124,7 +124,7 @@
             <field name="sequence">40</field>
             <field name="active">True</field>
         </record>
-        
+
         <record id="demo_category_5" model="physical.gift.category">
             <field name="name">Thể thao</field>
             <field name="name_en">Sports</field>
@@ -145,7 +145,7 @@
             <field name="warehouse_code">WH001</field>
             <field name="state">inactive</field>
         </record>
-        
+
         <record id="demo_supplier_2" model="physical.gift.supplier">
             <field name="name">Mars</field>
             <field name="full_name">Công Ty TNHH Mars</field>
@@ -156,7 +156,7 @@
             <field name="warehouse_code">WH002</field>
             <field name="state">active</field>
         </record>
-        
+
         <record id="demo_supplier_3" model="physical.gift.supplier">
             <field name="name">thegioididong</field>
             <field name="full_name">Công Ty Cổ Phần Thế Giới Di Động</field>
@@ -180,7 +180,7 @@
             <field name="address">123 Đường ABC, Quận 1, TP.HCM</field>
             <field name="state">active</field>
         </record>
-        
+
         <record id="demo_shipping_unit_2" model="physical.gift.shipping.unit">
             <field name="name">Viettel Post</field>
             <field name="code">VTP</field>
@@ -192,7 +192,7 @@
             <field name="address">456 Đường XYZ, Quận 3, TP.HCM</field>
             <field name="state">active</field>
         </record>
-        
+
         <record id="demo_shipping_unit_3" model="physical.gift.shipping.unit">
             <field name="name">J&amp;T Express</field>
             <field name="code">JTE</field>
@@ -287,7 +287,7 @@
             <field name="end_date">2025-12-31</field>
             <field name="active">true</field>
         </record>
-        
+
         <record id="demo_program_2" model="physical.gift.program">
             <field name="name_vi">Chương trình AIA 2025</field>
             <field name="name_en">AIA Program 2025</field>
@@ -304,90 +304,112 @@
         </record>
 
         <!-- Demo Import Data -->
+
+        <!-- Phiếu 1 -->
         <record id="demo_import_1" model="physical.gift.import">
-            <field name="name">Ví da nam vân hạt cao cấp Lata LVN92 màu đen</field>
+            <field name="name">Phiếu nhập 1 - Vietinbank</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="supplier_id" ref="demo_supplier_1"/>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="state">confirmed</field>
+            <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
+        </record>
+        <record id="demo_import_line_1" model="physical.gift.import.line">
+            <field name="import_id" ref="demo_import_1"/>
+            <field name="item_id" ref="demo_item_1"/>
             <field name="sku">GT-001382</field>
             <field name="points">0</field>
-            <field name="import_date">2025-06-06</field>
+            <field name="import_quantity">150</field>
+            <field name="export_return_quantity">0</field>
             <field name="import_price_excl_vat">235000</field>
             <field name="sale_price_incl_vat">295000</field>
             <field name="vat_percentage">5</field>
-            <field name="supplier_id" ref="demo_supplier_1"/>
-            <field name="program_id" ref="demo_program_1"/>
-            <field name="item_id" ref="demo_item_1"/>
-            <field name="import_quantity">150</field>
-            <field name="export_return_quantity">0</field>
-            <field name="state">confirmed</field>
-            <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
-        
+
+        <!-- Phiếu 2 -->
         <record id="demo_import_2" model="physical.gift.import">
-            <field name="name">Nón bảo hiểm trẻ em (Màu xanh)</field>
-            <field name="sku">AIA-400-006</field>
-            <field name="points">0</field>
+            <field name="name">Phiếu nhập 2 - Vietinbank</field>
             <field name="import_date">2025-06-06</field>
-            <field name="import_price_excl_vat">635000</field>
-            <field name="sale_price_incl_vat">800000</field>
-            <field name="vat_percentage">5</field>
             <field name="supplier_id" ref="demo_supplier_2"/>
             <field name="program_id" ref="demo_program_1"/>
-            <field name="item_id" ref="demo_item_2"/>
-            <field name="import_quantity">150</field>
-            <field name="export_return_quantity">0</field>
             <field name="state">draft</field>
             <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
-        
-        <record id="demo_import_3" model="physical.gift.import">
-            <field name="name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
-            <field name="sku">AIA-400-001</field>
+        <record id="demo_import_line_2" model="physical.gift.import.line">
+            <field name="import_id" ref="demo_import_2"/>
+            <field name="item_id" ref="demo_item_2"/>
+            <field name="sku">AIA-400-006</field>
             <field name="points">0</field>
+            <field name="import_quantity">150</field>
+            <field name="export_return_quantity">0</field>
+            <field name="import_price_excl_vat">635000</field>
+            <field name="sale_price_incl_vat">800000</field>
+            <field name="vat_percentage">5</field>
+        </record>
+
+        <!-- Phiếu 3 -->
+        <record id="demo_import_3" model="physical.gift.import">
+            <field name="name">Phiếu nhập 3 - Vietinbank</field>
             <field name="import_date">2025-06-06</field>
-            <field name="import_price_excl_vat">230000</field>
-            <field name="sale_price_incl_vat">400000</field>
-            <field name="vat_percentage">8</field>
             <field name="supplier_id" ref="demo_supplier_2"/>
             <field name="program_id" ref="demo_program_1"/>
-            <field name="item_id" ref="demo_item_3"/>
-            <field name="import_quantity">50</field>
-            <field name="export_return_quantity">0</field>
             <field name="state">confirmed</field>
             <field name="notes">Nhập hàng cho chương trình Vietinbank</field>
         </record>
-        
-        <record id="demo_import_4" model="physical.gift.import">
-            <field name="name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
-            <field name="sku">TGD-001</field>
+        <record id="demo_import_line_3" model="physical.gift.import.line">
+            <field name="import_id" ref="demo_import_3"/>
+            <field name="item_id" ref="demo_item_3"/>
+            <field name="sku">AIA-400-001</field>
             <field name="points">0</field>
+            <field name="import_quantity">50</field>
+            <field name="export_return_quantity">0</field>
+            <field name="import_price_excl_vat">230000</field>
+            <field name="sale_price_incl_vat">400000</field>
+            <field name="vat_percentage">8</field>
+        </record>
+
+        <!-- Phiếu 4 -->
+        <record id="demo_import_4" model="physical.gift.import">
+            <field name="name">Phiếu nhập 4 - AIA</field>
             <field name="import_date">2025-06-06</field>
-            <field name="import_price_excl_vat">150000</field>
-            <field name="sale_price_incl_vat">200000</field>
-            <field name="vat_percentage">10</field>
             <field name="supplier_id" ref="demo_supplier_3"/>
             <field name="program_id" ref="demo_program_2"/>
-            <field name="item_id" ref="demo_item_4"/>
-            <field name="import_quantity">100</field>
-            <field name="export_return_quantity">0</field>
             <field name="state">cancelled</field>
             <field name="notes">Nhập hàng cho chương trình AIA</field>
         </record>
-        
-        <record id="demo_import_5" model="physical.gift.import">
-            <field name="name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
-            <field name="sku">TGD-002</field>
+        <record id="demo_import_line_4" model="physical.gift.import.line">
+            <field name="import_id" ref="demo_import_4"/>
+            <field name="item_id" ref="demo_item_4"/>
+            <field name="sku">TGD-001</field>
             <field name="points">0</field>
-            <field name="import_date">2025-06-06</field>
-            <field name="import_price_excl_vat">200000</field>
-            <field name="sale_price_incl_vat">250000</field>
-            <field name="vat_percentage">10</field>
-            <field name="supplier_id" ref="demo_supplier_3"/>
-            <field name="program_id" ref="demo_program_2"/>
-            <field name="item_id" ref="demo_item_5"/>
             <field name="import_quantity">100</field>
             <field name="export_return_quantity">0</field>
+            <field name="import_price_excl_vat">150000</field>
+            <field name="sale_price_incl_vat">200000</field>
+            <field name="vat_percentage">10</field>
+        </record>
+
+        <!-- Phiếu 5 -->
+        <record id="demo_import_5" model="physical.gift.import">
+            <field name="name">Phiếu nhập 5 - AIA</field>
+            <field name="import_date">2025-06-06</field>
+            <field name="supplier_id" ref="demo_supplier_3"/>
+            <field name="program_id" ref="demo_program_2"/>
             <field name="state">done</field>
             <field name="notes">Nhập hàng cho chương trình AIA</field>
         </record>
+        <record id="demo_import_line_5" model="physical.gift.import.line">
+            <field name="import_id" ref="demo_import_5"/>
+            <field name="item_id" ref="demo_item_5"/>
+            <field name="sku">TGD-002</field>
+            <field name="points">0</field>
+            <field name="import_quantity">100</field>
+            <field name="export_return_quantity">0</field>
+            <field name="import_price_excl_vat">200000</field>
+            <field name="sale_price_incl_vat">250000</field>
+            <field name="vat_percentage">10</field>
+        </record>
+
 
         <!-- Demo Order Data -->
         <record id="demo_order_1" model="physical.gift.order">
@@ -412,7 +434,7 @@
             <field name="active">True</field>
             <field name="import_id" ref="demo_import_1"/>
         </record>
-        
+
         <record id="demo_order_2" model="physical.gift.order">
             <field name="name">ORD-2025-002</field>
             <field name="program_id" ref="demo_program_1"/>
@@ -435,7 +457,7 @@
             <field name="active">True</field>
             <field name="import_id" ref="demo_import_2"/>
         </record>
-        
+
         <record id="demo_order_3" model="physical.gift.order">
             <field name="name">ORD-2025-003</field>
             <field name="program_id" ref="demo_program_2"/>
@@ -458,7 +480,7 @@
             <field name="active">True</field>
             <field name="import_id" ref="demo_import_4"/>
         </record>
-        
+
         <record id="demo_order_4" model="physical.gift.order">
             <field name="name">ORD-2025-004</field>
             <field name="program_id" ref="demo_program_2"/>
@@ -481,7 +503,7 @@
             <field name="active">True</field>
             <field name="import_id" ref="demo_import_5"/>
         </record>
-        
+
         <record id="demo_order_5" model="physical.gift.order">
             <field name="name">ORD-2025-005</field>
             <field name="program_id" ref="demo_program_1"/>
@@ -511,7 +533,7 @@
         <record id="demo_program_1" model="physical.gift.program">
             <field name="category_ids" eval="[(6, 0, [ref('demo_category_2'), ref('demo_category_5')])]"/>
         </record>
-        
+
         <record id="demo_program_2" model="physical.gift.program">
             <field name="category_ids" eval="[(6, 0, [ref('demo_category_1')])]"/>
         </record>
