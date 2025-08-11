@@ -20,19 +20,18 @@
         'sale',
         'account',
     ],
-        'data': [
+    'data': [
         'security/ir.model.access.csv',
         'data/physical_gift_demo_data.xml',
-                'views/physical_gift_item_views.xml',
-                'views/physical_gift_brand_views.xml',
-                'views/physical_gift_category_views.xml',
-                'views/physical_gift_program_views.xml',
-                'views/physical_gift_supplier_views.xml',
-                'views/physical_gift_shipping_unit_views.xml',
-                'views/physical_gift_import_views.xml',
-                'views/physical_gift_order_views.xml',
-                'views/physical_gift_menus.xml',
-    ],
+        'views/physical_gift_item_views.xml',
+        'views/physical_gift_brand_views.xml',
+        'views/physical_gift_category_views.xml',
+        'views/physical_gift_program_views.xml',
+        'views/physical_gift_supplier_views.xml',
+        'views/physical_gift_shipping_unit_views.xml',
+        'views/physical_gift_import_views.xml',
+        'views/physical_gift_order_views.xml',
+        'views/physical_gift_menus.xml',    ],
     'assets': {
         'web.assets_backend': [
             'physical_gift/static/src/css/physical_gift.css',
@@ -43,4 +42,4 @@
     'application': True,
     'auto_install': False,
     'license': 'LGPL-3',
-} 
+}

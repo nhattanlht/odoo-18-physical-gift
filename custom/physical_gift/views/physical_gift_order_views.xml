@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Order Tree View -->
-        <record id="view_physical_gift_order_tree" model="ir.ui.view">
-            <field name="name">physical.gift.order.tree</field>
+
+        <!-- list View -->
+        <record id="view_physical_gift_order_list" model="ir.ui.view">
+            <field name="name">physical.gift.order.list</field>
             <field name="model">physical.gift.order</field>
             <field name="arch" type="xml">
-                <list string="Danh sách đơn hàng">
+                <list string="Danh sách đơn hàng" editable="bottom">
                     <field name="name"/>
                     <field name="program_id"/>
-                    <field name="product_name"/>
                     <field name="total_order_value"/>
                     <field name="recipient_name"/>
                     <field name="recipient_phone"/>
-                    <field name="order_status" widget="badge" decoration-info="order_status == 'draft'"
+                    <field name="order_status" widget="badge"
+                           decoration-info="order_status == 'draft'"
                            decoration-success="order_status == 'confirmed'"
                            decoration-warning="order_status == 'processing'"
                            decoration-primary="order_status == 'shipped'"
@@ -25,13 +26,12 @@
             </field>
         </record>
 
-        <!-- Order Kanban View -->
+        <!-- Kanban View -->
         <record id="view_physical_gift_order_kanban" model="ir.ui.view">
             <field name="name">physical.gift.order.kanban</field>
             <field name="model">physical.gift.order</field>
             <field name="arch" type="xml">
-                <kanban default_group_by="order_status"
-                        class="o_kanban_small_column">
+                <kanban default_group_by="order_status" class="o_kanban_small_column">
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click o_kanban_record">
@@ -39,29 +39,12 @@
                                     <strong>
                                         <field name="name"/>
                                     </strong>
+                                    <div><strong>Người nhận:</strong> <field name="recipient_name"/></div>
+                                    <div><strong>SDT:</strong> <field name="recipient_phone"/></div>
+                                    <div><field name="total_order_value"/></div>
+                                    <div><field name="order_time"/></div>
                                     <div>
-                                        <field name="product_name"/>
-                                    </div>
-                                    <div>
-                                        <span>
-                                            <strong>Người nhận:</strong>
-                                            <field name="recipient_name"/>
-                                        </span>
-                                        <br/>
-                                        <span>
-                                            <strong>SDT:</strong>
-                                            <field name="recipient_phone"/>
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <field name="total_order_value"/>
-                                    </div>
-                                    <div>
-                                        <field name="order_time"/>
-                                    </div>
-                                    <div>
-                                        <field name="order_status"
-                                               widget="badge"
+                                        <field name="order_status" widget="badge"
                                                decoration-info="order_status == 'draft'"
                                                decoration-success="order_status == 'confirmed'"
                                                decoration-warning="order_status == 'processing'"
@@ -77,47 +60,25 @@
             </field>
         </record>
 
-        <!-- Order Form View -->
+        <!-- Form View -->
         <record id="view_physical_gift_order_form" model="ir.ui.view">
             <field name="name">physical.gift.order.form</field>
             <field name="model">physical.gift.order</field>
             <field name="arch" type="xml">
                 <form string="Đơn hàng">
                     <header>
-                        <button name="action_confirm" string="Xác nhận" type="object"
-                                class="btn-success"
-                                invisible="order_status == 'confirmed' or order_status == 'processing' or order_status == 'shipped' or order_status == 'delivered' or order_status == 'cancelled' or order_status == 'returned'"/>
-                        <button name="action_process" string="Xử lý" type="object"
-                                class="btn-primary" invisible="order_status != 'confirmed'"/>
-                        <button name="action_ship" string="Gửi hàng" type="object"
-                                class="btn-info" invisible="order_status != 'processing'"/>
-                        <button name="action_deliver" string="Giao hàng" type="object"
-                                class="btn-success" invisible="order_status != 'shipped'"/>
-                        <button name="action_cancel" string="Hủy" type="object"
-                                class="btn-danger"
-                                invisible="order_status == 'cancelled' or order_status == 'delivered'"/>
-                        <button name="action_return" string="Trả hàng" type="object"
-                                class="btn-warning" invisible="order_status != 'delivered'"/>
-                        <button name="action_reset_to_draft" string="Đặt lại" type="object"
-                                class="btn-secondary" invisible="order_status != 'cancelled'"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
                             <h1>
                                 <field name="name" placeholder="Mã đơn hàng..." class="oe_inline"/>
                             </h1>
-                            <h2>
-                                <field name="product_name" placeholder="Tên sản phẩm..." class="oe_inline"/>
-                            </h2>
                         </div>
                         <group>
                             <group string="Thông tin đơn hàng">
                                 <field name="program_id" placeholder="Chọn chương trình..."/>
-                                <field name="sku" placeholder="Mã SKU..."/>
-                                <field name="original_sku" placeholder="SKU gốc..."/>
                                 <field name="total_order_value"/>
                                 <field name="voucher_code" placeholder="Mã voucher..."/>
-                                <field name="active" invisible="1"/>
                             </group>
                             <group string="Thông tin người nhận">
                                 <field name="recipient_name" placeholder="Tên người nhận..."/>
@@ -147,13 +108,19 @@
                         <group>
                             <group string="Trạng thái">
                                 <field name="order_status"/>
-                                <field name="state"/>
-                            </group>
-                            <group string="Thông tin bổ sung">
-                                <field name="import_id" placeholder="Chọn nhập hàng liên quan..."/>
                             </group>
                         </group>
                         <notebook>
+                            <page string="Dòng sản phẩm" name="order_lines">
+                                <field name="order_line_ids">
+                                    <list editable="bottom">
+                                        <field name="item_id"/>
+                                        <field name="quantity"/>
+                                        <field name="unit_price"/>
+                                        <field name="total_price" readonly="1"/>
+                                    </list>
+                                </field>
+                            </page>
                             <page string="Thông tin lỗi" name="error">
                                 <field name="error_content" placeholder="Nội dung lỗi..."/>
                             </page>
@@ -166,7 +133,7 @@
             </field>
         </record>
 
-        <!-- Order Search View -->
+        <!-- Search View -->
         <record id="view_physical_gift_order_search" model="ir.ui.view">
             <field name="name">physical.gift.order.search</field>
             <field name="model">physical.gift.order</field>
@@ -174,8 +141,6 @@
                 <search string="Tìm kiếm đơn hàng">
                     <field name="program_id"/>
                     <field name="order_time"/>
-                    <field name="sku"/>
-                    <field name="original_sku"/>
                     <field name="recipient_phone"/>
                     <field name="voucher_code"/>
                     <field name="name"/>
@@ -203,8 +168,6 @@
                             domain="[('payment_status', '=', 'failed')]"/>
                     <group expand="0" string="Group By">
                         <filter string="Chương trình" name="group_program" context="{'group_by': 'program_id'}"/>
-                        <filter string="Trạng thái đơn hàng" name="group_order_status"
-                                context="{'group_by': 'order_status'}"/>
                         <filter string="Trạng thái thanh toán" name="group_payment_status"
                                 context="{'group_by': 'payment_status'}"/>
                         <filter string="Đơn vị vận chuyển" name="group_shipping"
@@ -217,7 +180,7 @@
             </field>
         </record>
 
-        <!-- Order Action -->
+        <!-- Action Window -->
         <record id="action_physical_gift_order" model="ir.actions.act_window">
             <field name="name">Đơn hàng</field>
             <field name="res_model">physical.gift.order</field>
@@ -232,5 +195,6 @@
                 </p>
             </field>
         </record>
+
     </data>
-</odoo> 
+</odoo>

@@ -411,13 +411,10 @@
         </record>
 
 
-        <!-- Demo Order Data -->
+        <!-- Đơn hàng -->
         <record id="demo_order_1" model="physical.gift.order">
             <field name="name">ORD-2025-001</field>
             <field name="program_id" ref="demo_program_1"/>
-            <field name="product_name">Ví da nam vân hạt cao cấp Lata LVN92 màu đen</field>
-            <field name="sku">GT-001382</field>
-            <field name="original_sku">GT-001382</field>
             <field name="recipient_name">Nguyễn Văn An</field>
             <field name="recipient_phone">0901234567</field>
             <field name="total_order_value">295000</field>
@@ -430,102 +427,14 @@
             <field name="product_type">physical</field>
             <field name="order_time">2025-06-01 10:30:00</field>
             <field name="order_status">delivered</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
-            <field name="import_id" ref="demo_import_1"/>
         </record>
 
-        <record id="demo_order_2" model="physical.gift.order">
-            <field name="name">ORD-2025-002</field>
-            <field name="program_id" ref="demo_program_1"/>
-            <field name="product_name">Nón bảo hiểm trẻ em (Màu xanh)</field>
-            <field name="sku">AIA-400-006</field>
-            <field name="original_sku">AIA-400-006</field>
-            <field name="recipient_name">Trần Thị Bình</field>
-            <field name="recipient_phone">0912345678</field>
-            <field name="total_order_value">800000</field>
-            <field name="voucher_code">VTB002</field>
-            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
-            <field name="waybill_code">VTP987654321</field>
-            <field name="payment_gateway">credit_card</field>
-            <field name="payment_status">paid</field>
-            <field name="transaction_code">TXN002</field>
-            <field name="product_type">physical</field>
-            <field name="order_time">2025-06-02 14:15:00</field>
-            <field name="order_status">shipped</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
-            <field name="import_id" ref="demo_import_2"/>
-        </record>
-
-        <record id="demo_order_3" model="physical.gift.order">
-            <field name="name">ORD-2025-003</field>
-            <field name="program_id" ref="demo_program_2"/>
-            <field name="product_name">Giá Đỡ Laptop Kim Loại Cao Cấp ACOME ALS01 Sliver</field>
-            <field name="sku">TGD-001</field>
-            <field name="original_sku">TGD-001</field>
-            <field name="recipient_name">Lê Văn Cường</field>
-            <field name="recipient_phone">0923456789</field>
-            <field name="total_order_value">200000</field>
-            <field name="voucher_code">AIA001</field>
-            <field name="shipping_unit_id" ref="demo_shipping_unit_3"/>
-            <field name="waybill_code">JTE111222333</field>
-            <field name="payment_gateway">e_wallet</field>
-            <field name="payment_status">pending</field>
-            <field name="transaction_code">TXN003</field>
-            <field name="product_type">physical</field>
-            <field name="order_time">2025-06-03 09:45:00</field>
-            <field name="order_status">confirmed</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
-            <field name="import_id" ref="demo_import_4"/>
-        </record>
-
-        <record id="demo_order_4" model="physical.gift.order">
-            <field name="name">ORD-2025-004</field>
-            <field name="program_id" ref="demo_program_2"/>
-            <field name="product_name">Bộ Bàn Phím Và Chuột Quang Không Dây ROBOT KM3000Red + Black</field>
-            <field name="sku">TGD-002</field>
-            <field name="original_sku">TGD-002</field>
-            <field name="recipient_name">Phạm Thị Dung</field>
-            <field name="recipient_phone">0934567890</field>
-            <field name="total_order_value">250000</field>
-            <field name="voucher_code">AIA002</field>
-            <field name="shipping_unit_id" ref="demo_shipping_unit_1"/>
-            <field name="waybill_code">GHN456789123</field>
-            <field name="payment_gateway">cash</field>
-            <field name="payment_status">paid</field>
-            <field name="transaction_code">TXN004</field>
-            <field name="product_type">physical</field>
-            <field name="order_time">2025-06-04 16:20:00</field>
-            <field name="order_status">processing</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
-            <field name="import_id" ref="demo_import_5"/>
-        </record>
-
-        <record id="demo_order_5" model="physical.gift.order">
-            <field name="name">ORD-2025-005</field>
-            <field name="program_id" ref="demo_program_1"/>
-            <field name="product_name">Combo Mũ bảo hiểm &amp; Áo mưa</field>
-            <field name="sku">AIA-400-001</field>
-            <field name="original_sku">AIA-400-001</field>
-            <field name="recipient_name">Hoàng Văn Em</field>
-            <field name="recipient_phone">0945678901</field>
-            <field name="total_order_value">400000</field>
-            <field name="voucher_code">VTB003</field>
-            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
-            <field name="waybill_code">VTP555666777</field>
-            <field name="payment_gateway">bank_transfer</field>
-            <field name="payment_status">failed</field>
-            <field name="transaction_code">TXN005</field>
-            <field name="product_type">physical</field>
-            <field name="order_time">2025-06-05 11:30:00</field>
-            <field name="order_status">draft</field>
-            <field name="state">active</field>
-            <field name="active">True</field>
-            <field name="error_content">Thanh toán thất bại do thông tin tài khoản không chính xác</field>
-            <field name="import_id" ref="demo_import_3"/>
+        <!-- Dòng sản phẩm cho đơn hàng trên -->
+        <record id="demo_order_1_line_1" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_1"/>
+            <field name="item_id" ref="demo_item_5"/>
+            <field name="quantity">2</field>
+            <field name="unit_price">147500</field>
         </record>
 
         <!-- Update relationships -->
