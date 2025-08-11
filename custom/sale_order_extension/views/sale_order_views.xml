@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Inherit Sale Order Form View -->
+    <record id="view_sale_order_form_inherit" model="ir.ui.view">
+      <field name="name">sale.order.form.inherit.custom</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <notebook position="inside">
+          <!-- PO Information Tab -->
+          <page string="PO Information" name="po_info">
+            <group>
+              <group string="Purchase Order Details">
+                <field name="po_path"/>
+                <field name="po_number"/>
+              </group>
+              <group string="Order Classification">
+                <field name="order_type"/>
+                <field name="order_status"/>
+                <field name="print_legal"/>
+              </group>
+            </group>
+            <group string="General Notes">
+              <field name="note" nolabel="1" placeholder="Enter general notes for this order..."/>
+            </group>
+          </page>
+          
+          <!-- Delivery Information Tab -->
+          <page string="Delivery Information" name="delivery_info">
+            <group>
+              <group string="Delivery Details">
+                <field name="delivery_address" nolabel="1" placeholder="Enter complete delivery address..."/>
+                <field name="delivery_code"/>
+              </group>
+              <group string="Receiver Information">
+                <field name="receiver_info_1" placeholder="Primary receiver details"/>
+                <field name="receiver_info_2" placeholder="Secondary receiver details"/>
+                <field name="receiver_info_3" placeholder="Tertiary receiver details"/>
+              </group>
+            </group>
+            <group string="Receiving Notes">
+              <field name="receiving_note" nolabel="1" placeholder="Enter special notes for delivery/receiving..."/>
+            </group>
+          </page>
+        </notebook>
+      </field>
+    </record>
+  </data>
+</odoo>
