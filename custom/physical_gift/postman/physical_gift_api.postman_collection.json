@@ -7,13 +7,14 @@
     },
     "variable": [
       { "key": "baseUrl", "value": "http://localhost:8069" },
-      { "key": "brand_id", "value": "1" },
-      { "key": "category_id", "value": "1" },
-      { "key": "item_id", "value": "1" },
-      { "key": "supplier_id", "value": "1" },
-      { "key": "program_id", "value": "1" },
-      { "key": "unit_id", "value": "1" },
-      { "key": "order_id", "value": "1" }
+      { "key": "brand_id", "value": "6" },
+      { "key": "category_id", "value": "5" },
+      { "key": "item_id", "value": "7" },
+      { "key": "supplier_id", "value": "4" },
+      { "key": "program_id", "value": "3" },
+      { "key": "unit_id", "value": "4" },
+      { "key": "order_id", "value": "2" },
+      { "key": "import_id", "value": "6" }
     ],
     "item": [
       {
@@ -22,10 +23,6 @@
           {
             "name": "GET Brands",
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/brands" }
-          },
-          {
-            "name": "GET Brand Detail",
-            "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}" }
           },
           {
             "name": "POST Brand",
@@ -37,10 +34,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name\": \"Brand A\",\n  \"code\": \"BR-A\",\n  \"name_en\": \"Brand A EN\",\n  \"contact_person\": \"Alice\",\n  \"phone\": \"0900000000\",\n  \"email\": \"a@brand.com\",\n  \"address\": \"123 Street\",\n  \"website\": \"https://brand.com\",\n  \"description\": \"desc\",\n  \"partnership_date\": \"2025-01-01\",\n  \"contract_number\": \"C-01\",\n  \"commission_rate\": 5,\n  \"sequence\": 10,\n  \"active\": true\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('brand_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Brand (Update)",
+            "name": "PUT Brand",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -62,7 +73,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/categories" }
           },
           {
-            "name": "POST Category (Create)",
+            "name": "POST Category",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -71,10 +82,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name\": \"Cate 1\",\n  \"code\": \"C1\",\n  \"name_en\": \"Cate 1 EN\",\n  \"description\": \"desc\",\n  \"description_en\": \"desc en\",\n  \"sequence\": 10,\n  \"active\": true\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('category_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Category (Update)",
+            "name": "PUT Category",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -96,7 +121,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/items" }
           },
           {
-            "name": "POST Item (Create)",
+            "name": "POST Item",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -105,10 +130,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name\": \"Gift 1\",\n  \"brand_id\": 1,\n  \"category_id\": 1,\n  \"supplier_id\": 1,\n  \"quantity\": 10,\n  \"unit_price\": 10000,\n  \"active\": true\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('item_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Item (Update)",
+            "name": "PUT Item",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -130,7 +169,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/suppliers" }
           },
           {
-            "name": "POST Supplier (Create)",
+            "name": "POST Supplier",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -139,10 +178,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name\": \"SUP1\",\n  \"full_name\": \"Supplier One\",\n  \"representative_name\": \"Bob\",\n  \"tax_code\": \"0123456789\",\n  \"account_number\": \"123456789\",\n  \"bank_name\": \"ABC\",\n  \"warehouse_code\": \"WH1\",\n  \"state\": \"active\"\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('supplier_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Supplier (Update)",
+            "name": "PUT Supplier",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -164,7 +217,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/programs" }
           },
           {
-            "name": "POST Program (Create)",
+            "name": "POST Program",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -173,10 +226,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name_vi\": \"Chương trình A\",\n  \"name_en\": \"Program A\",\n  \"company_id\": 1,\n  \"order_creator_id\": 2,\n  \"brand_redeem_id\": 1,\n  \"store_redeem_id\": 1,\n  \"bill_number\": \"B-01\",\n  \"creator_id\": 2,\n  \"active\": true,\n  \"description\": \"desc\",\n  \"start_date\": \"2025-01-01\",\n  \"end_date\": \"2025-12-31\",\n  \"category_ids\": [1,2]\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('program_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Program (Update)",
+            "name": "PUT Program",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -198,7 +265,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/shipping-units" }
           },
           {
-            "name": "POST Shipping Unit (Create)",
+            "name": "POST Shipping Unit",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -207,10 +274,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"name\": \"GHN\",\n  \"code\": \"GHN\",\n  \"state\": \"active\",\n  \"description\": \"desc\",\n  \"contact_info\": \"contact\",\n  \"website\": \"https://ghn.vn\",\n  \"phone\": \"0900\",\n  \"email\": \"ghn@example.com\",\n  \"address\": \"HCM\"\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('unit_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Shipping Unit (Update)",
+            "name": "PUT Shipping Unit",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -225,6 +306,54 @@
         ]
       },
       {
+        "name": "Imports",
+        "item": [
+          {
+            "name": "GET Imports",
+            "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/imports" }
+          },
+          {
+            "name": "POST Import",
+            "request": {
+              "method": "POST",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{baseUrl}}/api/physical-gift/imports",
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"New\",\n  \"import_date\": \"2025-01-01\",\n  \"supplier_id\": {{supplier_id}},\n  \"program_id\": {{program_id}},\n  \"notes\": \"Ghi chú\",\n  \"lines\": [\n    {\n      \"item_id\": {{item_id}},\n      \"sku\": \"SKU-001\",\n      \"import_quantity\": 5,\n      \"export_return_quantity\": 0,\n      \"import_price_excl_vat\": 100000,\n      \"sale_price_incl_vat\": 120000,\n      \"vat_percentage\": 10,\n      \"points\": 0\n    }\n  ]\n}"
+              }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('import_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "name": "PUT Import",
+            "request": {
+              "method": "PUT",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "url": "{{baseUrl}}/api/physical-gift/imports/{{import_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"notes\": \"Cập nhật ghi chú\",\n  \"state\": \"confirmed\"\n}" }
+            }
+          },
+          {
+            "name": "DELETE Import",
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/imports/{{import_id}}" }
+          }
+        ]
+      },
+      {
         "name": "Orders",
         "item": [
           {
@@ -232,7 +361,7 @@
             "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/orders" }
           },
           {
-            "name": "POST Order (Create)",
+            "name": "POST Order",
             "request": {
               "method": "POST",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -241,10 +370,24 @@
                 "mode": "raw",
                 "raw": "{\n  \"program_id\": 1,\n  \"recipient_name\": \"Nguyen Van A\",\n  \"recipient_phone\": \"0900000000\",\n  \"total_order_value\": 100000,\n  \"voucher_code\": \"ABC123\",\n  \"shipping_unit_id\": 1,\n  \"waybill_code\": \"WB0001\",\n  \"payment_gateway\": \"momo\",\n  \"payment_status\": \"pending\",\n  \"transaction_code\": \"TX123\",\n  \"product_type\": \"gift\",\n  \"order_status\": \"draft\",\n  \"error_content\": null,\n  \"order_time\": \"2025-01-01 12:00:00\"\n}"
               }
-            }
+            },
+            "event": [
+              {
+                "listen": "test",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const res = pm.response.json();",
+                    "if (res && res.data && res.data.id) {",
+                    "  pm.collectionVariables.set('order_id', String(res.data.id));",
+                    "}"
+                  ]
+                }
+              }
+            ]
           },
           {
-            "name": "PUT Order (Update)",
+            "name": "PUT Order",
             "request": {
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
