@@ -73,3 +73,70 @@ class ItemController(http.Controller):
                 'success': False,
                 'error': str(e)
             }, ensure_ascii=False) 
+
+    @http.route('/api/physical-gift/items', type='http', auth='public', methods=['POST'], csrf=False)
+    def create_item(self, **kwargs):
+        """Tạo sản phẩm quà tặng"""
+        try:
+            data = request.httprequest.get_json()
+            if not data:
+                return json.dumps({'success': False, 'error': 'Dữ liệu không hợp lệ'}, ensure_ascii=False)
+
+            required = ['name']
+            for field in required:
+                if not data.get(field):
+                    return json.dumps({'success': False, 'error': f'Trường {field} là bắt buộc'}, ensure_ascii=False)
+
+            vals = {
+                'name': data.get('name'),
+                'brand_id': int(data['brand_id']) if data.get('brand_id') else False,
+                'category_id': int(data['category_id']) if data.get('category_id') else False,
+                'supplier_id': int(data['supplier_id']) if data.get('supplier_id') else False,
+                'quantity': data.get('quantity', 1),
+                'unit_price': data.get('unit_price', 0.0),
+                'image': data.get('image'),
+                'active': data.get('active', True),
+            }
+            item = request.env['physical.gift.item'].sudo().create(vals)
+            return json.dumps({'success': True, 'data': {'id': item.id}}, ensure_ascii=False)
+        except Exception as e:
+            return json.dumps({'success': False, 'error': str(e)}, ensure_ascii=False)
+
+    @http.route('/api/physical-gift/items/<int:item_id>', type='http', auth='public', methods=['PUT'], csrf=False)
+    def update_item(self, item_id, **kwargs):
+        """Cập nhật sản phẩm"""
+        try:
+            item = request.env['physical.gift.item'].sudo().browse(item_id)
+            if not item.exists():
+                return json.dumps({'success': False, 'error': 'Sản phẩm không tồn tại'}, ensure_ascii=False)
+
+            data = request.httprequest.get_json()
+            if not data:
+                return json.dumps({'success': False, 'error': 'Dữ liệu không hợp lệ'}, ensure_ascii=False)
+
+            allowed = ['name', 'brand_id', 'category_id', 'supplier_id', 'quantity', 'unit_price', 'image', 'active']
+            vals = {}
+            for k in allowed:
+                if k in data:
+                    if k in ['brand_id', 'category_id', 'supplier_id']:
+                        vals[k] = int(data[k]) if data[k] else False
+                    else:
+                        vals[k] = data[k]
+
+            if vals:
+                item.write(vals)
+            return json.dumps({'success': True, 'data': {'id': item.id}}, ensure_ascii=False)
+        except Exception as e:
+            return json.dumps({'success': False, 'error': str(e)}, ensure_ascii=False)
+
+    @http.route('/api/physical-gift/items/<int:item_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
+    def delete_item(self, item_id, **kwargs):
+        """Xoá sản phẩm"""
+        try:
+            item = request.env['physical.gift.item'].sudo().browse(item_id)
+            if not item.exists():
+                return json.dumps({'success': False, 'error': 'Sản phẩm không tồn tại'}, ensure_ascii=False)
+            item.unlink()
+            return json.dumps({'success': True, 'data': {'id': item_id}}, ensure_ascii=False)
+        except Exception as e:
+            return json.dumps({'success': False, 'error': str(e)}, ensure_ascii=False)

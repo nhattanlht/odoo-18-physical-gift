@@ -203,3 +203,15 @@ class OrderController(http.Controller):
                 'success': False,
                 'error': str(e)
             }, ensure_ascii=False) 
+
+    @http.route('/api/physical-gift/orders/<int:order_id>', type='http', auth='public', methods=['DELETE'], csrf=False)
+    def delete_order(self, order_id, **kwargs):
+        """Xoá đơn hàng"""
+        try:
+            order = request.env['physical.gift.order'].sudo().browse(order_id)
+            if not order.exists():
+                return json.dumps({'success': False, 'error': 'Đơn hàng không tồn tại'}, ensure_ascii=False)
+            order.unlink()
+            return json.dumps({'success': True, 'data': {'id': order_id}}, ensure_ascii=False)
+        except Exception as e:
+            return json.dumps({'success': False, 'error': str(e)}, ensure_ascii=False)

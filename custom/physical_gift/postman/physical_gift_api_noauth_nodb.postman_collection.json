@@ -1,0 +1,196 @@
+{
+    "info": {
+      "name": "Odoo 18 - Physical Gift API (No Auth, No DB Param)",
+      "_postman_id": "pg-no-auth-nodb-0001",
+      "description": "Full CRUD for Physical Gift without session/cookie and without ?db param.",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "variable": [
+      { "key": "baseUrl", "value": "http://localhost:8069" },
+      { "key": "brand_id", "value": "1" },
+      { "key": "category_id", "value": "1" },
+      { "key": "item_id", "value": "1" },
+      { "key": "supplier_id", "value": "1" },
+      { "key": "program_id", "value": "1" },
+      { "key": "unit_id", "value": "1" },
+      { "key": "order_id", "value": "1" }
+    ],
+    "item": [
+      {
+        "name": "Brands",
+        "item": [
+          { "name": "GET Brands", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/brands" } },
+          { "name": "GET Brand Detail", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}" } },
+          {
+            "name": "POST Brand (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/brands",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Brand A\",\n  \"code\": \"BR-A\",\n  \"name_en\": \"Brand A EN\",\n  \"contact_person\": \"Alice\",\n  \"phone\": \"0900000000\",\n  \"email\": \"a@brand.com\",\n  \"address\": \"123 Street\",\n  \"website\": \"https://brand.com\",\n  \"description\": \"desc\",\n  \"partnership_date\": \"2025-01-01\",\n  \"contract_number\": \"C-01\",\n  \"commission_rate\": 5,\n  \"sequence\": 10,\n  \"active\": true\n}" }
+            }
+          },
+          {
+            "name": "PUT Brand (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"name_en\": \"Brand A Updated\",\n  \"commission_rate\": 7\n}" }
+            }
+          },
+          { "name": "DELETE Brand", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}" } }
+        ]
+      },
+      {
+        "name": "Categories",
+        "item": [
+          { "name": "GET Categories", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/categories" } },
+          {
+            "name": "POST Category (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/categories",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Cate 1\",\n  \"code\": \"C1\",\n  \"name_en\": \"Cate 1 EN\",\n  \"description\": \"desc\",\n  \"description_en\": \"desc en\",\n  \"sequence\": 10,\n  \"active\": true\n}" }
+            }
+          },
+          {
+            "name": "PUT Category (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/categories/{{category_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Cate 1 Updated\",\n  \"sequence\": 20\n}" }
+            }
+          },
+          { "name": "DELETE Category", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/categories/{{category_id}}" } }
+        ]
+      },
+      {
+        "name": "Items",
+        "item": [
+          { "name": "GET Items", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/items" } },
+          {
+            "name": "POST Item (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/items",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Gift 1\",\n  \"brand_id\": 1,\n  \"category_id\": 1,\n  \"supplier_id\": 1,\n  \"quantity\": 10,\n  \"unit_price\": 10000,\n  \"active\": true\n}" }
+            }
+          },
+          {
+            "name": "PUT Item (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/items/{{item_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Gift 1 Updated\",\n  \"quantity\": 20,\n  \"unit_price\": 12000\n}" }
+            }
+          },
+          { "name": "DELETE Item", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/items/{{item_id}}" } }
+        ]
+      },
+      {
+        "name": "Suppliers",
+        "item": [
+          { "name": "GET Suppliers", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/suppliers" } },
+          {
+            "name": "POST Supplier (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/suppliers",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"SUP1\",\n  \"full_name\": \"Supplier One\",\n  \"representative_name\": \"Bob\",\n  \"tax_code\": \"0123456789\",\n  \"account_number\": \"123456789\",\n  \"bank_name\": \"ABC\",\n  \"warehouse_code\": \"WH1\",\n  \"state\": \"active\"\n}" }
+            }
+          },
+          {
+            "name": "PUT Supplier (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/suppliers/{{supplier_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"full_name\": \"Supplier One Updated\",\n  \"state\": \"inactive\"\n}" }
+            }
+          },
+          { "name": "DELETE Supplier", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/suppliers/{{supplier_id}}" } }
+        ]
+      },
+      {
+        "name": "Programs",
+        "item": [
+          { "name": "GET Programs", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/programs" } },
+          {
+            "name": "POST Program (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/programs",
+              "body": { "mode": "raw", "raw": "{\n  \"name_vi\": \"Chương trình A\",\n  \"name_en\": \"Program A\",\n  \"company_id\": 1,\n  \"order_creator_id\": 2,\n  \"brand_redeem_id\": 1,\n  \"store_redeem_id\": 1,\n  \"bill_number\": \"B-01\",\n  \"creator_id\": 2,\n  \"active\": true,\n  \"description\": \"desc\",\n  \"start_date\": \"2025-01-01\",\n  \"end_date\": \"2025-12-31\",\n  \"category_ids\": [1,2]\n}" }
+            }
+          },
+          {
+            "name": "PUT Program (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/programs/{{program_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"name_en\": \"Program A Updated\",\n  \"category_ids\": [1]\n}" }
+            }
+          },
+          { "name": "DELETE Program", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/programs/{{program_id}}" } }
+        ]
+      },
+      {
+        "name": "Shipping Units",
+        "item": [
+          { "name": "GET Shipping Units", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/shipping-units" } },
+          {
+            "name": "POST Shipping Unit (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/shipping-units",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"GHN\",\n  \"code\": \"GHN\",\n  \"state\": \"active\",\n  \"description\": \"desc\",\n  \"contact_info\": \"contact\",\n  \"website\": \"https://ghn.vn\",\n  \"phone\": \"0900\",\n  \"email\": \"ghn@example.com\",\n  \"address\": \"HCM\"\n}" }
+            }
+          },
+          {
+            "name": "PUT Shipping Unit (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/shipping-units/{{unit_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"GHN Updated\",\n  \"state\": \"inactive\"\n}" }
+            }
+          },
+          { "name": "DELETE Shipping Unit", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/shipping-units/{{unit_id}}" } }
+        ]
+      },
+      {
+        "name": "Orders",
+        "item": [
+          { "name": "GET Orders", "request": { "method": "GET", "url": "{{baseUrl}}/api/physical-gift/orders" } },
+          {
+            "name": "POST Order (Create)",
+            "request": {
+              "method": "POST",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/orders",
+              "body": { "mode": "raw", "raw": "{\n  \"program_id\": 1,\n  \"recipient_name\": \"Nguyen Van A\",\n  \"recipient_phone\": \"0900000000\",\n  \"total_order_value\": 100000,\n  \"voucher_code\": \"ABC123\",\n  \"shipping_unit_id\": 1,\n  \"waybill_code\": \"WB0001\",\n  \"payment_gateway\": \"momo\",\n  \"payment_status\": \"pending\",\n  \"transaction_code\": \"TX123\",\n  \"product_type\": \"gift\",\n  \"order_status\": \"draft\",\n  \"error_content\": null,\n  \"order_time\": \"2025-01-01 12:00:00\"\n}" }
+            }
+          },
+          {
+            "name": "PUT Order (Update)",
+            "request": {
+              "method": "PUT",
+              "header": [ { "key": "Content-Type", "value": "application/json" } ],
+              "url": "{{baseUrl}}/api/physical-gift/orders/{{order_id}}",
+              "body": { "mode": "raw", "raw": "{\n  \"recipient_name\": \"Nguyen Van B\",\n  \"order_status\": \"confirmed\",\n  \"payment_status\": \"paid\",\n  \"waybill_code\": \"WB0002\"\n}" }
+            }
+          },
+          { "name": "DELETE Order", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/orders/{{order_id}}" } }
+        ]
+      }
+    ]
+  }
