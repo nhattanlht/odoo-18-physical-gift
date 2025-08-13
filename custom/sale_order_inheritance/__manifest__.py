@@ -1,5 +1,5 @@
 {
-    'name': 'Sale Order Extension',
+    'name': 'Sale Order Inheritance',
     'version': '1.0',
     'category': 'Sales',
     'summary': 'Extend sale order with additional information fields',
