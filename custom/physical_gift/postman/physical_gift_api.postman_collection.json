@@ -7,14 +7,14 @@
     },
     "variable": [
       { "key": "baseUrl", "value": "http://localhost:8069" },
-      { "key": "brand_id", "value": "6" },
-      { "key": "category_id", "value": "5" },
-      { "key": "item_id", "value": "7" },
-      { "key": "supplier_id", "value": "4" },
-      { "key": "program_id", "value": "3" },
-      { "key": "unit_id", "value": "4" },
-      { "key": "order_id", "value": "2" },
-      { "key": "import_id", "value": "6" }
+      { "key": "brand_id", "value": "1" },
+      { "key": "category_id", "value": "1" },
+      { "key": "item_id", "value": "1" },
+      { "key": "supplier_id", "value": "1" },
+      { "key": "program_id", "value": "1" },
+      { "key": "unit_id", "value": "1" },
+      { "key": "order_id", "value": "1" },
+      { "key": "import_id", "value": "1" }
     ],
     "item": [
       {
@@ -57,11 +57,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"name_en\": \"Brand A Updated\",\n  \"commission_rate\": 7\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('brand_id');",
+                    "if (v) { pm.variables.set('brand_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Brand",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/brands/{{brand_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('brand_id');",
+                    "if (v) { pm.variables.set('brand_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -105,11 +129,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/categories/{{category_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"name\": \"Cate 1 Updated\",\n  \"sequence\": 20\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('category_id');",
+                    "if (v) { pm.variables.set('category_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Category",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/categories/{{category_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/categories/{{category_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('category_id');",
+                    "if (v) { pm.variables.set('category_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -153,11 +201,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/items/{{item_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"name\": \"Gift 1 Updated\",\n  \"quantity\": 20,\n  \"unit_price\": 12000\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('item_id');",
+                    "if (v) { pm.variables.set('item_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Item",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/items/{{item_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/items/{{item_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('item_id');",
+                    "if (v) { pm.variables.set('item_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -176,7 +248,7 @@
               "url": "{{baseUrl}}/api/physical-gift/suppliers",
               "body": {
                 "mode": "raw",
-                "raw": "{\n  \"name\": \"SUP1\",\n  \"full_name\": \"Supplier One\",\n  \"representative_name\": \"Bob\",\n  \"tax_code\": \"0123456789\",\n  \"account_number\": \"123456789\",\n  \"bank_name\": \"ABC\",\n  \"warehouse_code\": \"WH1\",\n  \"state\": \"active\"\n}"
+                "raw": "{\n  \"name\": \"SUP1\",\n  \"full_name\": \"Supplier One\",\n  \"representative_name\": \"Bob\",\n  \"tax_code\": \"0909123321\",\n  \"account_number\": \"123456789\",\n  \"bank_name\": \"ABC\",\n  \"warehouse_code\": \"WH1\",\n  \"state\": \"active\"\n}"
               }
             },
             "event": [
@@ -201,11 +273,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/suppliers/{{supplier_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"full_name\": \"Supplier One Updated\",\n  \"state\": \"inactive\"\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('supplier_id');",
+                    "if (v) { pm.variables.set('supplier_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Supplier",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/suppliers/{{supplier_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/suppliers/{{supplier_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('supplier_id');",
+                    "if (v) { pm.variables.set('supplier_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -249,11 +345,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/programs/{{program_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"name_en\": \"Program A Updated\",\n  \"category_ids\": [1]\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('program_id');",
+                    "if (v) { pm.variables.set('program_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Program",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/programs/{{program_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/programs/{{program_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('program_id');",
+                    "if (v) { pm.variables.set('program_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -272,7 +392,7 @@
               "url": "{{baseUrl}}/api/physical-gift/shipping-units",
               "body": {
                 "mode": "raw",
-                "raw": "{\n  \"name\": \"GHN\",\n  \"code\": \"GHN\",\n  \"state\": \"active\",\n  \"description\": \"desc\",\n  \"contact_info\": \"contact\",\n  \"website\": \"https://ghn.vn\",\n  \"phone\": \"0900\",\n  \"email\": \"ghn@example.com\",\n  \"address\": \"HCM\"\n}"
+                "raw": "{\n  \"name\": \"Ninja Van\",\n  \"code\": \"NJV\",\n  \"state\": \"active\",\n  \"description\": \"desc\",\n  \"contact_info\": \"contact\",\n  \"website\": \"https://ghn.vn\",\n  \"phone\": \"0900\",\n  \"email\": \"ghn@example.com\",\n  \"address\": \"HCM\"\n}"
               }
             },
             "event": [
@@ -296,12 +416,36 @@
               "method": "PUT",
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/shipping-units/{{unit_id}}",
-              "body": { "mode": "raw", "raw": "{\n  \"name\": \"GHN Updated\",\n  \"state\": \"inactive\"\n}" }
-            }
+              "body": { "mode": "raw", "raw": "{\n  \"name\": \"Ninja Van Updated\",\n  \"state\": \"inactive\"\n}" }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('unit_id');",
+                    "if (v) { pm.variables.set('unit_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Shipping Unit",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/shipping-units/{{unit_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/shipping-units/{{unit_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('unit_id');",
+                    "if (v) { pm.variables.set('unit_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -320,7 +464,7 @@
               "url": "{{baseUrl}}/api/physical-gift/imports",
               "body": {
                 "mode": "raw",
-                "raw": "{\n  \"name\": \"New\",\n  \"import_date\": \"2025-01-01\",\n  \"supplier_id\": {{supplier_id}},\n  \"program_id\": {{program_id}},\n  \"notes\": \"Ghi chú\",\n  \"lines\": [\n    {\n      \"item_id\": {{item_id}},\n      \"sku\": \"SKU-001\",\n      \"import_quantity\": 5,\n      \"export_return_quantity\": 0,\n      \"import_price_excl_vat\": 100000,\n      \"sale_price_incl_vat\": 120000,\n      \"vat_percentage\": 10,\n      \"points\": 0\n    }\n  ]\n}"
+                "raw": "{\n  \"name\": \"New\",\n  \"import_date\": \"2025-01-01\",\n  \"supplier_id\": 1,\n  \"program_id\": 1,\n  \"notes\": \"Ghi chú\",\n  \"lines\": [\n    {\n      \"item_id\": 1,\n      \"sku\": \"SKU-001\",\n      \"import_quantity\": 5,\n      \"export_return_quantity\": 0,\n      \"import_price_excl_vat\": 100000,\n      \"sale_price_incl_vat\": 120000,\n      \"vat_percentage\": 10,\n      \"points\": 0\n    }\n  ]\n}"
               }
             },
             "event": [
@@ -345,11 +489,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/imports/{{import_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"notes\": \"Cập nhật ghi chú\",\n  \"state\": \"confirmed\"\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('import_id');",
+                    "if (v) { pm.variables.set('import_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Import",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/imports/{{import_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/imports/{{import_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('import_id');",
+                    "if (v) { pm.variables.set('import_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       },
@@ -368,7 +536,7 @@
               "url": "{{baseUrl}}/api/physical-gift/orders",
               "body": {
                 "mode": "raw",
-                "raw": "{\n  \"program_id\": 1,\n  \"recipient_name\": \"Nguyen Van A\",\n  \"recipient_phone\": \"0900000000\",\n  \"total_order_value\": 100000,\n  \"voucher_code\": \"ABC123\",\n  \"shipping_unit_id\": 1,\n  \"waybill_code\": \"WB0001\",\n  \"payment_gateway\": \"momo\",\n  \"payment_status\": \"pending\",\n  \"transaction_code\": \"TX123\",\n  \"product_type\": \"gift\",\n  \"order_status\": \"draft\",\n  \"error_content\": null,\n  \"order_time\": \"2025-01-01 12:00:00\"\n}"
+                "raw": "{\n  \"program_id\": 1,\n  \"recipient_name\": \"Nguyen Van A\",\n  \"recipient_phone\": \"0900000000\",\n  \"total_order_value\": 100000,\n  \"voucher_code\": \"ABC123\",\n  \"shipping_unit_id\": 1,\n  \"waybill_code\": \"WB0001\",\n  \"payment_gateway\": \"e_wallet\",\n  \"payment_status\": \"pending\",\n  \"transaction_code\": \"TX123\",\n  \"product_type\": \"physical\",\n  \"order_status\": \"draft\",\n  \"error_content\": null,\n  \"order_time\": \"2025-01-01 12:00:00\"\n}"
               }
             },
             "event": [
@@ -393,11 +561,35 @@
               "header": [{ "key": "Content-Type", "value": "application/json" }],
               "url": "{{baseUrl}}/api/physical-gift/orders/{{order_id}}",
               "body": { "mode": "raw", "raw": "{\n  \"recipient_name\": \"Nguyen Van B\",\n  \"order_status\": \"confirmed\",\n  \"payment_status\": \"paid\",\n  \"waybill_code\": \"WB0002\"\n}" }
-            }
+            },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('order_id');",
+                    "if (v) { pm.variables.set('order_id', v); }"
+                  ]
+                }
+              }
+            ]
           },
           {
             "name": "DELETE Order",
-            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/orders/{{order_id}}" }
+            "request": { "method": "DELETE", "url": "{{baseUrl}}/api/physical-gift/orders/{{order_id}}" },
+            "event": [
+              {
+                "listen": "prerequest",
+                "script": {
+                  "type": "text/javascript",
+                  "exec": [
+                    "const v = pm.collectionVariables.get('order_id');",
+                    "if (v) { pm.variables.set('order_id', v); }"
+                  ]
+                }
+              }
+            ]
           }
         ]
       }

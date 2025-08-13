@@ -8,11 +8,9 @@ custom/physical_gift/
 ├── controllers/
 │   ├── __init__.py
 │   └── main.py
-├── __init__.py (đã cập nhật)
+├── __init__.py
 ├── API_DOCUMENTATION.md
-├── API_README.md
 ├── API_SUMMARY.md
-└── test_api.py
 ```
 
 ### 🔧 Các file đã tạo/cập nhật:
@@ -23,7 +21,6 @@ custom/physical_gift/
 4. **`models/physical_gift_brand.py`** - Đã thêm trường `state`
 5. **`API_DOCUMENTATION.md`** - Documentation chi tiết
 6. **`API_README.md`** - Hướng dẫn sử dụng nhanh
-7. **`test_api.py`** - Script test API
 
 ### 🌐 API Endpoints đã tạo:
 
