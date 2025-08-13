@@ -437,6 +437,104 @@
             <field name="unit_price">147500</field>
         </record>
 
+        <record id="demo_order_2" model="physical.gift.order">
+            <field name="name">ORD-2025-002</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="recipient_name">Trần Thị Mai</field>
+            <field name="recipient_phone">0912345678</field>
+            <field name="total_order_value">1200000</field>
+            <field name="voucher_code">VTB002</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
+            <field name="waybill_code">VTP987654321</field>
+            <field name="payment_gateway">e_wallet</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN002</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-07-15 14:00:00</field>
+            <field name="order_status">shipped</field>
+        </record>
+        <record id="demo_order_2_line_1" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_2"/>
+            <field name="item_id" ref="demo_item_2"/>
+            <field name="quantity">1</field>
+            <field name="unit_price">800000</field>
+        </record>
+        <record id="demo_order_2_line_2" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_2"/>
+            <field name="item_id" ref="demo_item_3"/>
+            <field name="quantity">1</field>
+            <field name="unit_price">400000</field>
+        </record>
+
+        <record id="demo_order_3" model="physical.gift.order">
+            <field name="name">ORD-2025-003</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="recipient_name">Lê Văn Hùng</field>
+            <field name="recipient_phone">0987654321</field>
+            <field name="total_order_value">590000</field>
+            <field name="voucher_code"></field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_1"/>
+            <field name="waybill_code">GHN112233445</field>
+            <field name="payment_gateway">e_wallet</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN003</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-08-01 09:15:00</field>
+            <field name="order_status">processing</field>
+        </record>
+        <record id="demo_order_3_line_1" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_3"/>
+            <field name="item_id" ref="demo_item_1"/>
+            <field name="quantity">2</field>
+            <field name="unit_price">295000</field>
+        </record>
+
+        <record id="demo_order_4" model="physical.gift.order">
+            <field name="name">ORD-2025-004</field>
+            <field name="program_id" ref="demo_program_1"/>
+            <field name="recipient_name">Phạm Thị Lan</field>
+            <field name="recipient_phone">0933445566</field>
+            <field name="total_order_value">800000</field>
+            <field name="voucher_code">VTB004</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_2"/>
+            <field name="waybill_code"></field>
+            <field name="payment_gateway">e_wallet</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN004</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-08-10 11:00:00</field>
+            <field name="order_status">cancelled</field>
+        </record>
+        <record id="demo_order_4_line_1" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_4"/>
+            <field name="item_id" ref="demo_item_2"/>
+            <field name="quantity">1</field>
+            <field name="unit_price">800000</field>
+        </record>
+
+        <record id="demo_order_5" model="physical.gift.order">
+            <field name="name">ORD-2025-005</field>
+            <field name="program_id" ref="demo_program_2"/>
+            <field name="recipient_name">Hoàng Văn Tuấn</field>
+            <field name="recipient_phone">0977889900</field>
+            <field name="total_order_value">210000</field>
+            <field name="voucher_code">AIA001</field>
+            <field name="shipping_unit_id" ref="demo_shipping_unit_1"/>
+            <field name="waybill_code">GHN667788990</field>
+            <field name="payment_gateway">e_wallet</field>
+            <field name="payment_status">paid</field>
+            <field name="transaction_code">TXN005</field>
+            <field name="product_type">physical</field>
+            <field name="order_time">2025-07-20 16:45:00</field>
+            <field name="order_status">delivered</field>
+        </record>
+        <record id="demo_order_5_line_1" model="physical.gift.order.line">
+            <field name="order_id" ref="demo_order_5"/>
+            <field name="item_id" ref="demo_item_4"/>
+            <field name="quantity">1</field>
+            <field name="unit_price">210000</field>
+        </record>
+
         <!-- Update relationships -->
         <!-- Update program-category relationships -->
         <record id="demo_program_1" model="physical.gift.program">

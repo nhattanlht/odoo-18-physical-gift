@@ -31,6 +31,8 @@
         'views/physical_gift_shipping_unit_views.xml',
         'views/physical_gift_import_views.xml',
         'views/physical_gift_order_views.xml',
+        'report/physical_gift_order_templates.xml',
+        'report/physical_gift_order_reports.xml',
         'views/physical_gift_menus.xml',    ],
     'assets': {
         'web.assets_backend': [

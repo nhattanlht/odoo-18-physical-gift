@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Sub-template: order lines table -->
+        <template id="report_order_lines_table">
+            <t t-set="lines" t-value="o.order_line_ids"/>
+            <t t-if="lines">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th class="text-end">Qty</th>
+                            <th class="text-end">Unit Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr t-foreach="lines" t-as="l">
+                            <td t-esc="l.item_id.display_name"/>
+                            <td class="text-end" t-esc="l.quantity"/>
+                            <td class="text-end" t-esc="l.unit_price"/>
+                        </tr>
+                    </tbody>
+                </table>
+            </t>
+            <t t-else="">
+                <p>Không có dòng sản phẩm.</p>
+            </t>
+        </template>
+
+        <!-- Main QWeb template for Physical Gift Order PDF -->
+        <template id="report_physical_gift_order_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h2>Physical Gift Order</h2>
+
+                            <div class="row mt-3">
+                                <div class="col-6">
+                                    <p><strong>Mã đơn hàng:</strong> <span t-esc="o.name"/></p>
+                                    <p><strong>Chương trình:</strong> <span t-esc="o.program_id.display_name"/></p>
+                                    <p><strong>Tổng giá trị:</strong> <span t-esc="o.total_order_value"/></p>
+                                    <p><strong>Trạng thái đơn:</strong> <span t-esc="o.order_status"/></p>
+                                </div>
+                                <div class="col-6">
+                                    <p><strong>Người nhận:</strong> <span t-esc="o.recipient_name"/></p>
+                                    <p><strong>SĐT:</strong> <span t-esc="o.recipient_phone"/></p>
+                                    <p><strong>Đơn vị VC:</strong> <span t-esc="o.shipping_unit_id.display_name"/></p>
+                                    <p><strong>Mã vận đơn:</strong> <span t-esc="o.waybill_code"/></p>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <p><strong>Cổng thanh toán:</strong> <span t-esc="o.payment_gateway"/></p>
+                                <p><strong>Trạng thái thanh toán:</strong> <span t-esc="o.payment_status"/></p>
+                                <p><strong>Thời gian đặt:</strong> <span t-esc="o.order_time"/></p>
+                            </div>
+
+                            <div class="mt-3">
+                                <t t-call="physical_gift.report_order_lines_table"/>
+                            </div>
+
+                            <t t-if="o.error_content">
+                                <div class="mt-3">
+                                    <p><strong>Lỗi:</strong></p>
+                                    <p t-esc="o.error_content"/>
+                                </div>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>
+

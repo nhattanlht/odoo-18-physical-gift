@@ -67,6 +67,11 @@
             <field name="arch" type="xml">
                 <form string="Đơn hàng">
                     <header>
+                        <button name="%(physical_gift.action_report_physical_gift_order)d"
+                                string="In đơn hàng"
+                                type="action"
+                                class="btn-primary"
+                                invisible="(not id) or (name == 'New')"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
