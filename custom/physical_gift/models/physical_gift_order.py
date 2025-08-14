@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError
+import io
+import base64
+from datetime import datetime
+try:
+    import xlsxwriter  # type: ignore
+except Exception:  # pragma: no cover - optional dependency
+    xlsxwriter = None
 
 
 class PhysicalGiftOrder(models.Model):
@@ -189,6 +196,93 @@ class PhysicalGiftOrder(models.Model):
             name = f"{record.name} - {record.recipient_name}"
             result.append((record.id, name))
         return result
+
+    def action_export_excel(self):
+        """Generate a formatted Excel file for selected orders and return a download action."""
+        if xlsxwriter is None:
+            raise UserError(_("Module xlsxwriter is required to export Excel. Please install python-xlsxwriter."))
+
+        orders = self
+        if not orders:
+            raise UserError(_("No orders to export."))
+
+        output = io.BytesIO()
+        workbook = xlsxwriter.Workbook(output, {"in_memory": True})
+        worksheet = workbook.add_worksheet("Orders")
+
+        # Formats
+        title_format = workbook.add_format({
+            "bold": True, "font_size": 14, "align": "center", "valign": "vcenter"
+        })
+        header_format = workbook.add_format({
+            "bold": True, "font_color": "white", "bg_color": "#4472C4",
+            "border": 1, "align": "center", "valign": "vcenter"
+        })
+        text_format = workbook.add_format({"border": 1, "valign": "vcenter"})
+        center_format = workbook.add_format({"border": 1, "align": "center", "valign": "vcenter"})
+        number_format = workbook.add_format({"border": 1, "align": "right", "valign": "vcenter", "num_format": "#,##0.00"})
+
+        # Column settings
+        columns = [
+            ("Mã đơn", 15),
+            ("Chương trình", 25),
+            ("Người nhận", 20),
+            ("SĐT", 15),
+            ("Tổng tiền", 15),
+            ("Trạng thái", 15),
+            ("Ngày đặt", 20),
+        ]
+        for idx, (_, width) in enumerate(columns):
+            worksheet.set_column(idx, idx, width)
+
+        # Title (merged)
+        worksheet.merge_range(0, 0, 0, len(columns) - 1, "Physical Gift Orders", title_format)
+
+        # Header row
+        header_row = 1
+        for col, (title, _) in enumerate(columns):
+            worksheet.write(header_row, col, title, header_format)
+
+        # Selection labels for status
+        status_selection = dict(self._fields["order_status"].selection)
+
+        # Data rows
+        row = header_row + 1
+        for order in orders:
+            worksheet.write(row, 0, order.name or "", center_format)
+            worksheet.write(row, 1, order.program_id.display_name or "", text_format)
+            worksheet.write(row, 2, order.recipient_name or "", text_format)
+            worksheet.write(row, 3, order.recipient_phone or "", text_format)
+            worksheet.write_number(row, 4, float(order.total_order_value or 0.0), number_format)
+            worksheet.write(row, 5, status_selection.get(order.order_status, order.order_status or ""), center_format)
+            # Format datetime to string for clarity
+            order_time_str = ""
+            if order.order_time:
+                # Convert to user timezone string
+                dt = fields.Datetime.context_timestamp(self, order.order_time)
+                order_time_str = dt.strftime("%Y-%m-%d %H:%M:%S") if isinstance(dt, datetime) else str(dt)
+            worksheet.write(row, 6, order_time_str, center_format)
+            row += 1
+
+        workbook.close()
+        output.seek(0)
+
+        file_content = base64.b64encode(output.read())
+        filename = "Physical_Gift_Orders_%s.xlsx" % fields.Datetime.now().strftime("%Y%m%d_%H%M%S")
+
+        attachment = self.env["ir.attachment"].create({
+            "name": filename,
+            "type": "binary",
+            "datas": file_content,
+            "res_model": "physical.gift.order",
+            "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        })
+
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/{attachment.id}?download=1",
+            "target": "self",
+        }
 
 
 class PhysicalGiftOrderLine(models.Model):

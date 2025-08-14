@@ -7,7 +7,7 @@
             <field name="name">physical.gift.order.list</field>
             <field name="model">physical.gift.order</field>
             <field name="arch" type="xml">
-                <list string="Danh sách đơn hàng" editable="bottom">
+                <list string="Danh sách đơn hàng">
                     <field name="name"/>
                     <field name="program_id"/>
                     <field name="total_order_value"/>
@@ -24,6 +24,17 @@
                     <field name="error_content"/>
                 </list>
             </field>
+        </record>
+
+        <!-- Server action button in list view: Export Excel -->
+        <record id="action_physical_gift_order_export_excel" model="ir.actions.server">
+            <field name="name">Print Excel</field>
+            <field name="model_id" ref="model_physical_gift_order"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel()</field>
+            <field name="binding_model_id" ref="model_physical_gift_order"/>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">list</field>
         </record>
 
         <!-- Kanban View -->
@@ -68,7 +79,7 @@
                 <form string="Đơn hàng">
                     <header>
                         <button name="%(physical_gift.action_report_physical_gift_order)d"
-                                string="In đơn hàng"
+                                string="Print PDF"
                                 type="action"
                                 class="btn-primary"
                                 invisible="(not id) or (name == 'New')"/>
@@ -118,7 +129,7 @@
                         <notebook>
                             <page string="Dòng sản phẩm" name="order_lines">
                                 <field name="order_line_ids">
-                                    <list editable="bottom">
+                                    <list>
                                         <field name="item_id"/>
                                         <field name="quantity"/>
                                         <field name="unit_price"/>
