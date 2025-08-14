@@ -71,6 +71,41 @@
                 </t>
             </t>
         </template>
+
+        <!-- List view QWeb template for Physical Gift Orders PDF -->
+        <template id="report_physical_gift_order_list_document">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Physical Gift Orders</h2>
+                        <table class="table table-sm mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Mã đơn</th>
+                                    <th>Chương trình</th>
+                                    <th>Người nhận</th>
+                                    <th>SĐT</th>
+                                    <th class="text-end">Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Ngày đặt</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="o">
+                                    <td t-esc="o.name"/>
+                                    <td t-esc="o.program_id.display_name"/>
+                                    <td t-esc="o.recipient_name"/>
+                                    <td t-esc="o.recipient_phone"/>
+                                    <td class="text-end" t-esc="o.total_order_value"/>
+                                    <td t-esc="o.order_status"/>
+                                    <td t-esc="o.order_time"/>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
     </data>
 </odoo>
 

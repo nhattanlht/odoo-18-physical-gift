@@ -10,7 +10,21 @@
             <field name="report_file">physical_gift.report_physical_gift_order_document</field>
             <field name="binding_model_id" ref="model_physical_gift_order"/>
             <field name="binding_type">report</field>
+            <field name="binding_view_types">form</field>
             <field name="print_report_name">('Physical Gift Order - %s') % (object.name or '')</field>
+        </record>
+
+        <!-- List View Report action bound to physical.gift.order -->
+        <record id="action_report_physical_gift_order_list" model="ir.actions.report">
+            <field name="name">Physical Gift Orders (List)</field>
+            <field name="model">physical.gift.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">physical_gift.report_physical_gift_order_list_document</field>
+            <field name="report_file">physical_gift.report_physical_gift_order_list_document</field>
+            <field name="binding_model_id" ref="model_physical_gift_order"/>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">list</field>
+            <field name="print_report_name">'Physical Gift Orders'</field>
         </record>
     </data>
 </odoo>
