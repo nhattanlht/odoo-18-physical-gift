@@ -60,4 +60,11 @@
                parent="menu_physical_gift_root"
                action="action_physical_gift_order"
                sequence="38"/>
+
+    <!-- Phiếu thu Menu -->
+    <menuitem id="menu_physical_gift_receipt"
+               name="Phiếu thu"
+               parent="menu_physical_gift_root"
+               action="action_physical_gift_receipt"
+               sequence="39"/>
 </odoo> 

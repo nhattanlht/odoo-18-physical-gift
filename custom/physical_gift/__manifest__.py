@@ -33,6 +33,7 @@
         'report/physical_gift_order_templates.xml',
         'report/physical_gift_order_reports.xml',
         'views/physical_gift_order_views.xml',
+        'views/physical_gift_receipt_views.xml',
         'views/physical_gift_menus.xml',    ],
     'assets': {
         'web.assets_backend': [

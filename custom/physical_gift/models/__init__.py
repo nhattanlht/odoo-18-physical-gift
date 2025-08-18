@@ -8,4 +8,5 @@ from . import physical_gift_item
 from . import physical_gift_supplier
 from . import physical_gift_shipping_unit
 from . import physical_gift_import
-from . import physical_gift_order 
+from . import physical_gift_order
+from . import physical_gift_receipt 

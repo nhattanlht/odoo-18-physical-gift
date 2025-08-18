@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- List View -->
+        <record id="view_physical_gift_receipt_list" model="ir.ui.view">
+            <field name="name">physical.gift.receipt.list</field>
+            <field name="model">physical.gift.receipt</field>
+            <field name="arch" type="xml">
+                <list string="Danh sách phiếu thu" editable="bottom">
+                    <field name="name"/>
+                    <field name="receipt_date"/>
+                    <field name="payer_name"/>
+                    <field name="order_id"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="payment_method"/>
+                    <field name="state" widget="badge"
+                           decoration-info="state == 'draft'"
+                           decoration-success="state == 'confirmed'"
+                           decoration-danger="state == 'cancelled'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_physical_gift_receipt_form" model="ir.ui.view">
+            <field name="name">physical.gift.receipt.form</field>
+            <field name="model">physical.gift.receipt</field>
+            <field name="arch" type="xml">
+                <form string="Phiếu thu">
+                    <header>
+                        <button name="action_confirm" 
+                                string="Xác nhận" 
+                                type="object" 
+                                class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_cancel" 
+                                string="Hủy" 
+                                type="object" 
+                                class="btn-secondary"
+                                invisible="state == 'cancelled'"/>
+                        <button name="action_reset_to_draft" 
+                                string="Đặt lại nháp" 
+                                type="object" 
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
+                        <button name="action_export_excel_receipt" 
+                                string="Print Excel Receipt" 
+                                type="object" 
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Số phiếu thu..." class="oe_inline"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Thông tin phiếu thu">
+                                <field name="receipt_date"/>
+                                <field name="order_id" placeholder="Chọn đơn hàng..."/>
+                                <field name="amount"/>
+                                <field name="amount_in_words" readonly="1"/>
+                                <field name="payment_method"/>
+                            </group>
+                            <group string="Thông tin người thanh toán">
+                                <field name="payer_name" placeholder="Tên người thanh toán..."/>
+                                <field name="payer_address" placeholder="Địa chỉ..."/>
+                                <field name="payer_tax_code" placeholder="Mã số thuế..."/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Thông tin khác">
+                                <field name="company_id" readonly="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Diễn giải" name="description">
+                                <field name="description" placeholder="Diễn giải nội dung thu..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_physical_gift_receipt_search" model="ir.ui.view">
+            <field name="name">physical.gift.receipt.search</field>
+            <field name="model">physical.gift.receipt</field>
+            <field name="arch" type="xml">
+                <search string="Tìm kiếm phiếu thu">
+                    <field name="name"/>
+                    <field name="payer_name"/>
+                    <field name="order_id"/>
+                    <field name="receipt_date"/>
+                    <field name="amount"/>
+                    <field name="payment_method"/>
+                    <field name="state"/>
+                    <separator/>
+                    <filter string="Nháp" name="draft" domain="[('state', '=', 'draft')]"/>
+                    <filter string="Đã xác nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
+                    <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
+                    <separator/>
+                    <filter string="Hôm nay" name="today" 
+                            domain="[('receipt_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter string="Tuần này" name="this_week" 
+                            domain="[('receipt_date', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
+                    <filter string="Tháng này" name="this_month" 
+                            domain="[('receipt_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-%d'))]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
+                        <filter string="Phương thức thanh toán" name="group_payment_method" context="{'group_by': 'payment_method'}"/>
+                        <filter string="Ngày thu" name="group_receipt_date" context="{'group_by': 'receipt_date'}"/>
+                        <filter string="Đơn hàng" name="group_order" context="{'group_by': 'order_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action Window -->
+        <record id="action_physical_gift_receipt" model="ir.actions.act_window">
+            <field name="name">Phiếu thu</field>
+            <field name="res_model">physical.gift.receipt</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'active_test': False}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Tạo phiếu thu đầu tiên
+                </p>
+                <p>
+                    Quản lý phiếu thu từ đơn hàng, theo dõi thanh toán và xuất Excel.
+                </p>
+            </field>
+        </record>
+
+        <!-- Server action: Export Excel Receipt -->
+        <record id="action_physical_gift_receipt_export_excel" model="ir.actions.server">
+            <field name="name">Print Excel Receipt</field>
+            <field name="model_id" ref="model_physical_gift_receipt"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel_receipt()</field>
+            <field name="binding_model_id" ref="model_physical_gift_receipt"/>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+    </data>
+</odoo>
