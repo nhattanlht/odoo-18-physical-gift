@@ -29,24 +29,29 @@
             <field name="arch" type="xml">
                 <form string="Phiếu thu">
                     <header>
-                        <button name="action_confirm" 
-                                string="Xác nhận" 
-                                type="object" 
+                        <button name="action_confirm"
+                                string="Xác nhận"
+                                type="object"
                                 class="btn-primary"
                                 invisible="state != 'draft'"/>
-                        <button name="action_cancel" 
-                                string="Hủy" 
-                                type="object" 
+                        <button name="action_cancel"
+                                string="Hủy"
+                                type="object"
                                 class="btn-secondary"
                                 invisible="state == 'cancelled'"/>
-                        <button name="action_reset_to_draft" 
-                                string="Đặt lại nháp" 
-                                type="object" 
+                        <button name="action_reset_to_draft"
+                                string="Đặt lại nháp"
+                                type="object"
                                 class="btn-secondary"
                                 invisible="state == 'draft'"/>
-                        <button name="action_export_excel_receipt" 
-                                string="Print Excel Receipt" 
-                                type="object" 
+                        <button name="action_export_excel_receipt"
+                                string="Print Excel Receipt Mẫu 1"
+                                type="object"
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
+                        <button name="action_export_excel_receipt_template_2"
+                                string="Print Excel Receipt Mẫu 2"
+                                type="object"
                                 class="btn-secondary"
                                 invisible="state == 'draft'"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
@@ -109,15 +114,16 @@
                     <filter string="Đã xác nhận" name="confirmed" domain="[('state', '=', 'confirmed')]"/>
                     <filter string="Đã hủy" name="cancelled" domain="[('state', '=', 'cancelled')]"/>
                     <separator/>
-                    <filter string="Hôm nay" name="today" 
+                    <filter string="Hôm nay" name="today"
                             domain="[('receipt_date', '=', context_today().strftime('%Y-%m-%d'))]"/>
-                    <filter string="Tuần này" name="this_week" 
+                    <filter string="Tuần này" name="this_week"
                             domain="[('receipt_date', '&gt;=', (context_today() - relativedelta(weeks=1)).strftime('%Y-%m-%d'))]"/>
-                    <filter string="Tháng này" name="this_month" 
+                    <filter string="Tháng này" name="this_month"
                             domain="[('receipt_date', '&gt;=', (context_today() - relativedelta(months=1)).strftime('%Y-%m-%d'))]"/>
                     <group expand="0" string="Group By">
                         <filter string="Trạng thái" name="group_state" context="{'group_by': 'state'}"/>
-                        <filter string="Phương thức thanh toán" name="group_payment_method" context="{'group_by': 'payment_method'}"/>
+                        <filter string="Phương thức thanh toán" name="group_payment_method"
+                                context="{'group_by': 'payment_method'}"/>
                         <filter string="Ngày thu" name="group_receipt_date" context="{'group_by': 'receipt_date'}"/>
                         <filter string="Đơn hàng" name="group_order" context="{'group_by': 'order_id'}"/>
                     </group>
@@ -142,15 +148,28 @@
         </record>
 
         <!-- Server action: Export Excel Receipt -->
-        <record id="action_physical_gift_receipt_export_excel" model="ir.actions.server">
-            <field name="name">Print Excel Receipt</field>
+        <!-- Print Excel Receipt Mẫu 1 -->
+        <record id="action_physical_gift_receipt_export_excel_template_1" model="ir.actions.server">
+            <field name="name">Excel Receipt Mẫu 1</field>
             <field name="model_id" ref="model_physical_gift_receipt"/>
             <field name="state">code</field>
             <field name="code">action = records.action_export_excel_receipt()</field>
             <field name="binding_model_id" ref="model_physical_gift_receipt"/>
-            <field name="binding_type">report</field>
+            <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
             <field name="binding_view_types">list,form</field>
         </record>
+
+        <!-- Print Excel Receipt Mẫu 2 -->
+        <record id="action_physical_gift_receipt_export_excel_template_2" model="ir.actions.server">
+            <field name="name">Excel Receipt Mẫu 2</field>
+            <field name="model_id" ref="model_physical_gift_receipt"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel_receipt_template_2()</field>
+            <field name="binding_model_id" ref="model_physical_gift_receipt"/>
+            <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
+            <field name="binding_view_types">list,form</field>
+        </record>
+
 
     </data>
 </odoo>
