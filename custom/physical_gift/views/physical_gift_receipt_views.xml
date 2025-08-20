@@ -54,6 +54,21 @@
                                 type="object"
                                 class="btn-secondary"
                                 invisible="state == 'draft'"/>
+                        <button name="action_export_excel_receipt_template_3"
+                                string="Print Excel Receipt Mẫu 3"
+                                type="object"
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
+                        <button name="action_export_excel_receipt_template_4"
+                                string="Print Excel Receipt Mẫu 4"
+                                type="object"
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
+                        <button name="action_export_excel_receipt_template_5"
+                                string="Print Excel Receipt Mẫu 5"
+                                type="object"
+                                class="btn-secondary"
+                                invisible="state == 'draft'"/>
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,cancelled"/>
                     </header>
                     <sheet>
@@ -165,6 +180,39 @@
             <field name="model_id" ref="model_physical_gift_receipt"/>
             <field name="state">code</field>
             <field name="code">action = records.action_export_excel_receipt_template_2()</field>
+            <field name="binding_model_id" ref="model_physical_gift_receipt"/>
+            <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+        <!-- Print Excel Receipt Mẫu 3 -->
+        <record id="action_physical_gift_receipt_export_excel_template_3" model="ir.actions.server">
+            <field name="name">Excel Receipt Mẫu 3</field>
+            <field name="model_id" ref="model_physical_gift_receipt"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel_receipt_template_3()</field>
+            <field name="binding_model_id" ref="model_physical_gift_receipt"/>
+            <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+        <!-- Print Excel Receipt Mẫu 4 -->
+        <record id="action_physical_gift_receipt_export_excel_template_4" model="ir.actions.server">
+            <field name="name">Excel Receipt Mẫu 4</field>
+            <field name="model_id" ref="model_physical_gift_receipt"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel_receipt_template_4()</field>
+            <field name="binding_model_id" ref="model_physical_gift_receipt"/>
+            <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
+            <field name="binding_view_types">list,form</field>
+        </record>
+
+        <!-- Print Excel Receipt Mẫu 5 -->
+        <record id="action_physical_gift_receipt_export_excel_template_5" model="ir.actions.server">
+            <field name="name">Excel Receipt Mẫu 5</field>
+            <field name="model_id" ref="model_physical_gift_receipt"/>
+            <field name="state">code</field>
+            <field name="code">action = records.action_export_excel_receipt_template_5()</field>
             <field name="binding_model_id" ref="model_physical_gift_receipt"/>
             <field name="binding_type">report</field> <!-- BẮT BUỘC để hiện trong Print -->
             <field name="binding_view_types">list,form</field>

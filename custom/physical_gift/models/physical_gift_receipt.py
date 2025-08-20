@@ -187,6 +187,84 @@ class PhysicalGiftReceipt(models.Model):
             "target": "self",
         }
 
+    def action_export_excel_receipt_template_3(self):
+        """Export Excel receipt theo mẫu 3 - sử dụng Template Exporter"""
+        if not self:
+            raise UserError(_("No receipt to export."))
+
+        receipt = self[0]  # Only export single receipt
+        
+        # Sử dụng Template 3 Exporter
+        template3_exporter = self.env['receipt.template3.exporter']
+        file_content, filename = template3_exporter.export_template_3(receipt)
+
+        attachment = self.env["ir.attachment"].create({
+            "name": filename,
+            "type": "binary",
+            "datas": file_content,
+            "res_model": "physical.gift.receipt",
+            "res_id": receipt.id,
+            "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        })
+
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/{attachment.id}?download=1",
+            "target": "self",
+        }
+
+    def action_export_excel_receipt_template_4(self):
+        """Export Excel receipt theo mẫu 4 - sử dụng Template Exporter"""
+        if not self:
+            raise UserError(_("No receipt to export."))
+
+        receipt = self[0]  # Only export single receipt
+        
+        # Sử dụng Template 4 Exporter
+        template4_exporter = self.env['receipt.template4.exporter']
+        file_content, filename = template4_exporter.export_template_4(receipt)
+
+        attachment = self.env["ir.attachment"].create({
+            "name": filename,
+            "type": "binary",
+            "datas": file_content,
+            "res_model": "physical.gift.receipt",
+            "res_id": receipt.id,
+            "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        })
+
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/{attachment.id}?download=1",
+            "target": "self",
+        }
+
+    def action_export_excel_receipt_template_5(self):
+        """Export Excel receipt theo mẫu 5 - sử dụng Template Exporter"""
+        if not self:
+            raise UserError(_("No receipt to export."))
+
+        receipt = self[0]  # Only export single receipt
+        
+        # Sử dụng Template 5 Exporter
+        template5_exporter = self.env['receipt.template5.exporter']
+        file_content, filename = template5_exporter.export_template_5(receipt)
+
+        attachment = self.env["ir.attachment"].create({
+            "name": filename,
+            "type": "binary",
+            "datas": file_content,
+            "res_model": "physical.gift.receipt",
+            "res_id": receipt.id,
+            "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        })
+
+        return {
+            "type": "ir.actions.act_url",
+            "url": f"/web/content/{attachment.id}?download=1",
+            "target": "self",
+        }
+
     def name_get(self):
         result = []
         for record in self:
