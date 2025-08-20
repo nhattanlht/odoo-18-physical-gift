@@ -28,7 +28,7 @@ class ReceiptTemplate2Exporter(models.AbstractModel):
 
         # Define formats theo chính xác hình ảnh
         company_header_format = workbook.add_format({
-            'bold': True, 'font_size': 14, 'valign': 'top', 'font_name': 'Arial'
+            'bold': True, 'font_size': 18, 'valign': 'top', 'font_name': 'Times New Roman'
         })
         receipt_title_format = workbook.add_format({
             'bold': True, 'font_size': 20, 'align': 'right', 'valign': 'top', 'font_name': 'Arial'
@@ -69,17 +69,17 @@ class ReceiptTemplate2Exporter(models.AbstractModel):
 
         # Header giống hình ảnh - Company bên trái, PHIẾU THU bên phải
         worksheet.write('A1', 'CÔNG TY CỔ PHẦN DAYONE', company_header_format)
-        worksheet.write('D1', 'PHIẾU THU', receipt_title_format)
+        worksheet.merge_range('D1:E1', 'PHIẾU THU', receipt_title_format)
         
         worksheet.merge_range('A2:C2', 'Số 102 Nguyễn Đình Chiểu, Phường 15, Quận Phú Nhuận, TP.HCM, Việt Nam', info_format)
-        worksheet.write('D2', f'Ngày: {receipt.receipt_date.strftime("%d/%m/%Y")}', date_format)
+        worksheet.merge_range('D2:E2', f'Ngày: {receipt.receipt_date.strftime("%d/%m/%Y")}', date_format)
         
         worksheet.write('A3', f'Mã số thuế/ Tax Code : {receipt.company_id.vat or "0313249098"}', info_format)
-        worksheet.write('D3', f'Ký hiệu: {receipt.name or "DO"}', date_format)
-        worksheet.write('E3', f'Số: {"." * 18}', date_format)
+        worksheet.merge_range('D3:E3', f'Ký hiệu: {receipt.name or "DO"}', date_format)
+        worksheet.merge_range('D4:E4', f'Số: {"." * 18}', date_format)
         
         # Tài khoản ngân hàng
-        worksheet.merge_range('A4:D4', 'Tài khoản ngân hàng số: 1081100323005, MB BANK - ĐINH TIẾN HOÀNG', info_format)
+        worksheet.merge_range('A4:C4', 'Tài khoản ngân hàng số: 1081100323005, MB BANK - ĐINH TIẾN HOÀNG', info_format)
 
         # Người mua section
         worksheet.write('A6', 'Người mua', payer_header_format)
